@@ -18,11 +18,13 @@
              (define-key php-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
              (setq skeleton-pair 1)))
 
+
 ;;; A CSS editing mode for Emacs
 (autoload 'css-mode "css-mode")
 (setq auto-mode-alist
       (cons '("\\.css\\'" . css-mode) auto-mode-alist))
 (setq cssm-indent-function #'cssm-c-style-indenter)
+
 
 ;;; MMM Mode
 ;; (require 'mmm-auto)
@@ -109,7 +111,6 @@
 (define-key ac-complete-mode-map "\C-p" 'ac-previous)
 ;; 辞書
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
-
 ;; 情報源として
 ;; * ac-source-filename
 ;; * ac-source-words-in-same-mode-buffers
