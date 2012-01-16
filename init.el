@@ -13,19 +13,22 @@
 ;; (set-locale-environment nil)
 
 ;;; キーバインド
-(define-key global-map (kbd "C-h") 'delete-backward-char) ; 削除
-(define-key global-map (kbd "M-?") 'help-for-help)        ; ヘルプ
-(define-key global-map (kbd "C-z") 'undo)                 ; undo
-(define-key global-map (kbd "C-c i") 'indent-region)      ; インデント
-(define-key global-map (kbd "C-c TAB") 'hippie-expand)    ; 補完
-(define-key global-map (kbd "C-c ;") 'comment-dwim)  ; コメントアウト
-(define-key global-map (kbd "C-c C-g") 'rgrep)       ; rgrep
-(define-key global-map (kbd "C-[ M-C-g") 'goto-line) ; 指定行へ移動
-(define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)  ; iswitchb
-(define-key global-map (kbd "C-c v") 'viper-mode)         ; viper-mode
-(define-key global-map (kbd "C-c p") 'php-mode)           ; php-mode
-(define-key global-map (kbd "C-c n") 'nxml-mode)          ; nxml-mode
-(define-key global-map (kbd "C-c s") 'sgml-mode)          ; sgml-mode
+(define-key global-map (kbd "C-h") 'delete-backward-char)   ; 削除
+(define-key global-map (kbd "M-?") 'help-for-help)          ; ヘルプ
+(define-key global-map (kbd "C-z") 'undo)                   ; undo
+(define-key global-map (kbd "C-c i") 'indent-region)        ; インデント
+(define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
+(define-key global-map (kbd "C-c ;") 'comment-dwim)         ; コメントアウト
+(define-key global-map (kbd "C-c C-g") 'rgrep)              ; rgrep
+(define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb
+(define-key global-map (kbd "C-c a") 'align)                ; align
+(define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
+(define-key global-map (kbd "C-t") 'next-multiframe-window) ; フレーム間移動
+(define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
+(define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
+(define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
+(define-key global-map (kbd "C-c s") 'sgml-mode)            ; sgml-mode
 
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep

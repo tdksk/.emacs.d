@@ -2,15 +2,18 @@
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
       (cons '("\\.php\\'" . php-mode) auto-mode-alist))
-;(setq php-mode-force-pear t) ; これがあるとtab-widthが設定不可
+;; (setq php-mode-force-pear t) ; これがあるとtab-widthが設定不可
 (add-hook 'php-mode-hook
           '(lambda ()
              (setq tab-width 2)          ; tabの幅
              (setq indent-tabs-mode nil) ; tabをスペースに
              ;; (setq php-manual-path "/usr/share/php/doc/html")
              (setq php-manual-url "http://www.phppro.jp/phpmanual/")
-;;; 括弧自動補完
-;;; global-set-keyのやつ+''
+             ;; php-align.el
+             (require 'php-align)
+             (php-align-setup)
+             ;; 括弧自動補完
+             ;; global-set-keyのやつ+''
              (define-key php-mode-map (kbd "(") 'skeleton-pair-insert-maybe)
              (define-key php-mode-map (kbd "{") 'skeleton-pair-insert-maybe)
              (define-key php-mode-map (kbd "[") 'skeleton-pair-insert-maybe)
