@@ -138,3 +138,11 @@
 
 ;;; anything.el
 ;; (require 'anything-startup)
+
+
+;;; popwin.el
+;;; ポップアップウィンドウ表示
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
+(push '("*Warning*") popwin:special-display-config)
