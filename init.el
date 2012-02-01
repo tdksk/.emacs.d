@@ -96,6 +96,9 @@
 ;;; バッファの最後でnewlineで新規行を追加するのを禁止する
 (setq next-line-add-newlines nil)
 
+;;; 画面分割しても折り返し
+(setq truncate-partial-width-windows nil)
+
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
 
