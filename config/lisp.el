@@ -147,3 +147,30 @@
 ;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
 (push '("*Warning*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
+
+
+;;; Twittering-mode
+(require 'twittering-mode)
+(setq twittering-auth-method 'xauth)
+(setq twittering-username "tdksk")
+(setq twittering-password "asdf1059")
+;; keyborad shortcuts
+(define-key twittering-mode-map (kbd ".") 'twittering-current-timeline)
+;; format
+(setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f%L \n  %t\n")
+;; %s - screen_name
+;; %S - name
+;; %i - profile_image
+;; %d - description
+;; %l - location
+;; %L - " [location]"
+;; %u - url
+;; %j - user.id
+;; %p - protected?
+;; %c - created_at (raw UTC string)
+;; %C{time-format-str} - created_at (formatted with time-format-str)
+;; %@ - X seconds ago
+;; %t - text
+;; %' - truncated
+;; %f - source
+;; %# - id
