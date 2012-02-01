@@ -163,7 +163,7 @@
 ;; keyborad shortcuts
 (define-key twittering-mode-map (kbd ".") 'twittering-current-timeline)
 ;; format
-(setq twittering-status-format "%FILL{%i %s%p %t %C{%R %D} from %f}")
+(setq twittering-status-format "%FILL{%C{%R %b%d} %s%p %t from %f}")
 ;;(setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f \n  %FILL{%t}\n")
 ;; %s - screen_name
 ;; %S - name
