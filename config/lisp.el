@@ -146,3 +146,4 @@
 (setq display-buffer-function 'popwin:display-buffer)
 ;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
 (push '("*Warning*") popwin:special-display-config)
+(push '("*Process List*") popwin:special-display-config)
