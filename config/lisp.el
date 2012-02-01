@@ -153,11 +153,18 @@
 (require 'twittering-mode)
 (setq twittering-auth-method 'xauth)
 (setq twittering-username "tdksk")
-(setq twittering-password "asdf1059")
+(setq twittering-icon-mode nil)
+(add-hook 'twittering-mode-hook
+          (lambda ()
+            ;;(set-face-bold-p 'twittering-username-face t)
+            (set-face-foreground 'twittering-username-face "green")
+            (set-face-foreground 'twittering-uri-face "yellow"))
+          )
 ;; keyborad shortcuts
 (define-key twittering-mode-map (kbd ".") 'twittering-current-timeline)
 ;; format
-(setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f%L \n  %t\n")
+(setq twittering-status-format "%FILL{%i %s%p %t %C{%R %D} from %f}")
+;;(setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f \n  %FILL{%t}\n")
 ;; %s - screen_name
 ;; %S - name
 ;; %i - profile_image
