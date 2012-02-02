@@ -257,5 +257,13 @@
              (setq skeleton-pair 1)))
 
 
+;;; Term Mode
+(add-hook 'term-mode-hook
+          '(lambda ()
+             ;; キーバインド
+             (define-key term-raw-map "\C-t" 'next-multiframe-window)  ;フレーム間移動
+             ))
+
+
 ;;; 非標準Elispの設定
 (load "config/lisp")
