@@ -261,6 +261,7 @@
 
 
 ;;; Term Mode
+(global-set-key "\C-c\C-o" '(lambda ()(interactive)(term "/bin/bash")))
 (add-hook 'term-mode-hook
           '(lambda ()
              ;; キーバインド
