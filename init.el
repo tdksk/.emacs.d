@@ -145,6 +145,9 @@
 ;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
 
+;;; dired拡張
+(require 'dired-x)
+
 ;;; 選択範囲に色をつける
 (setq transient-mark-mode t)
 
@@ -261,7 +264,7 @@
 (add-hook 'term-mode-hook
           '(lambda ()
              ;; キーバインド
-             (define-key term-raw-map "\C-t" 'next-multiframe-window)  ;フレーム間移動
+             (define-key term-raw-map "\C-t" 'next-multiframe-window) ; フレーム間移動
              ))
 
 
