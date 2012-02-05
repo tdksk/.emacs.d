@@ -262,10 +262,12 @@
 
 ;;; Term Mode
 (global-set-key "\C-c\C-o" '(lambda ()(interactive)(term "/bin/bash")))
+(global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
 (add-hook 'term-mode-hook
           '(lambda ()
              ;; キーバインド
-             (define-key term-raw-map "\C-t" 'next-multiframe-window) ; フレーム間移動
+             (define-key term-raw-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
+             (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
              ))
 
 
