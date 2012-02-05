@@ -65,6 +65,7 @@
   ("\\.mp\\'"         . "mptopdf %f")
   ("\\.pl\\'"         . "perl -cw %f")
   ("\\.rb\\'"         . "ruby -cw %f")
+  ("\\.py\\'"         . "python %f")
 )  "List of compile commands. In argument,
 some keywords beginning with '%' will be replaced by:
 
