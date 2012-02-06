@@ -261,7 +261,7 @@
 
 
 ;;; Term Mode
-(global-set-key "\C-c\C-o" '(lambda ()(interactive)(term "/bin/bash")))
+(global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
 (global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
 (add-hook 'term-mode-hook
           '(lambda ()
