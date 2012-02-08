@@ -53,9 +53,9 @@
 (auto-image-file-mode t)
 
 ;;; メニューバーを消す
-;; (menu-bar-mode -1)
+(menu-bar-mode -1)
 ;;; ツールバーを消す
-;; (tool-bar-mode -1)
+(tool-bar-mode -1)
 
 ;;; カーソルの点滅を止める
 ;; (blink-cursor-mode 0)
