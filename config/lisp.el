@@ -128,6 +128,8 @@
 ;; (ac-set-trigger-key "TAB")              ; TABで補完開始(トリガーキー)
 ;; or
 ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete) ; M-TABで補完開始
+(add-hook 'AC-mode-hook
+          (set-face-background 'ac-selection-face "blue"))  ; 色変更
 
 
 ;;; auto-install
