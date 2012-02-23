@@ -121,6 +121,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
+;;; 削除確認などでyes/noの代わりにy/n
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;;; 改行キーでオートインデントさせる
 (global-set-key "\C-m" 'newline-and-indent)
@@ -144,9 +146,6 @@
 
 ;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
-
-;;; dired拡張
-(require 'dired-x)
 
 ;;; 選択範囲に色をつける
 (setq transient-mark-mode t)
@@ -269,6 +268,50 @@
              (define-key term-raw-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
              ))
+
+
+;;; dired-mode
+;; dired拡張
+(require 'dired-x)
+(add-hook 'dired-mode-hook
+          '(lambda ()
+             ;; キーバインド
+             (define-key dired-mode-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
+             ))
+
+(put 'dired-find-alternate-file 'disabled nil)
+(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; 新規バッファを作成しない
+(define-key dired-mode-map "o" 'dired-find-alternate-file)         ; 新規バッファを作成しない
+(define-key dired-mode-map "a" 'dired-advertised-find-file)        ; 新規バッファで開く
+(define-key dired-mode-map "u" 'dired-up-directory)                ; 親ディレクトリに移動
+(define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
+(define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
+(define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
+
+;;; フォルダを開く時, 新しいバッファを作成しない
+;; バッファを作成したい時にはoやC-u ^を利用する
+(defvar my-dired-before-buffer nil)
+(defadvice dired-advertised-find-file
+    (before kill-dired-buffer activate)
+      (setq my-dired-before-buffer (current-buffer)))
+
+(defadvice dired-advertised-find-file
+    (after kill-dired-buffer-after activate)
+      (if (eq major-mode 'dired-mode)
+                (kill-buffer my-dired-before-buffer)))
+
+(defadvice dired-up-directory
+    (before kill-up-dired-buffer activate)
+      (setq my-dired-before-buffer (current-buffer)))
+
+(defadvice dired-up-directory
+    (after kill-up-dired-buffer-after activate)
+      (if (eq major-mode 'dired-mode)
+                (kill-buffer my-dired-before-buffer)))
+
+;; サブディレクトリも削除やコピーできるように
+(setq dired-recursive-copies 'always)
+(setq dired-recursive-deletes 'always)
 
 
 ;;; 非標準Elispの設定
