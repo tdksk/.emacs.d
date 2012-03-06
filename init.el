@@ -26,6 +26,8 @@
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "C-t") 'next-multiframe-window) ; フレーム間移動
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
+(define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
+(define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
 (define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
 (define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
