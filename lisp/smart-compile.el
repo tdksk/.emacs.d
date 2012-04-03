@@ -56,7 +56,7 @@
   ("\\.[Cc]+[Pp]*\\'" . "g++ -O2 %f -lm -o %n")
   ("\\.m\\'"          . "gcc -O2 %f -lobjc -lpthread -o %n")
   ("\\.java\\'"       . "javac %f")
-  ("\\.php\\'"        . "php -l %f")
+  ("\\.php\\'"        . "php %f")
   ("\\.f90\\'"        . "gfortran %f -o %n")
   ("\\.[Ff]\\'"       . "gfortran %f -o %n")
   ("\\.cron\\(tab\\)?\\'" . "crontab %f")
