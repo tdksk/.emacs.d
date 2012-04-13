@@ -145,7 +145,7 @@
 
 ;;; anything.el
 (require 'anything-startup)
-
+(define-key global-map (kbd "C-x C-b") 'anything-for-files)
 
 ;;; popwin.el
 ;;; ポップアップウィンドウ表示
@@ -154,6 +154,8 @@
 ;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
 (push '("*Warnings*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
+(push '("*anything*") popwin:special-display-config)
+(push '("*anything for files*") popwin:special-display-config)
 
 
 ;;; Twittering-mode

@@ -22,7 +22,7 @@
 (define-key global-map (kbd "C-c ;") 'comment-dwim)         ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; rgrep
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
-(define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb
+;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-SPC") 'mark-sexp)            ; カーソル前方のS式をリージョン選択する
@@ -257,7 +257,7 @@
       (setq iswitchb-buffer-ignore-asterisk-orig nil)
       (iswitchb-make-buflist iswitchb-default)
       (setq iswitchb-rescan t))))
-;;(add-to-list 'iswitchb-buffer-ignore "*Completions*")
+;; (add-to-list 'iswitchb-buffer-ignore "*Completions*")
 
 
 ;;; Tabの代わりにスペースでインデント
