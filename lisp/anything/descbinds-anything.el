@@ -250,4 +250,3 @@ This function called two argument KEY and BINDING."
 ;; (emacswiki-post "descbinds-anything.el")
 
 ;;; descbinds-anything.el ends here
-

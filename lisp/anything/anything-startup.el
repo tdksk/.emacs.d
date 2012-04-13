@@ -53,4 +53,3 @@
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-startup.el"))
 ;;; anything-startup.el ends here
-

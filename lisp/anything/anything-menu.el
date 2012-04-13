@@ -165,4 +165,3 @@ The anything-menu script calls this function and print selection to stdout."
 ;; How to save (DO NOT REMOVE!!)
 ;; (emacswiki-post "anything-menu.el")
 ;;; anything-menu.el ends here
-

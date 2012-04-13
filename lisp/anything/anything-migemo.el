@@ -340,4 +340,3 @@ Bind `anything-use-migemo' = t in COMMAND."
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-migemo.el"))
 ;;; anything-migemo.el ends here
-

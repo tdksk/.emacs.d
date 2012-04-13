@@ -188,4 +188,3 @@
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-obsolete.el"))
 ;;; anything-obsolete.el ends here
-

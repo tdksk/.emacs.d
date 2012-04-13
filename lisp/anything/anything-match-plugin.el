@@ -990,4 +990,3 @@ was called."
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-match-plugin.el"))
 ;;; anything-match-plugin.el ends here
-

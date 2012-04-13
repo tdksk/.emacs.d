@@ -962,4 +962,3 @@ So, (anything-read-string-mode 1) and
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-complete.el"))
 ;;; anything-complete.el ends here
-

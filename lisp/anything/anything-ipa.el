@@ -123,4 +123,3 @@
 ;; How to save (DO NOT REMOVE!!)
 ;; (emacswiki-post "anything-ipa.el")
 ;;; anything-ipa.el ends here
-

@@ -320,4 +320,3 @@ If it is other symbol, display file name in candidates even if classification is
 ;; How to save (DO NOT REMOVE!!)
 ;; (progn (magit-push) (emacswiki-post "anything-gtags.el"))
 ;;; anything-gtags.el ends here
-

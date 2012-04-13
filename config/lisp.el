@@ -144,7 +144,7 @@
 
 
 ;;; anything.el
-;; (require 'anything-startup)
+(require 'anything-startup)
 
 
 ;;; popwin.el

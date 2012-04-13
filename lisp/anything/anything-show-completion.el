@@ -268,4 +268,3 @@ It is evaluated in `asc-display-overlay'."
 ;; How to save (DO NOT REMOVE!!)
 ;; (emacswiki-post "anything-show-completion.el")
 ;;; anything-show-completion.el ends here
-

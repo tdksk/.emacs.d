@@ -220,4 +220,3 @@
 (provide 'anything-auto-install)
 
 ;;; anything-auto-install.el ends here
-

@@ -646,4 +646,3 @@
 
 (provide 'ipa)
 ;;; ipa.el ends here
-
