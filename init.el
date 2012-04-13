@@ -25,6 +25,7 @@
 (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
+(define-key global-map (kbd "M-SPC") 'mark-sexp)            ; カーソル前方のS式をリージョン選択する
 (define-key global-map (kbd "C-t") 'next-multiframe-window) ; フレーム間移動
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
@@ -266,8 +267,8 @@
 
 ;;; cua-mode
 (cua-mode t)
-(setq cua-enable-cua-keys nil) ;; 変なキーバインド禁止
-(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ;; 矩形選択開始
+(setq cua-enable-cua-keys nil) ; 変なキーバインド禁止
+(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ; 矩形選択開始
 
 
 ;;; Python Mode
