@@ -94,6 +94,9 @@
 ;;; 行の先頭でC-kを一回押すだけで行全体を消去する
 (setq kill-whole-line t)
 
+;;; リージョンを削除できるように
+(delete-selection-mode t)
+
 ;;; 最終行に必ず一行挿入する
 (setq require-final-newline t)
 
