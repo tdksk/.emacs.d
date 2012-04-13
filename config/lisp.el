@@ -7,6 +7,11 @@
           '(lambda ()
              (setq tab-width 2)          ; tabの幅
              (setq indent-tabs-mode nil) ; tabをスペースに
+             ;; インデント設定
+             (c-set-offset 'case-label' +)
+             (c-set-offset 'arglist-intro' +)
+             (c-set-offset 'arglist-cont-nonempty' +)
+             (c-set-offset 'arglist-close' 0)
              ;; (setq php-manual-path "/usr/share/php/doc/html")
              (setq php-manual-url "http://www.phppro.jp/phpmanual/")
              ;; php-align.el
