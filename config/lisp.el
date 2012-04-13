@@ -146,6 +146,9 @@
 ;;; anything.el
 (require 'anything-startup)
 (define-key global-map (kbd "C-x C-b") 'anything-for-files)
+(setq anything-idle-delay 0)
+(setq anything-input-idle-delay 0)
+
 
 ;;; popwin.el
 ;;; ポップアップウィンドウ表示
