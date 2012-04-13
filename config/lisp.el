@@ -156,6 +156,7 @@
 (push '("*Process List*") popwin:special-display-config)
 (push '("*anything*") popwin:special-display-config)
 (push '("*anything for files*") popwin:special-display-config)
+(push '("*anything complete*") popwin:special-display-config)
 
 
 ;;; Twittering-mode
