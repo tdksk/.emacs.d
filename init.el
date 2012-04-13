@@ -112,6 +112,10 @@
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
 
+;;; 最近使ったファイルを保存する
+(recentf-mode t)
+(global-set-key "\C-xf" 'recentf-open-files)  ; 履歴一覧を開く
+
 ;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
