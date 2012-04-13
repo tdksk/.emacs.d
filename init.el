@@ -236,11 +236,23 @@
        (get-buffer (car iswitchb-matches))))
     (select-window (minibuffer-window))))
 ;;; iswitchbで補完対象に含めないバッファ
-;;; 動かない
-;; (setq iswitchb-buffer-ignore
-;;       '(
-;;        "*Completions*"
-;;         ))
+;; 普段は*...*を完全無視する
+(add-to-list 'iswitchb-buffer-ignore "\\`\\*")
+(setq iswitchb-buffer-ignore-asterisk-orig nil)
+(defadvice iswitchb-exhibit (before iswitchb-exhibit-asterisk activate)
+  "*が入力されている時は*で始まるものだけを出す"
+  (if (equal (char-after (minibuffer-prompt-end)) ?*)
+      (when (not iswitchb-buffer-ignore-asterisk-orig)
+        (setq iswitchb-buffer-ignore-asterisk-orig iswitchb-buffer-ignore)
+        (setq iswitchb-buffer-ignore '("^ "))
+        (iswitchb-make-buflist iswitchb-default)
+        (setq iswitchb-rescan t))
+    (when iswitchb-buffer-ignore-asterisk-orig
+      (setq iswitchb-buffer-ignore iswitchb-buffer-ignore-asterisk-orig)
+      (setq iswitchb-buffer-ignore-asterisk-orig nil)
+      (iswitchb-make-buflist iswitchb-default)
+      (setq iswitchb-rescan t))))
+;;(add-to-list 'iswitchb-buffer-ignore "*Completions*")
 
 
 ;;; Tabの代わりにスペースでインデント
