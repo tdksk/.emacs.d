@@ -249,8 +249,9 @@
 
 
 ;;; cua-mode
-;; (cua-mode t)
-;; (setq cua-enable-cua-keys nil) ;; 変なキーバインド禁止
+(cua-mode t)
+(setq cua-enable-cua-keys nil) ;; 変なキーバインド禁止
+(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ;; 矩形選択開始
 
 
 ;;; Python Mode
