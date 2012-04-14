@@ -145,8 +145,8 @@
 
 ;;; anything.el
 (require 'anything-startup)
-(define-key global-map (kbd "C-x b") 'anything-for-files)
-(define-key global-map (kbd "C-x C-b") 'anything-for-files)
+(define-key global-map (kbd "C-x b") 'anything-filelist+)
+(define-key global-map (kbd "C-x C-b") 'anything-filelist+)
 (define-key global-map (kbd "C-x C-_") 'anything-occur)
 (setq anything-idle-delay 0)
 (setq anything-input-idle-delay 0)
