@@ -216,47 +216,47 @@
 ;;; iswitchb は、バッファ名の一部の文字を入力することで、
 ;;; 選択バッファの絞り込みを行う機能を実現します。
 ;;; バッファ名を先頭から入力する必要はなく、とても使いやすくなります。
-(iswitchb-mode 1) ;;iswitchbモードON
+;; (iswitchb-mode 1) ;;iswitchbモードON
 ;;; キーバインド
 ;;; C-f, C-b, C-n, C-p で候補を切り替えることができるように。
-(add-hook 'iswitchb-define-mode-map-hook
-          (lambda ()
-            (define-key iswitchb-mode-map "\C-n" 'iswitchb-next-match)
-            (define-key iswitchb-mode-map "\C-p" 'iswitchb-prev-match)
-            (define-key iswitchb-mode-map "\C-f" 'iswitchb-next-match)
-            (define-key iswitchb-mode-map "\C-b" 'iswitchb-prev-match)))
+;; (add-hook 'iswitchb-define-mode-map-hook
+;;           (lambda ()
+;;             (define-key iswitchb-mode-map "\C-n" 'iswitchb-next-match)
+;;             (define-key iswitchb-mode-map "\C-p" 'iswitchb-prev-match)
+;;             (define-key iswitchb-mode-map "\C-f" 'iswitchb-next-match)
+;;             (define-key iswitchb-mode-map "\C-b" 'iswitchb-prev-match)))
 ;;; iswitchbで選択中の内容を表示
-(defadvice iswitchb-exhibit
-  (after
-   iswitchb-exhibit-with-display-buffer
-   activate)
-  ;;  選択している buffer を window に表示してみる。
-  (when (and
-         (eq iswitchb-method iswitchb-default-method)
-         iswitchb-matches)
-    (select-window
-     (get-buffer-window (cadr (buffer-list))))
-    (let ((iswitchb-method 'samewindow))
-      (iswitchb-visit-buffer
-       (get-buffer (car iswitchb-matches))))
-    (select-window (minibuffer-window))))
+;; (defadvice iswitchb-exhibit
+;;   (after
+;;    iswitchb-exhibit-with-display-buffer
+;;    activate)
+;;   ;;  選択している buffer を window に表示してみる。
+;;   (when (and
+;;          (eq iswitchb-method iswitchb-default-method)
+;;          iswitchb-matches)
+;;     (select-window
+;;      (get-buffer-window (cadr (buffer-list))))
+;;     (let ((iswitchb-method 'samewindow))
+;;       (iswitchb-visit-buffer
+;;        (get-buffer (car iswitchb-matches))))
+;;     (select-window (minibuffer-window))))
 ;;; iswitchbで補完対象に含めないバッファ
 ;; 普段は*...*を完全無視する
-(add-to-list 'iswitchb-buffer-ignore "\\`\\*")
-(setq iswitchb-buffer-ignore-asterisk-orig nil)
-(defadvice iswitchb-exhibit (before iswitchb-exhibit-asterisk activate)
-  "*が入力されている時は*で始まるものだけを出す"
-  (if (equal (char-after (minibuffer-prompt-end)) ?*)
-      (when (not iswitchb-buffer-ignore-asterisk-orig)
-        (setq iswitchb-buffer-ignore-asterisk-orig iswitchb-buffer-ignore)
-        (setq iswitchb-buffer-ignore '("^ "))
-        (iswitchb-make-buflist iswitchb-default)
-        (setq iswitchb-rescan t))
-    (when iswitchb-buffer-ignore-asterisk-orig
-      (setq iswitchb-buffer-ignore iswitchb-buffer-ignore-asterisk-orig)
-      (setq iswitchb-buffer-ignore-asterisk-orig nil)
-      (iswitchb-make-buflist iswitchb-default)
-      (setq iswitchb-rescan t))))
+;; (add-to-list 'iswitchb-buffer-ignore "\\`\\*")
+;; (setq iswitchb-buffer-ignore-asterisk-orig nil)
+;; (defadvice iswitchb-exhibit (before iswitchb-exhibit-asterisk activate)
+;;   "*が入力されている時は*で始まるものだけを出す"
+;;   (if (equal (char-after (minibuffer-prompt-end)) ?*)
+;;       (when (not iswitchb-buffer-ignore-asterisk-orig)
+;;         (setq iswitchb-buffer-ignore-asterisk-orig iswitchb-buffer-ignore)
+;;         (setq iswitchb-buffer-ignore '("^ "))
+;;         (iswitchb-make-buflist iswitchb-default)
+;;         (setq iswitchb-rescan t))
+;;     (when iswitchb-buffer-ignore-asterisk-orig
+;;       (setq iswitchb-buffer-ignore iswitchb-buffer-ignore-asterisk-orig)
+;;       (setq iswitchb-buffer-ignore-asterisk-orig nil)
+;;       (iswitchb-make-buflist iswitchb-default)
+;;       (setq iswitchb-rescan t))))
 ;; (add-to-list 'iswitchb-buffer-ignore "*Completions*")
 
 
