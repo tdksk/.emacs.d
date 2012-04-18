@@ -168,18 +168,24 @@
 (require 'viewer)
 (viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
 (setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
+;; view-modeのときはモードラインの色を変える
+(setq viewer-modeline-color-unwritable "magenta"
+      viewer-modeline-color-view "red")
+(viewer-change-modeline-color-setup)
 (defvar pager-keybind
   `( ;; vi-like
     ("h" . backward-char)
     ("l" . forward-char)
-    ("j" . next-line)
-    ("k" . previous-line)
+    ("j" . View-scroll-line-forward)
+    ("k" . View-scroll-line-backward)
+    ("f" . View-scroll-page-forward)
+    ("b" . View-scroll-page-backward)
     ("g" . beginning-of-buffer)
     ("G" . end-of-buffer)
     ("/" . isearch-forward)
     ("n" . isearch-repeat-forward)
     ("N" . isearch-repeat-backward)
-    ("i" . normal-mode)
+    ("i" . View-quit)
     ))
 (defun define-many-keys (keymap key-table &optional includes)
   (let (key cmd)
@@ -192,7 +198,7 @@
 
 (defun view-mode-hook0 ()
   (define-many-keys view-mode-map pager-keybind)
-  (hl-line-mode 1)
+  ;; (hl-line-mode 1)
   (define-key view-mode-map " " 'scroll-up))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
