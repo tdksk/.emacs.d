@@ -163,6 +163,47 @@
 (push '("*anything*" :regexp t :height 20) popwin:special-display-config)
 
 
+;;; view-mode, viewer.el
+(setq view-read-only t)
+(require 'viewer)
+(viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
+(setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
+(defvar pager-keybind
+  `( ;; vi-like
+    ("h" . backward-char)
+    ("l" . forward-char)
+    ("j" . next-line)
+    ("k" . previous-line)
+    ("g" . beginning-of-buffer)
+    ("G" . end-of-buffer)
+    ("/" . isearch-forward)
+    ("n" . isearch-repeat-forward)
+    ("N" . isearch-repeat-backward)
+    ("i" . normal-mode)
+    ))
+(defun define-many-keys (keymap key-table &optional includes)
+  (let (key cmd)
+    (dolist (key-cmd key-table)
+      (setq key (car key-cmd)
+            cmd (cdr key-cmd))
+      (if (or (not includes) (member key includes))
+          (define-key keymap key cmd))))
+  keymap)
+
+(defun view-mode-hook0 ()
+  (define-many-keys view-mode-map pager-keybind)
+  (hl-line-mode 1)
+  (define-key view-mode-map " " 'scroll-up))
+(add-hook 'view-mode-hook 'view-mode-hook0)
+
+
+;;; key-chord.el
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.04)
+(key-chord-mode 1)
+(key-chord-define-global "jk" 'view-mode)
+
+
 ;;; Twittering-mode
 (require 'twittering-mode)
 (setq twittering-auth-method 'xauth)
