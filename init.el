@@ -153,8 +153,14 @@
       (beginning-of-line)
     (back-to-indentation)))
 
+;;; モードライン
+(set-face-foreground 'modeline "black")
+(set-face-background 'modeline "white")
+
 ;;; 時計の表示
-(display-time-mode 1)
+(setq display-time-24hr-format t)
+(setq display-time-default-load-average nil)
+(display-time-mode t)
 
 ;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
