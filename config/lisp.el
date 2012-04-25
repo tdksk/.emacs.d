@@ -249,8 +249,5 @@
 (setq auto-mode-alist
       (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
-(add-hook 'matlab-mode-hook
-          '(lambda ()
-             ;; 効かない
-             (setq tab-width 4)            ; tabの幅
-             (setq indent-tabs-mode nil))) ; tabをスペースに
+;; auto-complete-modeの自動起動
+(add-to-list 'ac-modes 'matlab-mode)

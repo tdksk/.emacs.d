@@ -66,7 +66,7 @@
 ;;; user-changeable variables =================================================
 
 ;; Variables which the user can change
-(defvar matlab-indent-level 2
+(defvar matlab-indent-level 4
   "*The indentation in matlab-mode.")
 
 (defvar matlab-cont-level 4
@@ -84,7 +84,7 @@
 (defvar matlab-comment-on-line-s "% "
   "*String to start comment on line with code.")
 
-(defvar matlab-comment-region-s "% $$$ "
+(defvar matlab-comment-region-s "% "
   "*String inserted by \\[matlab-comment-region] at start of each line in \
 region.")
 
@@ -161,7 +161,7 @@ region.")
   (define-key matlab-mode-map "\C-j" 'matlab-linefeed)
   (define-key matlab-mode-map "\t" 'matlab-indent-line)
   (define-key matlab-mode-map "\M-;" 'matlab-comment)
-  (define-key matlab-mode-map "\C-c;" 'matlab-comment-region)
+  ;; (define-key matlab-mode-map "\C-c;" 'matlab-comment-region)
   (define-key matlab-mode-map "\C-c\r" 'matlab-comment-return)
   (define-key matlab-mode-map "\C-c\C-f" 'matlab-fill-comment-line)
   (define-key matlab-mode-map "\C-c\C-h" matlab-help-map)
