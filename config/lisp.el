@@ -169,8 +169,8 @@
 (viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
 (setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
 ;; view-modeのときはモードラインの色を変える
-(setq viewer-modeline-color-unwritable "blue"
-      viewer-modeline-color-view "yellow")
+(setq viewer-modeline-color-unwritable "yellow"
+      viewer-modeline-color-view "blue")
 (viewer-change-modeline-color-setup)
 (defvar pager-keybind
   `( ;; vi-like
