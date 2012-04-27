@@ -62,6 +62,12 @@
 ;;; ツールバーを消す
 ;; (tool-bar-mode -1)
 
+;;; 起動画面を表示しない
+(setq inhibit-splash-screen t)
+
+;;; *scratch*バッファのメッセージを消す
+(setq initial-scratch-message "")
+
 ;;; カーソルの点滅を止める
 ;; (blink-cursor-mode 0)
 
