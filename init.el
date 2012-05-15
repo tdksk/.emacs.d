@@ -308,7 +308,7 @@
 (add-hook 'term-mode-hook
           '(lambda ()
              ;; キーバインド
-             (define-key term-raw-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
+             (define-key term-raw-map "\C-t" 'other-window-or-split)                          ; フレーム間移動
              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
              (define-key term-raw-map (kbd "M-p") 'next-buffer)                                ; 次のバッファ
              (define-key term-raw-map (kbd "M-n") 'previous-buffer)                            ; 前のバッファ
