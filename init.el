@@ -40,6 +40,24 @@
   (other-window 1))
 (define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 
+(defun swap-screen()
+  "Swap two screen,leaving cursor at current window."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (nextbuf (window-buffer (next-window))))
+    (set-window-buffer (next-window) (window-buffer))
+    (set-window-buffer thiswin nextbuf)))
+(defun swap-screen-with-cursor()
+  "Swap two screen,with cursor in same buffer."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (thisbuf (window-buffer)))
+    (other-window 1)
+    (set-window-buffer thiswin (window-buffer))
+    (set-window-buffer (selected-window) thisbuf)))
+(define-key global-map (kbd "C-c t") 'swap-screen)                ; 分割したバッファを入れ替える
+(define-key global-map (kbd "C-c C-t") 'swap-screen-with-cursor)  ; カーソルごと入れ替える
+
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep
 (require 'grep)
