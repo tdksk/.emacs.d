@@ -55,8 +55,7 @@
     (other-window 1)
     (set-window-buffer thiswin (window-buffer))
     (set-window-buffer (selected-window) thisbuf)))
-(define-key global-map (kbd "C-c t") 'swap-screen)                ; 分割したバッファを入れ替える
-(define-key global-map (kbd "C-c C-t") 'swap-screen-with-cursor)  ; カーソルごと入れ替える
+(define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
 
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep
