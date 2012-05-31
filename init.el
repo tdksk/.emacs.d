@@ -97,11 +97,15 @@
 ;; (setq eval-expression-print-length nil)
 
 ;;; 対応する括弧を光らせる。
-;;; 色の指定がしたい
 (show-paren-mode 1)
 (setq show-paren-delay 0)               ;ハイライトまでの遅延
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
-;; (setq show-paren-style 'mixed)
+(setq show-paren-style 'mixed)
+;;; 色
+(set-face-background 'show-paren-match-face "cyan")
+(set-face-foreground 'show-paren-match-face "black")
+(set-face-background 'show-paren-mismatch-face "red")
+(set-face-foreground 'show-paren-mismatch-face "black")
 
 ;;; 行末の空白を表示
 ;; (setq-default show-trailing-whitespace t)
@@ -196,11 +200,22 @@
 
 ;;; 選択範囲に色をつける
 (setq transient-mark-mode t)
+(set-face-background 'region "blue")
+(set-face-foreground 'region "black")
 
 ;;; コメントの色
 (set-face-foreground 'font-lock-comment-face "red")
 (set-face-foreground 'font-lock-comment-delimiter-face "red")
 
+;;; その他色
+(set-face-background 'isearch "green")
+(set-face-foreground 'isearch "black")
+(set-face-background 'isearch-lazy-highlight-face "yellow")
+(set-face-foreground 'isearch-lazy-highlight-face "black")
+(set-face-background 'isearch-fail "red")
+(set-face-foreground 'isearch-fail "black")
+(set-face-background 'highlight "green")
+(set-face-foreground 'highlight "black")
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
