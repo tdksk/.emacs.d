@@ -340,7 +340,7 @@ If `matlab-fill-count-ellipsis-flag' is non nil, this shortens the
   :group 'matlab
   :type 'string)
 
-(defcustom matlab-comment-region-s "% $$$ "
+(defcustom matlab-comment-region-s "% "
   "*String inserted by \\[matlab-comment-region] at start of each line in \
 region."
   :group 'matlab
