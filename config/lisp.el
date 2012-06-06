@@ -34,6 +34,28 @@
 (setq cssm-indent-function #'cssm-c-style-indenter)
 
 
+;;; JavaScript mode (js-mode)
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (setq js-indent-level 2
+                   js-expr-indent-offset 2
+                   indent-tabs-mode nil)
+             (set (make-local-variable 'indent-line-function) 'js-indent-line)))
+
+;;; JavaScript mode (js2-mode)
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-hook 'js2-mode-hook
+          '(lambda ()
+             (require 'js)
+             (setq js-indent-level 2
+                   js-expr-indent-offset 2
+                   indent-tabs-mode nil)
+             (set (make-local-variable 'indent-line-function) 'js-indent-line)
+             (define-key js2-mode-map "\C-m" nil)
+             (define-key js2-mode-map "\C-a" nil)))
+
+
 ;;; MMM Mode
 ;; (require 'mmm-auto)
 ;; (setq mmm-global-mode 'maybe)
