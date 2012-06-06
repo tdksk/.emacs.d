@@ -253,3 +253,7 @@
 (autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
 ;; auto-complete-modeの自動起動
 (add-to-list 'ac-modes 'matlab-mode)
+
+(setq matlab-indent-function-body nil
+      matlab-highlight-cross-function-variables t
+      )
