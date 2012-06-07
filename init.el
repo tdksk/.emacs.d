@@ -100,7 +100,7 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)               ;ハイライトまでの遅延
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
-(setq show-paren-style 'mixed)
+;; (setq show-paren-style 'mixed)
 ;;; 色
 (set-face-background 'show-paren-match-face "cyan")
 (set-face-foreground 'show-paren-match-face "black")
