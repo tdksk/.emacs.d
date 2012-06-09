@@ -13,8 +13,7 @@
              (c-set-offset 'arglist-cont-nonempty' +)
              (c-set-offset 'arglist-close' 0)
              ;; コメント
-             (setq comment-style 'extra-line)
-             (setq comment-style 'multi-line)
+             ;; (setq comment-style 'extra-line)
              (setq comment-start "//")
              (setq comment-continue "//")
              (setq comment-end "")
