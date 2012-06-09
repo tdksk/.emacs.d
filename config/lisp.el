@@ -286,3 +286,8 @@
 (setq matlab-indent-function-body nil
       matlab-highlight-cross-function-variables t
       )
+
+
+;;; duplicate-thing.el
+(require 'duplicate-thing)
+(global-set-key (kbd "M-c") 'duplicate-thing)
