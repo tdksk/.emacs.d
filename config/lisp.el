@@ -12,6 +12,13 @@
              (c-set-offset 'arglist-intro' +)
              (c-set-offset 'arglist-cont-nonempty' +)
              (c-set-offset 'arglist-close' 0)
+             ;; コメント
+             (setq comment-style 'extra-line)
+             (setq comment-style 'multi-line)
+             (setq comment-start "//")
+             (setq comment-continue "//")
+             (setq comment-end "")
+             ;; マニュアル
              ;; (setq php-manual-path "/usr/share/php/doc/html")
              (setq php-manual-url "http://www.phppro.jp/phpmanual/")
              ;; php-align.el
