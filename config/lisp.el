@@ -41,7 +41,7 @@
 
 
 ;;; JavaScript mode (js-mode)
-(add-hook 'js2-mode-hook
+(add-hook 'js-mode-hook
           '(lambda ()
              (setq js-indent-level 2
                    js-expr-indent-offset 2
