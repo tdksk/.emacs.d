@@ -292,3 +292,9 @@
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
 (global-set-key (kbd "M-c") 'duplicate-thing)
+
+
+;;; smartchr.el
+(require 'smartchr)
+(global-set-key (kbd ">") (smartchr '(">" " => " " => '\`!!'\'")))
+(global-set-key (kbd "F") (smartchr '("F" "$")))
