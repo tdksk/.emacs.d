@@ -335,6 +335,9 @@
 
 
 ;;; SGML Mode
+(autoload 'sgml-mode "sgml-mode")
+(setq auto-mode-alist
+      (cons '("\\.html\\'" . sgml-mode) auto-mode-alist))
 (add-hook 'sgml-mode-hook
           '(lambda ()
              (define-key sgml-mode-map (kbd "<") 'skeleton-pair-insert-maybe)))
