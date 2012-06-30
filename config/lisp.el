@@ -300,3 +300,8 @@
 (global-set-key (kbd "F") (smartchr '("F" "$")))
 (global-set-key (kbd "L") (smartchr '("L" "->")))
 (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
+
+
+;;; yasnippet
+(require 'yasnippet)
+(yas/global-mode 1)

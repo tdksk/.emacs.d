@@ -141,6 +141,8 @@
 
 (defun ac-yasnippet-candidates ()
   (with-no-warnings
+    (if (>= (string-to-number yas/version) 0.7)                                     ;; http://shishithefool.blogspot.jp/2012/05/auto-complete-yasnippet.html
+        (apply 'append (mapcar 'ac-yasnippet-candidate-1 (yas/get-snippet-tables))) ;; http://shishithefool.blogspot.jp/2012/05/auto-complete-yasnippet.html
     (if (fboundp 'yas/get-snippet-tables)
         ;; >0.6.0
         (apply 'append (mapcar 'ac-yasnippet-candidate-1 (yas/get-snippet-tables major-mode)))
@@ -151,7 +153,7 @@
                ;; 0.6.0
                (yas/current-snippet-table))))
         (if table
-            (ac-yasnippet-candidate-1 table))))))
+            (ac-yasnippet-candidate-1 table)))))))
 
 (ac-define-source yasnippet
   '((depends yasnippet)
