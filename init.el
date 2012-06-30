@@ -334,6 +334,12 @@
              (setq skeleton-pair 1)))
 
 
+;;; SGML Mode
+(add-hook 'sgml-mode-hook
+          '(lambda ()
+             (define-key sgml-mode-map (kbd "<") 'skeleton-pair-insert-maybe)))
+
+
 ;;; Term Mode
 (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
 (global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
