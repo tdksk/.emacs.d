@@ -298,7 +298,7 @@
 (require 'smartchr)
 (global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
 (global-set-key (kbd "F") (smartchr '("F" "$")))
-(global-set-key (kbd "L") (smartchr '("L" "->")))
+(global-set-key (kbd "L") (smartchr '("L" "LL" "->")))
 (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
 
 
