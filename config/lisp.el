@@ -30,7 +30,9 @@
              (define-key php-mode-map (kbd "[") 'skeleton-pair-insert-maybe)
              (define-key php-mode-map (kbd "\"") 'skeleton-pair-insert-maybe)
              (define-key php-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
-             (setq skeleton-pair 1)))
+             (setq skeleton-pair 1)
+             ;; key assign
+             (define-key php-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 
 ;;; A CSS editing mode for Emacs

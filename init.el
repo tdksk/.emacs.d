@@ -19,7 +19,7 @@
 (define-key global-map (kbd "C-z") nil)                     ; サスペンド無効
 (define-key global-map (kbd "C-c i") 'indent-region)        ; インデント
 (define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
-(define-key global-map (kbd "C-c ;") 'comment-dwim)         ; コメントアウト
+(define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; rgrep
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 ;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
@@ -56,6 +56,20 @@
     (set-window-buffer thiswin (window-buffer))
     (set-window-buffer (selected-window) thisbuf)))
 (define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
+
+;; http://www.emacswiki.org/emacs/CommentingCode
+;; Original idea from
+;; http://www.opensubscriber.com/message/emacs-devel@gnu.org/10971693.html
+(defun comment-dwim-line (&optional arg)
+  "Replacement for the comment-dwim command.
+        If no region is selected and current line is not blank and we are not at the end of the line,
+        then comment current line.
+        Replaces default behaviour of comment-dwim, when it inserts comment at the end of the line."
+  (interactive "*P")
+  (comment-normalize-vars)
+  (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
+      (comment-or-uncomment-region (line-beginning-position) (line-end-position))
+    (comment-dwim arg)))
 
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep
