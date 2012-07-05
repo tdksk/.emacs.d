@@ -134,6 +134,19 @@
 ;;; カーソルの位置が何行目かを表示する
 (line-number-mode t)
 
+;;; 行番号表示
+;; (global-linum-mode t)
+(setq linum-format "%3d ")
+;; (defvar my-linum-hook-name nil)
+;; (mapc (lambda (hook-name)
+;;         (add-hook hook-name (lambda () (linum-mode t))))
+;;       my-linum-hook-name)
+;; (setq my-linum-hook-name '(emacs-lisp-mode-hook slime-mode-hook sh-mode-hook text-mode-hook
+;;                                                 php-mode-hook python-mode-hook ruby-mode-hook
+;;                                                 css-mode-hook yaml-mode-hook org-mode-hook
+;;                                                 howm-mode-hook js2-mode-hook javascript-mode-hook
+;;                                                 smarty-mode-hook sgml-mode-hook))
+
 ;;; カーソルの場所を保存する
 (require 'saveplace)
 (setq-default save-place t)
