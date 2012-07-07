@@ -23,14 +23,6 @@
              ;; php-align.el
              (require 'php-align)
              (php-align-setup)
-             ;; 括弧自動補完
-             ;; global-set-keyのやつ+''
-             (define-key php-mode-map (kbd "(") 'skeleton-pair-insert-maybe)
-             (define-key php-mode-map (kbd "{") 'skeleton-pair-insert-maybe)
-             (define-key php-mode-map (kbd "[") 'skeleton-pair-insert-maybe)
-             (define-key php-mode-map (kbd "\"") 'skeleton-pair-insert-maybe)
-             (define-key php-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
-             (setq skeleton-pair 1)
              ;; key assign
              (define-key php-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
@@ -48,7 +40,6 @@
              (setq js-indent-level 2
                    js-expr-indent-offset 2
                    indent-tabs-mode nil)
-             (define-key js-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
              (set (make-local-variable 'indent-line-function) 'js-indent-line)))
 
 ;;; JavaScript mode (js2-mode)
@@ -60,7 +51,6 @@
              (setq js-indent-level 2
                    js-expr-indent-offset 2
                    indent-tabs-mode nil)
-             (define-key js2-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
              (set (make-local-variable 'indent-line-function) 'js-indent-line)
              (define-key js2-mode-map "\C-m" nil)
              (define-key js2-mode-map "\C-a" nil)))
@@ -298,11 +288,41 @@
 
 ;;; smartchr.el
 (require 'smartchr)
+;;; @see http://d.hatena.ne.jp/tequilasunset/20101119/p1
+;; smartchr-func start
+(defun my-smartchr-braces ()
+  "Insert a pair of braces like below.
+\n    {\n    `!!'\n}"
+  ;; foo {
+  ;;     `!!'
+  ;; }
+  (lexical-let (beg end)
+    (smartchr-make-struct
+     :insert-fn (lambda ()
+                  (setq beg (point))
+                  (insert "{\n\n}")
+                  (indent-region beg (point))
+                  (forward-line -1)
+                  (indent-according-to-mode)
+                  (goto-char (point-at-eol))
+                  (setq end (save-excursion
+                              (re-search-forward "[[:space:][:cntrl:]]+}" nil t))))
+     :cleanup-fn (lambda ()
+                   (delete-region beg end))
+     )))
+(global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+(global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
+(global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
 (global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
 (global-set-key (kbd "F") (smartchr '("F" "$")))
 (global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
 (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
 
+(defun my-smartchr-keybindings-php ()
+  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+  )
+(add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
 
 ;;; yasnippet
 (require 'yasnippet)

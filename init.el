@@ -268,11 +268,11 @@
 
 
 ;;; 括弧自動補完
-(global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
-(global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
-(setq skeleton-pair 1)
+;; (global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
+;; (global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
+;; (global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
+;; (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
+;; (setq skeleton-pair 1)
 
 
 ;;; バッファの切り替え
@@ -348,26 +348,10 @@
 (global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ; 矩形選択開始
 
 
-;;; Python Mode
-(add-hook 'python-mode-hook
-          '(lambda ()
-             ;; 括弧自動補完
-             ;; global-set-keyのやつ+''
-             (define-key python-mode-map (kbd "(") 'skeleton-pair-insert-maybe)
-             (define-key python-mode-map (kbd "{") 'skeleton-pair-insert-maybe)
-             (define-key python-mode-map (kbd "[") 'skeleton-pair-insert-maybe)
-             (define-key python-mode-map (kbd "\"") 'skeleton-pair-insert-maybe)
-             (define-key python-mode-map (kbd "\'") 'skeleton-pair-insert-maybe)
-             (setq skeleton-pair 1)))
-
-
 ;;; SGML Mode
 (autoload 'sgml-mode "sgml-mode")
 (setq auto-mode-alist
       (cons '("\\.html\\'" . sgml-mode) auto-mode-alist))
-(add-hook 'sgml-mode-hook
-          '(lambda ()
-             (define-key sgml-mode-map (kbd "<") 'skeleton-pair-insert-maybe)))
 
 
 ;;; Term Mode
