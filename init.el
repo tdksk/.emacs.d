@@ -31,8 +31,9 @@
 (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
 (define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
 (define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
+(define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
-(define-key global-map (kbd "C-c s") 'sgml-mode)            ; sgml-mode
+(define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
 
 (defun other-window-or-split ()
   (interactive)
