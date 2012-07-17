@@ -349,9 +349,9 @@
 
 
 ;;; SGML Mode
-(autoload 'sgml-mode "sgml-mode")
-(setq auto-mode-alist
-      (cons '("\\.html\\'" . sgml-mode) auto-mode-alist))
+;; (autoload 'sgml-mode "sgml-mode")
+;; (setq auto-mode-alist
+;;       (cons '("\\.html\\'" . sgml-mode) auto-mode-alist))
 
 
 ;;; Term Mode

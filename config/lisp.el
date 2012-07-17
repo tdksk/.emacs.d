@@ -324,6 +324,11 @@
   )
 (add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
 
+(defun my-smartchr-keybindings-html ()
+  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
+  )
+(add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
+
 ;;; yasnippet
 (require 'yasnippet)
 (yas/global-mode 1)
