@@ -32,6 +32,9 @@
 (setq auto-mode-alist
       (cons '("\\.css\\'" . css-mode) auto-mode-alist))
 (setq cssm-indent-function #'cssm-c-style-indenter)
+(add-hook 'css-mode-hook
+          '(lambda ()
+             (define-key cssm-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 
 ;;; JavaScript mode (js-mode)
@@ -53,7 +56,8 @@
                    indent-tabs-mode nil)
              (set (make-local-variable 'indent-line-function) 'js-indent-line)
              (define-key js2-mode-map "\C-m" nil)
-             (define-key js2-mode-map "\C-a" nil)))
+             (define-key js2-mode-map "\C-a" nil)
+             (define-key js2-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 
 ;;; MMM Mode
