@@ -2,4 +2,4 @@
 #name :<script type="text/javascript" src="..."></script> 
 # key: script
 # --
-<script type="text/javascript" src="$1"></script>
+<script src="$1"></script>
