@@ -1,3 +1,122 @@
+;;; auto-install
+;; (require 'auto-install)
+;; (setq auto-install-directory "~/.emacs.d/lisp/")
+;; (auto-install-compatibility-setup)
+
+;;; auto-complete
+(require 'auto-complete)
+(require 'auto-complete-config)         ; 必須ではないですが一応
+(ac-config-default)
+(global-auto-complete-mode t)
+(setq ac-dwim t)                        ; 空気を読む
+;; キーバインド
+(define-key ac-complete-mode-map "\C-n" 'ac-next)
+(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+;; 辞書
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
+;; 情報源として
+;; * ac-source-filename
+;; * ac-source-words-in-same-mode-buffers
+;; を利用
+;; (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
+;; また、Emacs Lispモードではac-source-symbolsを追加で利用
+;; (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
+;; ;; 以下、自動で補完する人用
+;; (setq ac-auto-start 3)
+;; 以下、手動で補完する人用
+;; (setq ac-auto-start nil)
+;; (ac-set-trigger-key "TAB")              ; TABで補完開始(トリガーキー)
+;; or
+;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete) ; M-TABで補完開始
+(add-hook 'AC-mode-hook
+          ;; 色
+          (set-face-background 'ac-selection-face "blue")
+          (set-face-foreground 'ac-selection-face "black"))
+
+;;; anything.el
+(require 'anything-startup)
+(define-key global-map (kbd "C-x b") 'anything-filelist+)
+(define-key global-map (kbd "C-x C-b") 'anything-filelist+)
+(define-key global-map (kbd "C-x C-_") 'anything-occur)
+(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
+(setq anything-idle-delay 0)
+(setq anything-input-idle-delay 0)
+
+;;; smart-compile
+(require 'smart-compile)
+(global-set-key "\C-c\C-j" 'smart-compile)
+(global-set-key "\C-cj" 'smart-compile)
+(define-key menu-bar-tools-menu [compile] '("Compile..." . smart-compile))
+(setq compilation-window-height 1)
+
+;;; popwin.el
+;;; ポップアップウィンドウ表示
+(require 'popwin)
+(setq display-buffer-function 'popwin:display-buffer)
+;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
+(push '("*Warnings*") popwin:special-display-config)
+(push '("*Process List*") popwin:special-display-config)
+(push '("*anything*" :regexp t :height 20) popwin:special-display-config)
+
+;;; key-chord.el
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.04)
+(key-chord-mode 1)
+(key-chord-define-global "jk" 'view-mode)
+
+;;; duplicate-thing.el
+(require 'duplicate-thing)
+(global-set-key (kbd "M-c") 'duplicate-thing)
+
+;;; smartchr.el
+(require 'smartchr)
+;;; @see http://d.hatena.ne.jp/tequilasunset/20101119/p1
+;; smartchr-func start
+(defun my-smartchr-braces ()
+  "Insert a pair of braces like below.
+\n    {\n    `!!'\n}"
+  ;; foo {
+  ;;     `!!'
+  ;; }
+  (lexical-let (beg end)
+    (smartchr-make-struct
+     :insert-fn (lambda ()
+                  (setq beg (point))
+                  (insert "{\n\n}")
+                  (indent-region beg (point))
+                  (forward-line -1)
+                  (indent-according-to-mode)
+                  (goto-char (point-at-eol))
+                  (setq end (save-excursion
+                              (re-search-forward "[[:space:][:cntrl:]]+}" nil t))))
+     :cleanup-fn (lambda ()
+                   (delete-region beg end))
+     )))
+(global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+(global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
+(global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+(global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
+(global-set-key (kbd "F") (smartchr '("F" "$")))
+(global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
+(global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
+;; for php-mode
+(defun my-smartchr-keybindings-php ()
+  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+  )
+(add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
+;; for html-mode
+(defun my-smartchr-keybindings-html ()
+  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
+  )
+(add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
+
+;;; yasnippet
+(require 'yasnippet)
+(yas/global-mode 1)
+(setq yas/snippet-dirs '("~/.emacs.d/lisp/yasnippet/snippets"))
+
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
@@ -26,7 +145,6 @@
              ;; key assign
              (define-key php-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
-
 ;;; A CSS editing mode for Emacs
 (autoload 'css-mode "css-mode")
 (setq auto-mode-alist
@@ -35,7 +153,6 @@
 (add-hook 'css-mode-hook
           '(lambda ()
              (define-key cssm-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
-
 
 ;;; JavaScript mode (js-mode)
 (add-hook 'js-mode-hook
@@ -59,7 +176,6 @@
              (define-key js2-mode-map "\C-a" nil)
              (define-key js2-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
-
 ;;; MMM Mode
 ;; (require 'mmm-auto)
 ;; (setq mmm-global-mode 'maybe)
@@ -71,11 +187,9 @@
 ;;     :back "</style>")))
 ;; (mmm-add-mode-ext-class nil "\\.html\\'" 'embedded-css)
 
-
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
 ;; /usr/share/info/
-
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
       (append '(("\\.tex$" . yatex-mode)
@@ -118,125 +232,22 @@
                (concat YaTeX-prefix ">") 'YaTeX-comment-region)
              (define-key reftex-mode-map
                (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
-
 ;; ユーザ定義コマンド
 (setq yatex-mode-load-hook
       '(lambda()
          (YaTeX-define-begend-key "ba" "align")
          ))
 
-
-;;; smart-compile
-(require 'smart-compile)
-(global-set-key "\C-c\C-j" 'smart-compile)
-(global-set-key "\C-cj" 'smart-compile)
-(define-key menu-bar-tools-menu [compile] '("Compile..." . smart-compile))
-(setq compilation-window-height 1)
-
-
-;;; auto-complete
-(require 'auto-complete)
-(require 'auto-complete-config)         ; 必須ではないですが一応
-(ac-config-default)
-(global-auto-complete-mode t)
-(setq ac-dwim t)                        ; 空気を読む
-;; キーバインド
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
-;; 辞書
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
-;; 情報源として
-;; * ac-source-filename
-;; * ac-source-words-in-same-mode-buffers
-;; を利用
-;; (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
-;; また、Emacs Lispモードではac-source-symbolsを追加で利用
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
-;; ;; 以下、自動で補完する人用
-;; (setq ac-auto-start 3)
-;; 以下、手動で補完する人用
-;; (setq ac-auto-start nil)
-;; (ac-set-trigger-key "TAB")              ; TABで補完開始(トリガーキー)
-;; or
-;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete) ; M-TABで補完開始
-(add-hook 'AC-mode-hook
-          ;; 色
-          (set-face-background 'ac-selection-face "blue")
-          (set-face-foreground 'ac-selection-face "black"))
-
-
-;;; auto-install
-;; (require 'auto-install)
-;; (setq auto-install-directory "~/.emacs.d/lisp/")
-;; (auto-install-compatibility-setup)
-
-
-;;; anything.el
-(require 'anything-startup)
-(define-key global-map (kbd "C-x b") 'anything-filelist+)
-(define-key global-map (kbd "C-x C-b") 'anything-filelist+)
-(define-key global-map (kbd "C-x C-_") 'anything-occur)
-(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
-(setq anything-idle-delay 0)
-(setq anything-input-idle-delay 0)
-
-
-;;; popwin.el
-;;; ポップアップウィンドウ表示
-(require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
-(push '("*Warnings*") popwin:special-display-config)
-(push '("*Process List*") popwin:special-display-config)
-(push '("*anything*" :regexp t :height 20) popwin:special-display-config)
-
-
-;;; view-mode, viewer.el
-(setq view-read-only t)
-(require 'viewer)
-(viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
-(setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
-;; view-modeのときはモードラインの色を変える
-(setq viewer-modeline-color-unwritable "yellow"
-      viewer-modeline-color-view "blue")
-(viewer-change-modeline-color-setup) ;; *Compile-log* Warning: called-interactively-p called with 0 arguments, but requires 1
-(defvar pager-keybind
-  `( ;; vi-like
-    ("h" . backward-char)
-    ("l" . forward-char)
-    ("j" . View-scroll-line-forward)
-    ("k" . View-scroll-line-backward)
-    ("f" . View-scroll-page-forward)
-    ("b" . View-scroll-page-backward)
-    ("g" . beginning-of-buffer)
-    ("G" . end-of-buffer)
-    ("/" . isearch-forward)
-    ("n" . isearch-repeat-forward)
-    ("N" . isearch-repeat-backward)
-    ("i" . View-quit)
-    ))
-(defun define-many-keys (keymap key-table &optional includes)
-  (let (key cmd)
-    (dolist (key-cmd key-table)
-      (setq key (car key-cmd)
-            cmd (cdr key-cmd))
-      (if (or (not includes) (member key includes))
-          (define-key keymap key cmd))))
-  keymap)
-
-(defun view-mode-hook0 ()
-  (define-many-keys view-mode-map pager-keybind)
-  ;; (hl-line-mode 1)
-  (define-key view-mode-map " " 'scroll-up))
-(add-hook 'view-mode-hook 'view-mode-hook0)
-
-
-;;; key-chord.el
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)
-(key-chord-mode 1)
-(key-chord-define-global "jk" 'view-mode)
-
+;;; MATLAB mode
+(autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
+(setq auto-mode-alist
+      (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
+(autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
+(setq matlab-indent-function-body nil
+      matlab-highlight-cross-function-variables t
+      )
+;; auto-complete-modeの自動起動
+(add-to-list 'ac-modes 'matlab-mode)
 
 ;;; Twittering-mode
 (require 'twittering-mode)
@@ -271,69 +282,40 @@
 ;; %f - source
 ;; %# - id
 
-
-;;; MATLAB mode
-(autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
-(setq auto-mode-alist
-      (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
-(autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
-;; auto-complete-modeの自動起動
-(add-to-list 'ac-modes 'matlab-mode)
-
-(setq matlab-indent-function-body nil
-      matlab-highlight-cross-function-variables t
-      )
-
-
-;;; duplicate-thing.el
-(require 'duplicate-thing)
-(global-set-key (kbd "M-c") 'duplicate-thing)
-
-
-;;; smartchr.el
-(require 'smartchr)
-;;; @see http://d.hatena.ne.jp/tequilasunset/20101119/p1
-;; smartchr-func start
-(defun my-smartchr-braces ()
-  "Insert a pair of braces like below.
-\n    {\n    `!!'\n}"
-  ;; foo {
-  ;;     `!!'
-  ;; }
-  (lexical-let (beg end)
-    (smartchr-make-struct
-     :insert-fn (lambda ()
-                  (setq beg (point))
-                  (insert "{\n\n}")
-                  (indent-region beg (point))
-                  (forward-line -1)
-                  (indent-according-to-mode)
-                  (goto-char (point-at-eol))
-                  (setq end (save-excursion
-                              (re-search-forward "[[:space:][:cntrl:]]+}" nil t))))
-     :cleanup-fn (lambda ()
-                   (delete-region beg end))
-     )))
-(global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
-(global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
-(global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
-(global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
-(global-set-key (kbd "F") (smartchr '("F" "$")))
-(global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
-(global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
-
-(defun my-smartchr-keybindings-php ()
-  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
-  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
-  )
-(add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
-
-(defun my-smartchr-keybindings-html ()
-  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
-  )
-(add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
-
-;;; yasnippet
-(require 'yasnippet)
-(yas/global-mode 1)
-(setq yas/snippet-dirs '("~/.emacs.d/lisp/yasnippet/snippets"))
+;;; view-mode, viewer.el
+(setq view-read-only t)
+(require 'viewer)
+(viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
+(setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
+;; view-modeのときはモードラインの色を変える
+(setq viewer-modeline-color-unwritable "yellow"
+      viewer-modeline-color-view "blue")
+(viewer-change-modeline-color-setup) ;; *Compile-log* Warning: called-interactively-p called with 0 arguments, but requires 1
+(defvar pager-keybind
+  `( ;; vi-like
+    ("h" . backward-char)
+    ("l" . forward-char)
+    ("j" . View-scroll-line-forward)
+    ("k" . View-scroll-line-backward)
+    ("f" . View-scroll-page-forward)
+    ("b" . View-scroll-page-backward)
+    ("g" . beginning-of-buffer)
+    ("G" . end-of-buffer)
+    ("/" . isearch-forward)
+    ("n" . isearch-repeat-forward)
+    ("N" . isearch-repeat-backward)
+    ("i" . View-quit)
+    ))
+(defun define-many-keys (keymap key-table &optional includes)
+  (let (key cmd)
+    (dolist (key-cmd key-table)
+      (setq key (car key-cmd)
+            cmd (cdr key-cmd))
+      (if (or (not includes) (member key includes))
+          (define-key keymap key cmd))))
+  keymap)
+(defun view-mode-hook0 ()
+  (define-many-keys view-mode-map pager-keybind)
+  ;; (hl-line-mode 1)
+  (define-key view-mode-map " " 'scroll-up))
+(add-hook 'view-mode-hook 'view-mode-hook0)
