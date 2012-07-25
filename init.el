@@ -25,10 +25,12 @@
 ;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
-(define-key global-map (kbd "M-SPC") 'mark-sexp)            ; カーソル前方のS式をリージョン選択する
+(define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
 (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
+(define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
+(define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
 (define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
 (define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
 (define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
@@ -39,7 +41,6 @@
   (interactive)
   (when (one-window-p) (split-window-horizontally))
   (other-window 1))
-(define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 
 (defun swap-screen()
   "Swap two screen,leaving cursor at current window."
@@ -56,7 +57,6 @@
     (other-window 1)
     (set-window-buffer thiswin (window-buffer))
     (set-window-buffer (selected-window) thisbuf)))
-(define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
 
 ;; http://www.emacswiki.org/emacs/CommentingCode
 ;; Original idea from
@@ -71,6 +71,12 @@
   (if (and (not (region-active-p)) (not (looking-at "[ \t]*$")))
       (comment-or-uncomment-region (line-beginning-position) (line-end-position))
     (comment-dwim arg)))
+
+(defun mark-sexp-ex ()
+  (interactive)
+  (backward-sexp)
+  (mark-sexp)
+  (exchange-point-and-mark))
 
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep
