@@ -26,6 +26,8 @@
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
+(define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
+(define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
 (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
