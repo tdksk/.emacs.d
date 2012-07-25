@@ -63,6 +63,27 @@
 (setq key-chord-two-keys-delay 0.04)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'view-mode)
+(key-chord-define-global "di" 'kill-textobjects-in)
+(key-chord-define-global "da" 'kill-textobjects-an)
+(key-chord-define-global "yi" 'copy-textobjects-in)
+(key-chord-define-global "ya" 'copy-textobjects-an)
+
+;;; textobjects.el
+(require 'textobjects)
+(defun kill-textobjects-in ()
+  (interactive)
+  (pseudo-motion-interactive-base-in 'kill-region (read-char)))
+(defun kill-textobjects-an ()
+  (interactive)
+  (pseudo-motion-interactive-base-an 'kill-region (read-char)))
+(defun copy-textobjects-in ()
+  (interactive)
+  (pseudo-motion-interactive-base-in 'copy-region-as-kill (read-char))
+  (message "Copy inner text object"))
+(defun copy-textobjects-an ()
+  (interactive)
+  (pseudo-motion-interactive-base-an 'copy-region-as-kill (read-char))
+  (message "Copy ambient text object"))
 
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
