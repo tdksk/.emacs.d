@@ -1,5 +1,5 @@
 # contributor: Jimmy Wu <frozenthrone88@gmail.com>
-#name :<script type="text/javascript">...</script> 
+#name :<script>...</script>
 # key: script
 # --
 <script>

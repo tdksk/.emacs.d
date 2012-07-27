@@ -1,5 +1,5 @@
 # contributor: Jimmy Wu <frozenthrone88@gmail.com>
-# name: <link stylesheet="..." />
+# name: <link stylesheet="...">
 # key: link
 # --
-<link rel="${1:stylesheet}" href="${2:url}" type="${3:text/css}" media="${4:screen}" />
+<link rel="stylesheet" href="${1:url}" media="${2:all}">
