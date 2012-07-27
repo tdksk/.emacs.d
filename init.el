@@ -275,14 +275,12 @@
                                   nil
                                 (font-lock-mode t))))
 
-
 ;;; 括弧自動補完
 ;; (global-set-key (kbd "(") 'skeleton-pair-insert-maybe)
 ;; (global-set-key (kbd "{") 'skeleton-pair-insert-maybe)
 ;; (global-set-key (kbd "[") 'skeleton-pair-insert-maybe)
 ;; (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
 ;; (setq skeleton-pair 1)
-
 
 ;;; バッファの切り替え
 ;;; 効かない
@@ -345,23 +343,14 @@
 ;;       (setq iswitchb-rescan t))))
 ;; (add-to-list 'iswitchb-buffer-ignore "*Completions*")
 
-
 ;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
-
 
 ;;; cua-mode
 (cua-mode t)
 (setq cua-enable-cua-keys nil) ; 変なキーバインド禁止
 (global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ; 矩形選択開始
-
-
-;;; SGML Mode
-;; (autoload 'sgml-mode "sgml-mode")
-;; (setq auto-mode-alist
-;;       (cons '("\\.html\\'" . sgml-mode) auto-mode-alist))
-
 
 ;;; Term Mode
 (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
@@ -375,7 +364,6 @@
              (define-key term-raw-map (kbd "M-n") 'previous-buffer)                            ; 前のバッファ
              ))
 
-
 ;;; dired-mode
 ;; dired拡張
 (require 'dired-x)
@@ -384,7 +372,6 @@
              ;; キーバインド
              (define-key dired-mode-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
              ))
-
 (put 'dired-find-alternate-file 'disabled nil)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; 新規バッファを作成しない
 (define-key dired-mode-map "o" 'dired-find-alternate-file)         ; 新規バッファを作成しない
@@ -393,32 +380,26 @@
 (define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
 (define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
 (define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
-
 ;;; フォルダを開く時, 新しいバッファを作成しない
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
 (defadvice dired-advertised-find-file
     (before kill-dired-buffer activate)
       (setq my-dired-before-buffer (current-buffer)))
-
 (defadvice dired-advertised-find-file
     (after kill-dired-buffer-after activate)
       (if (eq major-mode 'dired-mode)
                 (kill-buffer my-dired-before-buffer)))
-
 (defadvice dired-up-directory
     (before kill-up-dired-buffer activate)
       (setq my-dired-before-buffer (current-buffer)))
-
 (defadvice dired-up-directory
     (after kill-up-dired-buffer-after activate)
       (if (eq major-mode 'dired-mode)
                 (kill-buffer my-dired-before-buffer)))
-
 ;; サブディレクトリも削除やコピーできるように
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)
-
 
 ;;; 非標準Elispの設定
 (load "config/lisp")
