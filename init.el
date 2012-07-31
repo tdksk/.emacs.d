@@ -28,6 +28,7 @@
 (define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
+(define-key global-map (kbd "M-k") 'kill-line-ex)        ; バッファ削除
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
 (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
@@ -79,6 +80,11 @@
   (backward-sexp)
   (mark-sexp)
   (exchange-point-and-mark))
+
+(defun kill-line-ex ()
+  (interactive)
+  (beginning-of-line)
+  (kill-line))
 
 ;;; よく分からなかったので使ってない
 ;;; 再帰的にgrep
