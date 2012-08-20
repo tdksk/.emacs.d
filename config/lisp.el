@@ -41,6 +41,21 @@
 (define-key global-map (kbd "M-y") 'anything-show-kill-ring)
 (setq anything-idle-delay 0)
 (setq anything-input-idle-delay 0)
+;; anything-for-files で表示される recentf を増やす
+;; http://d.hatena.ne.jp/akisute3/20120409/1333899842
+(setq anything-c-source-recentf
+      `((name . "Recentf")
+      (init . (lambda ()
+                (require 'recentf)
+                (or recentf-mode (recentf-mode 1))))
+      (disable-shortcuts)
+      (candidates . recentf-list)
+      (keymap . ,anything-generic-files-map)
+      (help-message . anything-generic-file-help-message)
+      (candidate-number-limit . ,recentf-max-saved-items) ; 標準定義にこれを追加した
+      (mode-line . anything-generic-file-mode-line-string)
+      (match anything-c-match-on-basename)
+      (type . file)))
 
 ;;; smart-compile
 (require 'smart-compile)
