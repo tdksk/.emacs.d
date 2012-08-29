@@ -200,15 +200,17 @@
              (set (make-local-variable 'indent-line-function) 'js-indent-line)))
 
 ;;; JavaScript mode (js2-mode)
+;; https://github.com/mooz/js2-mode
 (autoload 'js2-mode "js2-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-hook 'js2-mode-hook
           '(lambda ()
-             (require 'js)
-             (setq js-indent-level 2
-                   js-expr-indent-offset 2
-                   indent-tabs-mode nil)
-             (set (make-local-variable 'indent-line-function) 'js-indent-line)
+             (setq js2-basic-offset 2)
+             ;; (require 'js)
+             ;; (setq js-indent-level 2
+             ;;       js-expr-indent-offset 2
+             ;;       indent-tabs-mode nil)
+             ;; (set (make-local-variable 'indent-line-function) 'js-indent-line)
              (define-key js2-mode-map "\C-m" nil)
              (define-key js2-mode-map "\C-a" nil)
              (define-key js2-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
