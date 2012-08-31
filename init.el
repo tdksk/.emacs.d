@@ -86,25 +86,6 @@
   (beginning-of-line)
   (kill-line))
 
-;;; よく分からなかったので使ってない
-;;; 再帰的にgrep
-(require 'grep)
-(setq grep-command-before-query "grep -nH -r -e ")
-(defun grep-default-command ()
-  (if current-prefix-arg
-      (let ((grep-command-before-target
-             (concat grep-command-before-query
-                     (shell-quote-argument (grep-tag-default)))))
-        (cons (if buffer-file-name
-                  (concat grep-command-before-target
-                          " *."
-                          (file-name-extension buffer-file-name))
-                (concat grep-command-before-target " ."))
-              (+ (length grep-command-before-target) 1)))
-    (car grep-command)))
-(setq grep-command (cons (concat grep-command-before-query " .")
-                         (+ (length grep-command-before-query) 1)))
-
 ;;; 画像ファイルを表示
 (auto-image-file-mode t)
 
@@ -364,11 +345,20 @@
 (add-hook 'term-mode-hook
           '(lambda ()
              ;; キーバインド
-             (define-key term-raw-map "\C-t" 'other-window-or-split)                          ; フレーム間移動
+             (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
              (define-key term-raw-map (kbd "M-p") 'next-buffer)                                ; 次のバッファ
              (define-key term-raw-map (kbd "M-n") 'previous-buffer)                            ; 前のバッファ
              ))
+
+;;; grep-mode
+(add-hook 'grep-mode-hook
+          (lambda ()
+            (define-key grep-mode-map "o" (kbd "RET"))
+            (define-key grep-mode-map "j" 'next-line)
+            (define-key grep-mode-map "k" 'previous-line)
+            (define-key grep-mode-map "d" 'scroll-up)
+            (define-key grep-mode-map "u" 'scroll-down)))
 
 ;;; dired-mode
 ;; dired拡張
