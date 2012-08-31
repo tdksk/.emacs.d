@@ -83,6 +83,9 @@
 (key-chord-define-global "da" 'kill-textobjects-an)
 (key-chord-define-global "yi" 'copy-textobjects-in)
 (key-chord-define-global "ya" 'copy-textobjects-an)
+(key-chord-define-global "90" 'kill-textobjects-in-paren)
+(key-chord-define-global "io" 'kill-textobjects-in-single-quote)
+(key-chord-define-global "ui" 'kill-textobjects-in-double-quote)
 
 ;;; textobjects.el
 (require 'textobjects)
@@ -100,6 +103,15 @@
   (interactive)
   (pseudo-motion-interactive-base-an 'copy-region-as-kill (read-char))
   (message "Copy ambient text object"))
+(defun kill-textobjects-in-paren ()
+  (interactive)
+  (pseudo-motion-interactive-base-in 'kill-region ?\())
+(defun kill-textobjects-in-single-quote ()
+  (interactive)
+  (pseudo-motion-interactive-base-in 'kill-region ?\'))
+(defun kill-textobjects-in-double-quote ()
+  (interactive)
+  (pseudo-motion-interactive-base-in 'kill-region ?\"))
 
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
