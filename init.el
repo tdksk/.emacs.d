@@ -20,7 +20,8 @@
 (define-key global-map (kbd "C-c i") 'indent-region)        ; インデント
 (define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
-(define-key global-map (kbd "C-c C-g") 'rgrep)              ; rgrep
+(define-key global-map (kbd "C-c g") 'rgrep)                ; 再帰的にgrep
+(define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 ;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
 (define-key global-map (kbd "C-c a") 'align)                ; align
@@ -28,7 +29,7 @@
 (define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
-(define-key global-map (kbd "M-k") 'kill-line-ex)        ; バッファ削除
+(define-key global-map (kbd "M-k") 'kill-line-ex)           ; バッファ削除
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
 (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
