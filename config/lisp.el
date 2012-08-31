@@ -56,6 +56,9 @@
       (mode-line . anything-generic-file-mode-line-string)
       (match anything-c-match-on-basename)
       (type . file)))
+;;; anything-git-project
+(require 'anything-git-project)
+(define-key global-map (kbd "C-x C-g") 'anything-git-project)
 
 ;;; smart-compile
 (require 'smart-compile)
