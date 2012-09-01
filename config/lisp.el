@@ -144,6 +144,24 @@
      :cleanup-fn (lambda ()
                    (delete-region beg end))
      )))
+(defun my-smartchr-comment ()
+  "Insert a multiline comment like below.
+\n/*\n * `!!'\n */"
+  ;; /**
+  ;;  * `!!'
+  ;;  */
+  (lexical-let (beg end)
+    (smartchr-make-struct
+     :insert-fn (lambda ()
+                  (setq beg (point))
+                  (insert "/**\n* \n*/")
+                  (indent-region beg (point))
+                  (setq end (point))
+                  (forward-line -1)
+                  (goto-char (point-at-eol)))
+     :cleanup-fn (lambda ()
+                   (delete-region beg end))
+     )))
 (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
 (global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
 (global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
@@ -151,10 +169,12 @@
 (global-set-key (kbd "F") (smartchr '("F" "$")))
 (global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
 (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
+(global-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
 ;; for php-mode
 (defun my-smartchr-keybindings-php ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+  (local-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
   )
 (add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
 ;; for html-mode
