@@ -20,7 +20,7 @@
 (define-key global-map (kbd "C-c i") 'indent-region)        ; インデント
 (define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
-(define-key global-map (kbd "C-c g") 'rgrep)                ; 再帰的にgrep
+(define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 ;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
