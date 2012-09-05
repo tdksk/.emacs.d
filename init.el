@@ -240,6 +240,8 @@
 (set-face-foreground 'isearch-fail "black")
 (set-face-background 'highlight "green")
 (set-face-foreground 'highlight "black")
+(set-face-background 'font-lock-warning-face "red")
+(set-face-foreground 'font-lock-warning-face "black")
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
