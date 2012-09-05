@@ -264,6 +264,13 @@
 ;;     :back "</style>")))
 ;; (mmm-add-mode-ext-class nil "\\.html\\'" 'embedded-css)
 
+;;; Markdown Mode
+(autoload 'markdown-mode "markdown-mode.el"
+  "Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+      ;; GitHub Flavored Markdown mode
+      (cons '("\\.md" . gfm-mode) auto-mode-alist))
+
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
 ;; /usr/share/info/
