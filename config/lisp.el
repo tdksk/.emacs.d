@@ -268,8 +268,8 @@
 (autoload 'markdown-mode "markdown-mode.el"
   "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
-      ;; GitHub Flavored Markdown mode
-      (cons '("\\.md" . gfm-mode) auto-mode-alist))
+      ;; TODO: GitHub Flavored Markdown mode
+      (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
