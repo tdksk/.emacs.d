@@ -248,10 +248,7 @@
              ;; (set (make-local-variable 'indent-line-function) 'js-indent-line)
              (define-key js2-mode-map "\C-m" nil)
              (define-key js2-mode-map "\C-a" nil)
-             (define-key js2-mode-map (kbd "C-c C-c") 'comment-dwim-line)
-             (font-lock-add-keywords nil
-                                     '(("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):"
-                                       1 font-lock-warning-face prepend)))))
+             (define-key js2-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 ;;; MMM Mode
 ;; (require 'mmm-auto)

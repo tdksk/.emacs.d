@@ -134,6 +134,10 @@
 ;;; 行番号表示
 ;; (global-linum-mode t)
 (setq linum-format "%3d ")
+(add-hook 'linum-mode-hook
+          '(lambda ()
+             (set-face-background 'linum "black")
+             (set-face-foreground 'linum "blue")))
 ;; (defvar my-linum-hook-name nil)
 ;; (mapc (lambda (hook-name)
 ;;         (add-hook hook-name (lambda () (linum-mode t))))
@@ -213,6 +217,8 @@
 ;;; モードライン
 (set-face-foreground 'modeline "black")
 (set-face-background 'modeline "white")
+(set-face-foreground 'modeline-inactive "black")
+(set-face-background 'modeline-inactive "black")
 
 ;;; 時計の表示
 (setq display-time-24hr-format t)
@@ -257,6 +263,7 @@
      ("　" 0 my-face-b-1 append)
      ("\t" 0 my-face-b-2 append)
      ("[ ]+$" 0 my-face-u-1 append)
+     ("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
 (ad-activate 'font-lock-mode)
