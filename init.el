@@ -121,6 +121,12 @@
 ;;; 行末の空白を表示
 ;; (setq-default show-trailing-whitespace t)
 
+;;; 空白や改行の視覚化
+(global-whitespace-mode t)
+(setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
+(set-face-foreground 'whitespace-newline "black")
+(set-face-background 'whitespace-newline nil)
+
 ;;; 現在行を目立たせる
 ;; (global-hl-line-mode)
 ;; (setq hl-line-face 'underline) ;下線
@@ -136,7 +142,7 @@
 (setq linum-format "%3d ")
 (add-hook 'linum-mode-hook
           '(lambda ()
-             (set-face-background 'linum "black")
+             (set-face-background 'linum nil)
              (set-face-foreground 'linum "blue")))
 ;; (defvar my-linum-hook-name nil)
 ;; (mapc (lambda (hook-name)
@@ -217,7 +223,7 @@
 ;;; モードライン
 (set-face-foreground 'modeline "black")
 (set-face-background 'modeline "white")
-(set-face-foreground 'modeline-inactive "black")
+(set-face-foreground 'modeline-inactive nil)
 (set-face-background 'modeline-inactive "black")
 
 ;;; 時計の表示
@@ -251,18 +257,18 @@
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
-(defface my-face-b-2 '((t (:foreground "white" :underline t))) nil)
-(defface my-face-u-1 '((t (:foreground "cyan" :underline t))) nil)
+;; (defface my-face-b-2 '((t (:foreground "white" :underline t))) nil)
+;; (defface my-face-u-1 '((t (:foreground "cyan" :underline t))) nil)
 (defvar my-face-b-1 'my-face-b-1)
-(defvar my-face-b-2 'my-face-b-2)
-(defvar my-face-u-1 'my-face-u-1)
+;; (defvar my-face-b-2 'my-face-b-2)
+;; (defvar my-face-u-1 'my-face-u-1)
 (defadvice font-lock-mode (before my-font-lock-mode ())
   (font-lock-add-keywords
    major-mode
    '(
      ("　" 0 my-face-b-1 append)
-     ("\t" 0 my-face-b-2 append)
-     ("[ ]+$" 0 my-face-u-1 append)
+;;      ("\t" 0 my-face-b-2 append)
+;;      ("[ ]+$" 0 my-face-u-1 append)
      ("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
