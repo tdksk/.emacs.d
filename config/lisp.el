@@ -387,6 +387,7 @@
     ("i" . View-quit)
     (" " . nil)
     ("\C-m" . nil)
+    ("\C-?" . nil)
     ))
 (defun define-many-keys (keymap key-table &optional includes)
   (let (key cmd)
