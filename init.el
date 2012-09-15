@@ -35,6 +35,7 @@
 ;; (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
 (define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 (define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
+(define-key global-map (kbd "C-c l") 'global-linum-mode)    ; linum-mode (global)
 (define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
 (define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
 (define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
