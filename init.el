@@ -133,7 +133,10 @@
 
 ;;; 現在行を目立たせる
 ;; (global-hl-line-mode)
-;; (setq hl-line-face 'underline) ;下線
+(hl-line-mode 1)
+(setq hl-line-face 'underline) ;下線
+;; (set-face-background 'hl-line "white")
+;; (set-face-foreground 'hl-line "black")
 
 ;;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
@@ -386,8 +389,9 @@
 (require 'dired-x)
 (add-hook 'dired-mode-hook
           '(lambda ()
+             (hl-line-mode t)
              ;; キーバインド
-             (define-key dired-mode-map "\C-t" 'next-multiframe-window)                          ; フレーム間移動
+             (define-key dired-mode-map "\C-t" 'next-multiframe-window)  ; フレーム間移動
              ))
 (put 'dired-find-alternate-file 'disabled nil)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; 新規バッファを作成しない

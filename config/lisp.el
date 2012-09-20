@@ -399,6 +399,9 @@
   keymap)
 (defun view-mode-hook0 ()
   (define-many-keys view-mode-map pager-keybind)
-  ;; (hl-line-mode 1)
+  (hl-line-mode 1)
   )
 (add-hook 'view-mode-hook 'view-mode-hook0)
+
+(defadvice view-mode-disable (after hl-line-mode-disable activate)
+  (hl-line-mode -1))
