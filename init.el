@@ -134,9 +134,9 @@
 ;;; 現在行を目立たせる
 ;; (global-hl-line-mode)
 (hl-line-mode 1)
-(setq hl-line-face 'underline) ;下線
-;; (set-face-background 'hl-line "white")
-;; (set-face-foreground 'hl-line "black")
+;; (setq hl-line-face 'underline) ;下線
+(set-face-background 'hl-line "white")
+(set-face-foreground 'hl-line "black")
 
 ;;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
