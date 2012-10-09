@@ -59,6 +59,8 @@
 ;;; anything-git-project
 (require 'anything-git-project)
 (define-key global-map (kbd "C-x C-g") 'anything-git-project)
+;;; anything-imenu
+(define-key global-map (kbd "C-x C-i") 'anything-imenu)
 
 ;;; smart-compile
 (require 'smart-compile)

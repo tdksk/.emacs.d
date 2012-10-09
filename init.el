@@ -228,11 +228,16 @@
       (beginning-of-line)
     (back-to-indentation)))
 
+;;; 現在の関数名を表示
+(which-function-mode t)
+
 ;;; モードライン
 (set-face-foreground 'modeline "black")
 (set-face-background 'modeline "white")
 (set-face-foreground 'modeline-inactive nil)
 (set-face-background 'modeline-inactive "black")
+(set-face-background 'which-func nil)
+(set-face-foreground 'which-func nil)
 
 ;;; 時計の表示
 (setq display-time-24hr-format t)
@@ -262,6 +267,8 @@
 (set-face-foreground 'highlight "black")
 (set-face-background 'font-lock-warning-face "red")
 (set-face-foreground 'font-lock-warning-face "black")
+(set-face-background 'match "blue")
+(set-face-foreground 'match "black")
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
