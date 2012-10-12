@@ -145,7 +145,7 @@
 (line-number-mode t)
 
 ;;; 行番号表示
-;; (global-linum-mode t)
+(global-linum-mode t)
 (setq linum-format "%3d ")
 (add-hook 'linum-mode-hook
           '(lambda ()
@@ -160,6 +160,11 @@
 ;;                                                 css-mode-hook yaml-mode-hook org-mode-hook
 ;;                                                 howm-mode-hook js2-mode-hook javascript-mode-hook
 ;;                                                 smarty-mode-hook sgml-mode-hook))
+
+;; 1行ずつスクロール
+(setq scroll-conservatively 35
+      scroll-margin 10
+      scroll-step 1)
 
 ;;; カーソルの場所を保存する
 (require 'saveplace)
