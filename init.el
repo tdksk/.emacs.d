@@ -132,9 +132,9 @@
 (set-face-background 'whitespace-newline nil)
 
 ;;; 現在行を目立たせる
-;; (global-hl-line-mode)
+(global-hl-line-mode)
 (hl-line-mode 1)
-;; (setq hl-line-face 'underline) ;下線
+(setq hl-line-face 'underline) ;下線
 (set-face-background 'hl-line "white")
 (set-face-foreground 'hl-line "black")
 
