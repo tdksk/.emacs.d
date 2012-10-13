@@ -135,8 +135,8 @@
 (global-hl-line-mode)
 (hl-line-mode 1)
 (setq hl-line-face 'underline) ;下線
-(set-face-background 'hl-line "white")
-(set-face-foreground 'hl-line "black")
+;; (set-face-background 'hl-line "white")
+;; (set-face-foreground 'hl-line "black")
 
 ;;; カーソルの位置が何文字目かを表示する
 (column-number-mode t)
@@ -399,8 +399,13 @@
 ;;; dired-mode
 ;; dired拡張
 (require 'dired-x)
+(defface dired-face
+  `((t (:background "white" :foreground "black")))
+  "Face for dired-mode."
+  :group 'dired-mode)
 (add-hook 'dired-mode-hook
           '(lambda ()
+             (setq hl-line-face 'dired-face)
              (hl-line-mode t)
              ;; キーバインド
              (define-key dired-mode-map "\C-t" 'next-multiframe-window)  ; フレーム間移動
