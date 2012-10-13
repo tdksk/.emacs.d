@@ -380,6 +380,7 @@
 (global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
 (add-hook 'term-mode-hook
           '(lambda ()
+             (linum-mode -1)
              ;; キーバインド
              (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
@@ -407,6 +408,7 @@
           '(lambda ()
              (setq hl-line-face 'dired-face)
              (hl-line-mode t)
+             (linum-mode -1)
              ;; キーバインド
              (define-key dired-mode-map "\C-t" 'next-multiframe-window)  ; フレーム間移動
              ))
