@@ -232,6 +232,7 @@
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
 (add-hook 'scss-mode-hook
           '(lambda ()
+             (setq scss-compile-at-save nil)
              (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))
              (define-key scss-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 (add-to-list 'ac-modes 'scss-mode)
