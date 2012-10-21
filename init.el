@@ -196,6 +196,9 @@
 (global-set-key "\C-xf" 'recentf-open-files)  ; 履歴一覧を開く
 (setq recentf-max-saved-items 100)
 
+;;; ファイルに変更があったら自動的にバッファ更新
+(global-auto-revert-mode t)
+
 ;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
