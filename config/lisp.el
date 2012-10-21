@@ -222,10 +222,19 @@
 (autoload 'css-mode "css-mode")
 (setq auto-mode-alist
       (cons '("\\.css\\'" . css-mode) auto-mode-alist))
-(setq cssm-indent-function #'cssm-c-style-indenter)
 (add-hook 'css-mode-hook
           '(lambda ()
-             (define-key cssm-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
+             (setq css-indent-offset 2)
+             (define-key css-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
+
+;;; SCSS Mode for Emacs
+(autoload 'scss-mode "scss-mode")
+(add-to-list 'auto-mode-alist '("\\.scss\\'" . scss-mode))
+(add-hook 'scss-mode-hook
+          '(lambda ()
+             (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))
+             (define-key scss-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
+(add-to-list 'ac-modes 'scss-mode)
 
 ;;; JavaScript mode (js-mode)
 (add-hook 'js-mode-hook
