@@ -5,13 +5,14 @@
 
 ;;; auto-complete
 (require 'auto-complete)
-(require 'auto-complete-config)         ; 必須ではないですが一応
+(require 'auto-complete-config)
 (ac-config-default)
-(global-auto-complete-mode t)
-(setq ac-dwim t)                        ; 空気を読む
+(setq ac-auto-show-menu 0)  ;; 補完メニュー表示までの時間
+(setq ac-use-quick-help nil)  ;; 補完中に出てくるツールチップヘルプを利用しない
+(setq ac-dwim t)  ;; 空気を読む
 ;; キーバインド
-(define-key ac-complete-mode-map "\C-n" 'ac-next)
-(define-key ac-complete-mode-map "\C-p" 'ac-previous)
+;; (ac-set-trigger-key "\C-n")  ;; トリガーキー
+(setq ac-use-menu-map t)  ;; 補完メニュー表示時のみC-n/C-pで補完候補を選択する
 ;; 辞書
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
 ;; 情報源として
