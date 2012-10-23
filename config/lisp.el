@@ -9,6 +9,7 @@
 (ac-config-default)
 (setq ac-auto-show-menu 0)  ;; 補完メニュー表示までの時間
 (setq ac-use-quick-help nil)  ;; 補完中に出てくるツールチップヘルプを利用しない
+;; (setq ac-expand-on-auto-complete nil)  ;; 補完候補全体の共通部分を展開しない
 (setq ac-dwim t)  ;; 空気を読む
 ;; キーバインド
 ;; (ac-set-trigger-key "\C-n")  ;; トリガーキー
@@ -31,6 +32,7 @@
 ;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete) ; M-TABで補完開始
 (add-hook 'AC-mode-hook
           ;; 色
+          (set-face-foreground 'ac-completion-face "blue")
           (set-face-background 'ac-selection-face "blue")
           (set-face-foreground 'ac-selection-face "black"))
 
