@@ -235,7 +235,8 @@
 (add-hook 'scss-mode-hook
           '(lambda ()
              (setq scss-compile-at-save nil)
-             (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))))
+             (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))
+             (define-key scss-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 (add-to-list 'ac-modes 'scss-mode)
 
 ;;; JavaScript mode (js-mode)
@@ -275,6 +276,13 @@
 ;;     :front "<style[^>]*>"
 ;;     :back "</style>")))
 ;; (mmm-add-mode-ext-class nil "\\.html\\'" 'embedded-css)
+
+;;; Ruby Mode
+(add-hook 'ruby-mode-hook
+          '(lambda ()
+             (define-key ruby-mode-map "\C-m" 'newline-and-indent)
+             (define-key ruby-mode-map "\C-j" 'newline)
+             (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 ;;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode.el"
