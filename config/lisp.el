@@ -284,6 +284,10 @@
              (define-key ruby-mode-map "\C-j" 'newline)
              (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
+;;; Haml Mode
+(autoload 'haml-mode "haml-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
+
 ;;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode.el"
   "Major mode for editing Markdown files" t)
