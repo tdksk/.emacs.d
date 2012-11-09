@@ -266,6 +266,12 @@
              (define-key js2-mode-map "\C-m" nil)
              (define-key js2-mode-map "\C-a" nil)))
 
+;;; CoffeeScript Mode
+(autoload 'coffee-mode "coffee-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
+;; auto-complete-modeの自動起動
+(add-to-list 'ac-modes 'coffee-mode)
+
 ;;; MMM Mode
 ;; (require 'mmm-auto)
 ;; (setq mmm-global-mode 'maybe)
