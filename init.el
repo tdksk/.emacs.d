@@ -484,5 +484,46 @@
   (dired-map-over-marks-check
    (function dired-convert-coding-system) arg 'convert-coding-system t))
 
+;;; VC
+(add-hook 'log-view-mode-hook
+          '(lambda ()
+             (setq hl-line-face 'dired-face)
+             (hl-line-mode t)
+             (linum-mode -1)
+             (local-set-key (kbd "j") 'log-view-msg-next)
+             (local-set-key (kbd "k") 'log-view-msg-prev)
+             (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
+             (local-set-key (kbd "RET") 'log-view-diff)
+             (local-set-key (kbd "=") 'log-view-diff)
+             (local-set-key (kbd "g") 'log-view-annotate-version)))
+(add-hook 'diff-mode-hook
+          '(lambda ()
+             (setq hl-line-face 'dired-face)
+             (hl-line-mode t)
+             (linum-mode -1)
+             (diff-auto-refine-mode t)
+             (set-face-attribute 'diff-added nil
+                                 :foreground "green" :background nil :weight 'normal)
+             (set-face-attribute 'diff-removed nil
+                                 :foreground "red" :background nil :weight 'normal)
+             (set-face-attribute 'diff-file-header-face nil
+                                 :foreground "yellow" :background nil :weight 'normal)
+             (set-face-attribute 'diff-hunk-header-face nil
+                                 :foreground "magenta" :background nil :weight 'normal)
+             (set-face-attribute 'diff-refine-change nil
+                                 :foreground nil :background nil :inverse-video t)
+             (local-set-key (kbd "j") 'next-line)
+             ;; TODO: "k" を previous-line にバインド (現在は diff-hunk-kill にバインドされている)
+             (local-set-key (kbd "k") 'previous-line)))
+(add-hook 'vc-annotate-mode-hook
+          '(lambda ()
+             (switch-to-buffer (current-buffer))
+             (delete-other-windows)
+             (setq hl-line-face 'dired-face)
+             (hl-line-mode t)
+             (linum-mode -1)
+             (local-set-key (kbd "j") 'next-line)
+             (local-set-key (kbd "k") 'previous-line)))
+
 ;;; 非標準Elispの設定
 (load "config/lisp")
