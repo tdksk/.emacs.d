@@ -501,7 +501,7 @@
              (setq hl-line-face 'dired-face)
              (hl-line-mode t)
              (linum-mode -1)
-             (diff-auto-refine-mode t)
+             ;; (diff-auto-refine-mode t)
              (set-face-attribute 'diff-added nil
                                  :foreground "green" :background nil :weight 'normal)
              (set-face-attribute 'diff-removed nil
@@ -510,8 +510,8 @@
                                  :foreground "yellow" :background nil :weight 'normal)
              (set-face-attribute 'diff-hunk-header-face nil
                                  :foreground "magenta" :background nil :weight 'normal)
-             (set-face-attribute 'diff-refine-change nil
-                                 :foreground nil :background nil :inverse-video t)
+             ;; (set-face-attribute 'diff-refine-change nil
+             ;;                     :foreground nil :background nil :inverse-video t)
              (local-set-key (kbd "j") 'next-line)
              ;; TODO: "k" を previous-line にバインド (現在は diff-hunk-kill にバインドされている)
              (local-set-key (kbd "k") 'previous-line)))
