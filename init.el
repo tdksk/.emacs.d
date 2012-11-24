@@ -17,8 +17,8 @@
 ;;(define-key global-map (kbd "C-h") 'delete-backward-char)   ; 削除
 (define-key global-map (kbd "M-?") 'help-for-help)          ; ヘルプ
 (define-key global-map (kbd "C-z") nil)                     ; サスペンド無効
-(define-key global-map (kbd "C-c i") 'indent-region)        ; インデント
-(define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
+(define-key global-map (kbd "C-c TAB") 'indent-region)        ; インデント
+;; (define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
