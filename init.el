@@ -425,6 +425,9 @@
 (define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
 (define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
 (define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
+(define-key dired-mode-map "/" 'isearch-forward)
+(define-key dired-mode-map "n" 'isearch-repeat-forward)
+(define-key dired-mode-map "N" 'isearch-repeat-backward)
 ;;; フォルダを開く時, 新しいバッファを作成しない
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
