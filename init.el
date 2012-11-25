@@ -9,6 +9,9 @@
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
       (normal-top-level-add-subdirs-to-load-path)))
 
+;;; テキストエンコーディングとして UTF-8 を優先使用
+(prefer-coding-system 'utf-8)
+
 ;;; Localeに合わせた環境の設定
 ;; (set-locale-environment nil)
 
@@ -98,6 +101,9 @@
       (backward-kill-word 1)
     ad-do-it))
 
+;;; GC を減らして軽くする
+(setq gc-cons-threshold (* 4 1024 1024))
+
 ;;; 画像ファイルを表示
 (auto-image-file-mode t)
 
@@ -176,6 +182,7 @@
 (setq scroll-conservatively 35
       scroll-margin 10
       scroll-step 1)
+(setq comint-scroll-show-maximum-output t)  ;; for shell-mode
 
 ;;; カーソルの場所を保存する
 (require 'saveplace)
@@ -201,6 +208,9 @@
 
 ;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
+
+;;; 終了時に自動でプロセスをkill
+(setq process-kill-without-query t)
 
 ;;; 最近使ったファイルを保存する
 (recentf-mode t)
