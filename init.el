@@ -89,6 +89,15 @@
   (beginning-of-line)
   (kill-line))
 
+;; minibuffer で C-w の前の単語を削除
+(define-key minibuffer-local-completion-map (kbd "C-w") 'backward-kill-word)
+
+;; 範囲指定していないとき C-w で前の単語を削除
+(defadvice kill-region (around kill-word-or-kill-region activate)
+  (if (and (interactive-p) transient-mark-mode (not mark-active))
+      (backward-kill-word 1)
+    ad-do-it))
+
 ;;; 画像ファイルを表示
 (auto-image-file-mode t)
 
