@@ -193,6 +193,21 @@
 (setq yas/snippet-dirs '("~/.emacs.d/lisp/yasnippet/snippets"))
 (yas/global-mode 1)
 
+;;; Highlight Indentation
+(require 'highlight-indentation)
+;; (set-face-background 'highlight-indentation-face "white")
+(set-face-background 'highlight-indentation-current-column-face "blue")
+;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
+(add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'coffee-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'haml-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'html-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'css-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'scss-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'js2-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'php-mode-hook 'highlight-indentation-current-column-mode)
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
