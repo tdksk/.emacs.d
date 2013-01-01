@@ -27,6 +27,8 @@
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
+(define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
 ;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
@@ -45,6 +47,22 @@
 (define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
 (define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
+
+(defun move-line-up ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (move-to-column col)))
+(defun move-line-down ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
 
 (defun other-window-or-split ()
   (interactive)
