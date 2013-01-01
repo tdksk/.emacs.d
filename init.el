@@ -237,6 +237,9 @@
 
 ;;; ファイルに変更があったら自動的にバッファ更新
 (global-auto-revert-mode t)
+;;; dired も更新 (save 時のみ)
+(setq global-auto-revert-non-file-buffers t)
+(setq auto-revert-verbose nil)
 
 ;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
