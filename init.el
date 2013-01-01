@@ -290,9 +290,9 @@
 (set-face-foreground 'which-func nil)
 
 ;;; 時計の表示
-(setq display-time-24hr-format t)
-(setq display-time-default-load-average nil)
-(display-time-mode t)
+;; (setq display-time-24hr-format t)
+;; (setq display-time-default-load-average nil)
+;; (display-time-mode t)
 
 ;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
