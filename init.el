@@ -17,11 +17,9 @@
 
 ;;; キーバインド
 (keyboard-translate ?\C-h ?\C-?)  ; translate 'C-h' to DEL
-;;(define-key global-map (kbd "C-h") 'delete-backward-char)   ; 削除
 (define-key global-map (kbd "M-?") 'help-for-help)          ; ヘルプ
 (define-key global-map (kbd "C-z") nil)                     ; サスペンド無効
-(define-key global-map (kbd "C-c TAB") 'indent-region)        ; インデント
-;; (define-key global-map (kbd "C-c TAB") 'hippie-expand)      ; 補完
+(define-key global-map (kbd "C-c TAB") 'indent-region)      ; インデント
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
@@ -29,7 +27,6 @@
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
-;; (define-key global-map (kbd "C-x C-b") 'iswitchb-buffer)    ; iswitchb (このキーバインドはanything-for-filesに)
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
@@ -38,8 +35,6 @@
 (define-key global-map (kbd "M-k") 'kill-line-ex)           ; 1行kill
 (define-key global-map (kbd "M-y") 'yank-bottom-line)       ; 下の行にyank
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
-;; (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
-;; (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
 (define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 (define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
 (define-key global-map (kbd "C-c l") 'global-linum-mode)    ; linum-mode (global)
@@ -64,27 +59,6 @@
       (transpose-lines 1))
     (forward-line)
     (move-to-column col)))
-
-(defun other-window-or-split ()
-  (interactive)
-  (when (one-window-p) (split-window-horizontally))
-  (other-window 1))
-
-(defun swap-screen()
-  "Swap two screen,leaving cursor at current window."
-  (interactive)
-  (let ((thiswin (selected-window))
-        (nextbuf (window-buffer (next-window))))
-    (set-window-buffer (next-window) (window-buffer))
-    (set-window-buffer thiswin nextbuf)))
-(defun swap-screen-with-cursor()
-  "Swap two screen,with cursor in same buffer."
-  (interactive)
-  (let ((thiswin (selected-window))
-        (thisbuf (window-buffer)))
-    (other-window 1)
-    (set-window-buffer thiswin (window-buffer))
-    (set-window-buffer (selected-window) thisbuf)))
 
 ;; http://www.emacswiki.org/emacs/CommentingCode
 ;; Original idea from
@@ -117,10 +91,31 @@
   (yank)
   (previous-line))
 
-;; minibuffer で C-w の前の単語を削除
+(defun other-window-or-split ()
+  (interactive)
+  (when (one-window-p) (split-window-horizontally))
+  (other-window 1))
+
+(defun swap-screen()
+  "Swap two screen,leaving cursor at current window."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (nextbuf (window-buffer (next-window))))
+    (set-window-buffer (next-window) (window-buffer))
+    (set-window-buffer thiswin nextbuf)))
+(defun swap-screen-with-cursor()
+  "Swap two screen,with cursor in same buffer."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (thisbuf (window-buffer)))
+    (other-window 1)
+    (set-window-buffer thiswin (window-buffer))
+    (set-window-buffer (selected-window) thisbuf)))
+
+;;; minibuffer で C-w の前の単語を削除
 (define-key minibuffer-local-completion-map (kbd "C-w") 'backward-kill-word)
 
-;; 範囲指定していないとき C-w で前の単語を削除
+;;; 範囲指定していないとき C-w で前の単語を削除
 (defadvice kill-region (around kill-word-or-kill-region activate)
   (if (and (interactive-p) transient-mark-mode (not mark-active))
       (backward-kill-word 1)
@@ -151,7 +146,7 @@
 
 ;;; 対応する括弧を光らせる。
 (show-paren-mode 1)
-(setq show-paren-delay 0)               ;ハイライトまでの遅延
+(setq show-paren-delay 0)  ; ハイライトまでの遅延
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
 ;; (setq show-paren-style 'mixed)
 ;;; 色
@@ -175,8 +170,8 @@
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
 (hl-line-mode 1)
-;; (setq hl-line-face 'underline)  ;; 下線
-(setq hl-line-face 'bold)  ;; 太字
+;; (setq hl-line-face 'underline)  ; 下線
+(setq hl-line-face 'bold)  ; 太字
 ;; (set-face-background 'hl-line "white")
 ;; (set-face-foreground 'hl-line "black")
 
@@ -207,7 +202,7 @@
 (setq scroll-conservatively 35
       scroll-margin 10
       scroll-step 1)
-(setq comint-scroll-show-maximum-output t)  ;; for shell-mode
+(setq comint-scroll-show-maximum-output t)  ; for shell-mode
 
 ;;; カーソルの場所を保存する
 (require 'saveplace)
@@ -357,20 +352,6 @@
 ;; (global-set-key (kbd "\"") 'skeleton-pair-insert-maybe)
 ;; (setq skeleton-pair 1)
 
-;;; バッファの切り替え
-;;; 効かない
-;; (defun my-select-visible (blst n)
-;;   (let ((buf (nth n blst)))
-;;     (cond ((= n (- (length blst) 1)) (other-buffer))
-;;           ((not (= (aref (buffer-name buf) 0) ? )) buf)
-;;           (t (my-select-visible blst (+ n 1))))))
-;; (defun my-grub-buffer ()
-;;   (interactive)
-;;   (switch-to-buffer (my-select-visible
-;;                      (reverse (cdr (assq 'buffer-list (frame-parameters)))) 0)))
-;; (global-set-key [?\C-,] 'my-grub-buffer)
-;; (global-set-key [?\C-.] 'bury-buffer)
-
 ;;;; Buffer 設定
 ;;; iswitchb は、バッファ名の一部の文字を入力することで、
 ;;; 選択バッファの絞り込みを行う機能を実現します。
@@ -424,8 +405,8 @@
 
 ;;; cua-mode
 (cua-mode t)
-(setq cua-enable-cua-keys nil) ; 変なキーバインド禁止
-(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark) ; 矩形選択開始
+(setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
+(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark)  ; 矩形選択開始
 
 ;;; Term Mode
 (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
@@ -436,8 +417,6 @@
              ;; キーバインド
              (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
-             (define-key term-raw-map (kbd "M-p") 'next-buffer)                                ; 次のバッファ
-             (define-key term-raw-map (kbd "M-n") 'previous-buffer)                            ; 前のバッファ
              ))
 
 ;;; grep-mode

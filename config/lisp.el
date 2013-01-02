@@ -7,13 +7,13 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
-(setq ac-auto-show-menu 0)  ;; 補完メニュー表示までの時間
-(setq ac-use-quick-help nil)  ;; 補完中に出てくるツールチップヘルプを利用しない
-;; (setq ac-expand-on-auto-complete nil)  ;; 補完候補全体の共通部分を展開しない
-(setq ac-dwim t)  ;; 空気を読む
+(setq ac-auto-show-menu 0)  ; 補完メニュー表示までの時間
+(setq ac-use-quick-help nil)  ; 補完中に出てくるツールチップヘルプを利用しない
+;; (setq ac-expand-on-auto-complete nil)  ; 補完候補全体の共通部分を展開しない
+(setq ac-dwim t)  ; 空気を読む
 ;; キーバインド
-;; (ac-set-trigger-key "\C-n")  ;; トリガーキー
-(setq ac-use-menu-map t)  ;; 補完メニュー表示時のみC-n/C-pで補完候補を選択する
+;; (ac-set-trigger-key "\C-n")  ; トリガーキー
+(setq ac-use-menu-map t)  ; 補完メニュー表示時のみC-n/C-pで補完候補を選択する
 ;; 辞書
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
 ;; 情報源として
@@ -55,7 +55,7 @@
       (candidates . recentf-list)
       (keymap . ,anything-generic-files-map)
       (help-message . anything-generic-file-help-message)
-      (candidate-number-limit . ,recentf-max-saved-items) ; 標準定義にこれを追加した
+      (candidate-number-limit . ,recentf-max-saved-items)  ; 標準定義にこれを追加した
       (mode-line . anything-generic-file-mode-line-string)
       (match anything-c-match-on-basename)
       (type . file)))
@@ -385,7 +385,7 @@
 (setq twittering-icon-mode nil)
 (add-hook 'twittering-mode-hook
           (lambda ()
-            ;;(set-face-bold-p 'twittering-username-face t)
+            ;; (set-face-bold-p 'twittering-username-face t)
             (set-face-foreground 'twittering-username-face "green")
             (set-face-foreground 'twittering-uri-face "yellow"))
           )
@@ -393,7 +393,7 @@
 (define-key twittering-mode-map (kbd ".") 'twittering-current-timeline)
 ;; format
 (setq twittering-status-format "%FILL{%C{%R %b%d} %s%p %t from %f}")
-;;(setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f \n  %FILL{%t}\n")
+;; (setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f \n  %FILL{%t}\n")
 ;; %s - screen_name
 ;; %S - name
 ;; %i - profile_image
@@ -414,12 +414,12 @@
 ;;; view-mode, viewer.el
 (setq view-read-only t)
 (require 'viewer)
-(viewer-stay-in-setup)  ;; 書き込み不能な場合はview-modeを抜けないように
-(setq view-mode-by-default-regexp "\\.*")  ;; view-modeでファイルを開く
+(viewer-stay-in-setup)  ; 書き込み不能な場合はview-modeを抜けないように
+(setq view-mode-by-default-regexp "\\.*")  ; view-modeでファイルを開く
 ;; view-modeのときはモードラインの色を変える
 (setq viewer-modeline-color-unwritable "yellow"
       viewer-modeline-color-view "blue")
-(viewer-change-modeline-color-setup) ;; *Compile-log* Warning: called-interactively-p called with 0 arguments, but requires 1
+(viewer-change-modeline-color-setup)  ; *Compile-log* Warning: called-interactively-p called with 0 arguments, but requires 1
 (defvar pager-keybind
   `( ;; vi-like
     ("h" . backward-char)
@@ -451,6 +451,5 @@
   ;; (hl-line-mode 1)
   )
 (add-hook 'view-mode-hook 'view-mode-hook0)
-
 ;; (defadvice view-mode-disable (after hl-line-mode-disable activate)
 ;;   (hl-line-mode -1))
