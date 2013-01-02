@@ -41,7 +41,7 @@
 (define-key global-map (kbd "C-x b") 'anything-filelist+)
 (define-key global-map (kbd "C-x C-b") 'anything-filelist+)
 (define-key global-map (kbd "C-x C-_") 'anything-occur)
-(define-key global-map (kbd "M-y") 'anything-show-kill-ring)
+(define-key global-map (kbd "C-x C-y") 'anything-show-kill-ring)
 (setq anything-idle-delay 0)
 (setq anything-input-idle-delay 0)
 ;; anything-for-files で表示される recentf を増やす

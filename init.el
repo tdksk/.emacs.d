@@ -36,6 +36,7 @@
 (define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "M-k") 'kill-line-ex)           ; 1行kill
+(define-key global-map (kbd "M-y") 'yank-bottom-line)       ; 下の行にyank
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 ;; (define-key global-map (kbd "M-p") 'next-buffer)            ; 次のバッファ
 ;; (define-key global-map (kbd "M-n") 'previous-buffer)        ; 前のバッファ
@@ -109,6 +110,12 @@
   (interactive)
   (beginning-of-line)
   (kill-line))
+(defun yank-bottom-line ()
+  (interactive)
+  (beginning-of-line)
+  (forward-line)
+  (yank)
+  (previous-line))
 
 ;; minibuffer で C-w の前の単語を削除
 (define-key minibuffer-local-completion-map (kbd "C-w") 'backward-kill-word)
