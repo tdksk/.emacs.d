@@ -208,6 +208,13 @@
 (add-hook 'js2-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'php-mode-hook 'highlight-indentation-current-column-mode)
 
+;;; zsh like completion
+;; (require 'zlc)
+;; (let ((map minibuffer-local-map))
+;;   (define-key map (kbd "C-p") 'zlc-select-previous)
+;;   (define-key map (kbd "C-n") 'zlc-select-next)
+;;   (define-key map (kbd "C-c") 'zlc-reset))
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
