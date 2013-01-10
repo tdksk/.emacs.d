@@ -309,7 +309,7 @@
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (define-key ruby-mode-map "\C-m" 'newline-and-indent)
-             (define-key ruby-mode-map "\C-j" 'newline)
+             (define-key ruby-mode-map "\C-j" 'open-line-below)
              (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
 ;;; Haml Mode
