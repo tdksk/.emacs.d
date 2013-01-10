@@ -268,8 +268,8 @@
 (global-set-key "\C-j" 'newline)
 
 ;;; C-aで「行頭」と「インデントを飛ばした行頭」を行き来する
-(global-set-key "\C-a" 'beggining-of-indented-line)
-(defun beggining-of-indented-line (current-point)
+(global-set-key "\C-a" 'begining-of-indented-line)
+(defun begining-of-indented-line (current-point)
   (interactive "d")
   (if (string-match
        "^[ \t]+$"
