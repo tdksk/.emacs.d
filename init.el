@@ -25,6 +25,11 @@
 (define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
+(define-key global-map (kbd "C-j") 'newline)                ; インデントなしで改行
+(define-key global-map (kbd "C-o") 'open-line-below)        ; 下に行追加して移動
+(define-key global-map (kbd "M-o") 'open-line-above)        ; 上に行追加して移動
+(define-key global-map (kbd "C-M-o") 'open-line-above)      ; 上に行追加して移動
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
 (define-key global-map (kbd "C-c a") 'align)                ; align
@@ -43,6 +48,17 @@
 (define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
 (define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
+
+(defun open-line-below ()
+  (interactive)
+  (end-of-line)
+  (newline-and-indent))
+(defun open-line-above ()
+  (interactive)
+  (beginning-of-line)
+  (newline)
+  (forward-line -1)
+  (indent-for-tab-command))
 
 (defun move-line-up ()
   (interactive)
@@ -262,10 +278,6 @@
 
 ;;; 削除確認などでyes/noの代わりにy/n
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;;; 改行キーでオートインデントさせる
-(global-set-key "\C-m" 'newline-and-indent)
-(global-set-key "\C-j" 'newline)
 
 ;;; C-aで「行頭」と「インデントを飛ばした行頭」を行き来する
 (global-set-key "\C-a" 'begining-of-indented-line)
