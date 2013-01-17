@@ -193,6 +193,14 @@
 (setq yas/snippet-dirs '("~/.emacs.d/lisp/yasnippet/snippets"))
 (yas/global-mode 1)
 
+;;; Iedit
+(require 'iedit)
+(setq iedit-toggle-key (kbd "C-M-e"))
+(define-key global-map iedit-toggle-key 'iedit-mode)
+(define-key isearch-mode-map iedit-toggle-key 'iedit-mode-from-isearch)
+(define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
+(define-key help-map iedit-toggle-key 'iedit-mode-toggle-on-function)
+
 ;;; Highlight Indentation
 (require 'highlight-indentation)
 (set-face-background 'highlight-indentation-face "white")
