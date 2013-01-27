@@ -219,6 +219,9 @@
       scroll-step 1)
 (setq comint-scroll-show-maximum-output t)  ; for shell-mode
 
+;;; スクロール時にカーソルの位置を変えない
+(setq scroll-preserve-screen-position t)
+
 ;;; カーソルの場所を保存する
 (require 'saveplace)
 (setq-default save-place t)
