@@ -195,7 +195,7 @@
 
 ;;; Iedit
 (require 'iedit)
-(setq iedit-toggle-key (kbd "C-M-e"))
+(setq iedit-toggle-key (kbd "M-i"))
 (define-key global-map iedit-toggle-key 'iedit-mode)
 (define-key isearch-mode-map iedit-toggle-key 'iedit-mode-from-isearch)
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
