@@ -246,6 +246,9 @@
 ;;; 画面分割しても折り返し
 (setq truncate-partial-width-windows nil)
 
+;;; 縦分割しない
+(setq split-height-threshold nil)
+
 ;;; バックアップファイルを作らない
 (setq backup-inhibited t)
 
