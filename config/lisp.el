@@ -83,7 +83,6 @@
 
 ;;; key-chord.el
 (require 'key-chord)
-(global-set-key "\C-x\C-x" 'key-chord-mode)
 (setq key-chord-two-keys-delay 0.04)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'view-mode)
@@ -218,6 +217,18 @@
   (smartchr-mode 1))
 (defadvice cua--activate-rectangle (before my-cua--activate-rectangle ())
   (smartchr-mode 0))
+
+;;; term-paste-mode.el
+(require 'term-paste-mode)
+(global-set-key "\C-x\C-x" 'term-paste-mode)
+(add-hook 'term-paste-mode-on-hook
+          (lambda ()
+            (global-auto-complete-mode 0)
+            (key-chord-mode 0)))
+(add-hook 'term-paste-mode-off-hook
+          (lambda ()
+            (global-auto-complete-mode 1)
+            (key-chord-mode 1)))
 
 ;;; yasnippet
 (require 'yasnippet)
