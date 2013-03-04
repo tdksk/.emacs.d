@@ -167,14 +167,6 @@
      :cleanup-fn (lambda ()
                    (delete-region beg end))
      )))
-(global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
-(global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
-(global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
-(global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
-(global-set-key (kbd "F") (smartchr '("F" "$")))
-(global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
-(global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
-(global-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
 ;; for php-mode
 (defun my-smartchr-keybindings-php ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
@@ -192,6 +184,35 @@
   (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
   )
 (add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
+;; Minor mode
+(defvar smartchr-mode nil)
+(defun smartchr-mode (arg)
+  (interactive "P")
+  (setq smartchr-mode (if arg
+                          (> (prefix-numeric-value arg) 0)
+                        (not smartchr-mode)))
+  (cond (smartchr-mode
+         (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+         (global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
+         (global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+         (global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
+         (global-set-key (kbd "F") (smartchr '("F" "$")))
+         (global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
+         (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
+         (global-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
+         (message "smartchr on"))
+        (t
+         ;; TODO: for some major mode
+         (global-set-key (kbd "(") 'self-insert-command)
+         (global-set-key (kbd "[") 'self-insert-command)
+         (global-set-key (kbd "{") 'self-insert-command)
+         (global-set-key (kbd ">") 'self-insert-command)
+         (global-set-key (kbd "F") 'self-insert-command)
+         (global-set-key (kbd "L") 'self-insert-command)
+         (global-set-key (kbd "I") 'self-insert-command)
+         (global-set-key (kbd "/") 'self-insert-command)
+         (message "smartchr off"))))
+(smartchr-mode 1)
 
 ;;; yasnippet
 (require 'yasnippet)
