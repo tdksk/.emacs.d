@@ -182,6 +182,11 @@
   (local-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
   )
 (add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
+;; for perl-mode
+(defun my-smartchr-keybindings-perl ()
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+  )
+(add-hook 'perl-mode-hook 'my-smartchr-keybindings-perl)
 ;; for html-mode
 (defun my-smartchr-keybindings-html ()
   (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
@@ -207,6 +212,7 @@
 (set-face-background 'highlight-indentation-current-column-face "blue")
 ;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
 (add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
+(add-hook 'perl-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'coffee-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'haml-mode-hook 'highlight-indentation-current-column-mode)
