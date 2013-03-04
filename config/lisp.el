@@ -213,6 +213,11 @@
          (global-set-key (kbd "/") 'self-insert-command)
          (message "smartchr off"))))
 (smartchr-mode 1)
+;; cua-mode に入る時に無効化
+(defadvice cua--deactivate-rectangle (before my-cua--deactivate-rectangle ())
+  (smartchr-mode 1))
+(defadvice cua--activate-rectangle (before my-cua--activate-rectangle ())
+  (smartchr-mode 0))
 
 ;;; yasnippet
 (require 'yasnippet)
