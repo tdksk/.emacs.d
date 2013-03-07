@@ -49,6 +49,19 @@
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
 (define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
 
+;; Languages use semicolon
+(add-hook 'perl-mode-hook 'use-semicolon-keybindings)
+(add-hook 'php-mode-hook 'use-semicolon-keybindings)
+(add-hook 'js2-mode-hook 'use-semicolon-keybindings)
+(add-hook 'css-mode-hook 'use-semicolon-keybindings)
+(add-hook 'scss-mode-hook 'use-semicolon-keybindings)
+;; Languages not use semicolon
+(add-hook 'python-mode-hook 'unuse-semicolon-keybindings)
+(add-hook 'ruby-mode-hook 'unuse-semicolon-keybindings)
+(add-hook 'coffee-mode-hook 'unuse-semicolon-keybindings)
+(add-hook 'haml-mode-hook 'unuse-semicolon-keybindings)
+(add-hook 'html-mode-hook 'unuse-semicolon-keybindings)
+
 (defun open-line-below ()
   (interactive)
   (end-of-line)
@@ -75,6 +88,18 @@
       (transpose-lines 1))
     (forward-line)
     (move-to-column col)))
+
+(defun semicolon-newline ()
+  (interactive)
+  (end-of-line)
+  (unless (looking-back "^[ \t]*$")
+    (when (not (looking-back ";"))
+      (insert ";")))
+  (newline-and-indent))
+(defun use-semicolon-keybindings ()
+  (local-set-key (kbd ";") 'semicolon-newline))
+(defun unuse-semicolon-keybindings ()
+  (local-set-key (kbd ";") 'open-line-below))
 
 ;; http://www.emacswiki.org/emacs/CommentingCode
 ;; Original idea from
