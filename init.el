@@ -230,6 +230,10 @@
 ;;; 行番号表示
 (global-linum-mode t)
 (setq linum-format "%3d ")
+;; 遅延させて軽くする
+(setq linum-delay t)
+(defadvice linum-schedule (around my-linum-schedule () activate)
+  (run-with-idle-timer 0.2 nil #'linum-update-current))
 (add-hook 'linum-mode-hook
           '(lambda ()
              (set-face-background 'linum nil)
