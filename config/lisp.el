@@ -180,7 +180,7 @@
 (add-hook 'perl-mode-hook 'my-smartchr-keybindings-perl)
 ;; for html-mode
 (defun my-smartchr-keybindings-html ()
-  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
+  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<" "<% `!!' %>" "<%= `!!' %>")))
   )
 (add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
 ;; Minor mode
