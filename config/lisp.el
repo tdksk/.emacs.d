@@ -229,6 +229,13 @@
           (lambda ()
             (global-auto-complete-mode 1)
             (key-chord-mode 1)))
+(eval-after-load "term-paste-mode"
+  '(setcar (cdr (assq 'term-paste-mode minor-mode-alist))
+           (if (fboundp 'propertize)
+               (list (propertize " Paste"
+                                 'face
+                                 '(:foreground "yellow" :background "black")))
+             " Paste")))
 
 ;;; yasnippet
 (require 'yasnippet)
