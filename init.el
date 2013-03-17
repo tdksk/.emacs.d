@@ -339,10 +339,10 @@
 (which-function-mode t)
 
 ;;; モードライン
-(set-face-foreground 'modeline "black")
-(set-face-background 'modeline "white")
-(set-face-foreground 'modeline-inactive nil)
-(set-face-background 'modeline-inactive "black")
+(set-face-foreground 'mode-line "black")
+(set-face-background 'mode-line "white")
+(set-face-foreground 'mode-line-inactive nil)
+(set-face-background 'mode-line-inactive "black")
 (set-face-background 'which-func nil)
 (set-face-foreground 'which-func nil)
 
