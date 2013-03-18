@@ -205,13 +205,14 @@
 ;; (setq-default show-trailing-whitespace t)
 
 ;;; 空白や改行の視覚化
-(global-whitespace-mode t)
-(setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
-(set-face-foreground 'whitespace-tab nil)
-(set-face-background 'whitespace-tab nil)
-(set-face-underline 'whitespace-tab t)
-(set-face-foreground 'whitespace-newline "black")
-(set-face-background 'whitespace-newline nil)
+(eval-after-load 'whitespace
+  '(progn
+     (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
+     (set-face-foreground 'whitespace-tab nil)
+     (set-face-background 'whitespace-tab nil)
+     (set-face-underline 'whitespace-tab t)
+     (set-face-foreground 'whitespace-newline "black")
+     (set-face-background 'whitespace-newline nil)))
 
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
