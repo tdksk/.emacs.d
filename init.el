@@ -211,6 +211,7 @@
      (set-face-foreground 'whitespace-tab nil)
      (set-face-background 'whitespace-tab nil)
      (set-face-underline 'whitespace-tab t)
+     (set-face-bold-p 'whitespace-newline t)
      (set-face-foreground 'whitespace-newline "black")
      (set-face-background 'whitespace-newline nil)))
 
@@ -237,8 +238,9 @@
   (run-with-idle-timer 0.2 nil #'linum-update-current))
 (add-hook 'linum-mode-hook
           '(lambda ()
+             (set-face-bold-p 'linum t)
              (set-face-background 'linum nil)
-             (set-face-foreground 'linum "blue")))
+             (set-face-foreground 'linum "black")))
 ;; (defvar my-linum-hook-name nil)
 ;; (mapc (lambda (hook-name)
 ;;         (add-hook hook-name (lambda () (linum-mode t))))
