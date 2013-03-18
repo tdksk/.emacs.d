@@ -484,7 +484,7 @@
 ;; view-modeのときはモードラインの色を変える
 (setq viewer-modeline-color-unwritable "yellow"
       viewer-modeline-color-view "blue")
-(viewer-change-modeline-color-setup)  ; *Compile-log* Warning: called-interactively-p called with 0 arguments, but requires 1
+(viewer-change-modeline-color-setup)
 (defvar pager-keybind
   `( ;; vi-like
     ("h" . backward-char)
