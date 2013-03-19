@@ -62,6 +62,17 @@
 (add-hook 'haml-mode-hook 'unuse-semicolon-keybindings)
 (add-hook 'html-mode-hook 'unuse-semicolon-keybindings)
 
+(defun next-line-linewise ()
+  (interactive)
+  (setq line-move-visual nil)
+  (next-line)
+  (setq line-move-visual t))
+(defun previous-line-linewise ()
+  (interactive)
+  (setq line-move-visual nil)
+  (previous-line)
+  (setq line-move-visual t))
+
 (defun open-line-below ()
   (interactive)
   (end-of-line)
@@ -480,9 +491,12 @@
 ;;; grep-mode
 (add-hook 'grep-mode-hook
           (lambda ()
+            (setq hl-line-face 'dired-face)
+            (hl-line-mode t)
+            (linum-mode -1)
             (define-key grep-mode-map "o" (kbd "RET"))
-            (define-key grep-mode-map "j" 'next-line)
-            (define-key grep-mode-map "k" 'previous-line)
+            (define-key grep-mode-map "j" 'next-line-linewise)
+            (define-key grep-mode-map "k" 'previous-line-linewise)
             (define-key grep-mode-map "d" 'scroll-up)
             (define-key grep-mode-map "u" 'scroll-down)))
 
