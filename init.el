@@ -228,7 +228,6 @@
 
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
-(hl-line-mode 1)
 ;; (setq hl-line-face 'underline)  ; 下線
 (setq hl-line-face 'bold)  ; 太字
 ;; (set-face-background 'hl-line "white")
