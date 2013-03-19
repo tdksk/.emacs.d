@@ -515,6 +515,7 @@
   (define-many-keys view-mode-map pager-keybind)
   ;; Disable distracting whitespace-mode highlighting when in view-mode
   (whitespace-mode (if view-mode -1 1))
+  (highlight-indentation-current-column-mode (if view-mode -1 1))
   ;; (hl-line-mode 1)
   )
 (add-hook 'view-mode-hook 'view-mode-hook0)
