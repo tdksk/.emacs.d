@@ -266,6 +266,19 @@
 (add-hook 'js2-mode-hook 'highlight-indentation-current-column-mode)
 (add-hook 'php-mode-hook 'highlight-indentation-current-column-mode)
 
+;;; git-gutter.el
+(require 'git-gutter)
+;; (global-git-gutter-mode t)
+(define-key global-map (kbd "C-c g") 'git-gutter)
+(setq git-gutter:update-hooks '(after-save-hook after-revert-hook window-configuration-change-hook git-gutter-mode-on-hook))
+;; (setq git-gutter:separator-sign " ")
+(setq git-gutter:modified-sign " ")
+(setq git-gutter:added-sign " ")
+(setq git-gutter:deleted-sign " ")
+(set-face-background 'git-gutter:modified "magenta")
+(set-face-background 'git-gutter:added "green")
+(set-face-background 'git-gutter:deleted "red")
+
 ;;; zsh like completion
 ;; (require 'zlc)
 ;; (let ((map minibuffer-local-map))
@@ -518,6 +531,10 @@
   (highlight-indentation-current-column-mode (if view-mode -1 1))
   (global-hl-line-mode (if view-mode -1 1))
   (show-paren-mode (if view-mode -1 1))
+  ;; Toggle linum-mode and git-gutter-mode
+  (git-gutter-mode (if view-mode -1 1))
+  (linum-mode (if view-mode 1 -1))
+  (unless view-mode (git-gutter))
   )
 (add-hook 'view-mode-hook 'view-mode-hook0)
 ;; (defadvice view-mode-disable (after hl-line-mode-disable activate)

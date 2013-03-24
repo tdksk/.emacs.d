@@ -240,7 +240,6 @@
 (line-number-mode t)
 
 ;;; 行番号表示
-(global-linum-mode t)
 (setq linum-format "%3d ")
 ;; 遅延させて軽くする
 (setq linum-delay t)
