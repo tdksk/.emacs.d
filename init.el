@@ -262,12 +262,8 @@
 ;;                                                 smarty-mode-hook sgml-mode-hook))
 
 ;; 1行ずつスクロール
-;; (setq scroll-conservatively 35
-;;       scroll-margin 10
-;;       scroll-step 1)
-;; スクロールの調整
-(setq scroll-step 10
-      scroll-margin 10)
+(setq scroll-step 1
+      scroll-conservatively 10000)
 (setq comint-scroll-show-maximum-output t)  ; for shell-mode
 
 ;;; スクロール時にカーソルの位置を変えない
