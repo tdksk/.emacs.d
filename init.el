@@ -22,7 +22,7 @@
 (define-key global-map (kbd "C-c TAB") 'indent-region)      ; インデント
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
-(define-key global-map (kbd "C-c C-g") 'rgrep)              ; 再帰的にgrep
+(define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 (define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
@@ -493,6 +493,39 @@
             (define-key grep-mode-map "k" 'previous-line-linewise)
             (define-key grep-mode-map "d" 'scroll-up)
             (define-key grep-mode-map "u" 'scroll-down)))
+;; git-grep
+(defun chomp (str)
+  (replace-regexp-in-string "[\n\r]+$" "" str))
+(defun git-project-p ()
+  (string=
+   (chomp
+    (shell-command-to-string "git rev-parse --is-inside-work-tree"))
+   "true"))
+(defun git-root-directory ()
+  (cond ((git-project-p)
+         (chomp
+          (shell-command-to-string "git rev-parse --show-toplevel")))
+        (t
+         "")))
+(defun git-grep (search-word grep-dir)
+  (interactive
+   (let ((root (concat (git-root-directory) "/")))
+     (ffap-copy-string-as-kill)
+       (list
+        (read-shell-command
+         "Search for: "
+         (car kill-ring))
+        (read-file-name
+         "Directory for git grep: " root root t)
+        )))
+  (let ((grep-use-null-device nil)
+        (command
+         (format (concat
+                  "cd %s && "
+                  "PAGER='' git grep -I -n -i --break --color -e %s")
+                 grep-dir
+                 search-word)))
+    (grep command)))
 
 ;;; dired-mode
 ;; dired拡張
