@@ -500,8 +500,8 @@
 (viewer-change-modeline-color-setup)
 (defvar pager-keybind
   `( ;; vi-like
-    ("h" . backward-char)
-    ("l" . forward-char)
+    ("h" . other-window-backward-or-split)
+    ("l" . other-window-or-split)
     ("j" . View-scroll-line-forward)
     ("k" . View-scroll-line-backward)
     ;; ("f" . View-scroll-page-forward)
