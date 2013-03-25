@@ -553,6 +553,7 @@
 (define-key dired-mode-map "/" 'isearch-forward)
 (define-key dired-mode-map "n" 'isearch-repeat-forward)
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
+(define-key dired-mode-map "i" 'wdired-change-to-wdired-mode)      ; ファイル名編集
 ;;; フォルダを開く時, 新しいバッファを作成しない
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
