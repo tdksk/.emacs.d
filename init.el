@@ -56,6 +56,7 @@
 (add-hook 'js2-mode-hook 'use-semicolon-keybindings)
 (add-hook 'css-mode-hook 'use-semicolon-keybindings)
 (add-hook 'scss-mode-hook 'use-semicolon-keybindings)
+(add-hook 'objc-mode-hook 'use-semicolon-keybindings)
 ;; Languages not use semicolon
 (add-hook 'python-mode-hook 'unuse-semicolon-keybindings)
 (add-hook 'ruby-mode-hook 'unuse-semicolon-keybindings)
