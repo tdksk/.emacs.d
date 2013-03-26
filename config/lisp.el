@@ -386,6 +386,7 @@
 ;;; Ruby Mode
 (add-hook 'ruby-mode-hook
           '(lambda ()
+             (setq ruby-insert-encoding-magic-comment nil)  ; マジックコメントを追加しない
              (define-key ruby-mode-map "\C-m" 'newline-and-indent)
              (define-key ruby-mode-map "\C-j" 'open-line-below)
              (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
