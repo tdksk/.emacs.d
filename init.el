@@ -619,6 +619,10 @@
    (function dired-convert-coding-system) arg 'convert-coding-system t))
 
 ;;; VC
+(global-set-key (kbd "C-x =") 'vc-diff)
+(global-set-key (kbd "C-x l") 'vc-print-log)
+(global-set-key (kbd "C-x L") 'vc-print-root-log)
+(global-set-key (kbd "C-x g") 'vc-annotate)
 (add-hook 'log-view-mode-hook
           '(lambda ()
              (setq hl-line-face 'dired-face)
