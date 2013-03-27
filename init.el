@@ -628,6 +628,7 @@
              (local-set-key (kbd "k") 'log-view-msg-prev)
              (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
              (local-set-key (kbd "RET") 'log-view-diff)
+             (local-set-key (kbd "o") 'log-view-diff)
              (local-set-key (kbd "=") 'log-view-diff)
              (local-set-key (kbd "g") 'log-view-annotate-version)))
 (add-hook 'diff-mode-hook
@@ -646,9 +647,10 @@
                                  :foreground "magenta" :background nil :weight 'normal)
              ;; (set-face-attribute 'diff-refine-change nil
              ;;                     :foreground nil :background nil :inverse-video t)
-             (local-set-key (kbd "j") 'next-line)
              ;; TODO: "k" を previous-line にバインド (現在は diff-hunk-kill にバインドされている)
-             (local-set-key (kbd "k") 'previous-line)))
+             ;; (local-set-key (kbd "j") 'next-line)
+             ;; (local-set-key (kbd "k") 'previous-line)
+             ))
 (add-hook 'vc-annotate-mode-hook
           '(lambda ()
              (switch-to-buffer (current-buffer))
