@@ -225,7 +225,7 @@
 (eval-after-load 'whitespace
   '(progn
      (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
-     (set-face-foreground 'whitespace-tab nil)
+     (set-face-foreground 'whitespace-tab "blue")
      (set-face-background 'whitespace-tab nil)
      (set-face-underline 'whitespace-tab t)
      (set-face-bold-p 'whitespace-newline t)
@@ -470,7 +470,6 @@
 
 ;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
 
 ;;; cua-mode
 (cua-mode t)
