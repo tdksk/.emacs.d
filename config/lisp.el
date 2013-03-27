@@ -286,6 +286,17 @@
 (set-face-background 'git-gutter:added "green")
 (set-face-background 'git-gutter:deleted "red")
 
+;;; Magit
+(require 'magit)
+(global-set-key (kbd "C-x C-n") 'magit-status)
+(global-set-key (kbd "C-x C-l") 'magit-log)
+(set-face-bold-p 'magit-item-highlight nil)
+(set-face-background 'magit-item-highlight "white")
+(add-hook 'magit-log-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "j") 'next-line)
+             (local-set-key (kbd "k") 'previous-line)))
+
 ;;; zsh like completion
 ;; (require 'zlc)
 ;; (let ((map minibuffer-local-map))
