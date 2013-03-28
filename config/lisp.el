@@ -407,6 +407,10 @@
              (define-key ruby-mode-map "\C-j" 'open-line-below)
              (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
+;;; Rinari: Ruby on Rails Minor Mode
+(require 'rinari)
+(global-rinari-mode)
+
 ;;; Objective-C Mode
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
