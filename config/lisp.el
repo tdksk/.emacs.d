@@ -330,6 +330,11 @@
              ;; key assign
              (define-key php-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
 
+;;; HTML Mode
+(add-hook 'html-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "C-c C-c") 'comment-dwim-line)))
+
 ;;; A CSS editing mode for Emacs
 (autoload 'css-mode "css-mode")
 (setq auto-mode-alist
