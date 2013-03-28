@@ -187,9 +187,14 @@
 (add-hook 'perl-mode-hook 'my-smartchr-keybindings-perl)
 ;; for html-mode
 (defun my-smartchr-keybindings-html ()
-  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<" "<% `!!' %>" "<%= `!!' %>")))
+  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<")))
   )
 (add-hook 'html-mode-hook 'my-smartchr-keybindings-html)
+;; for rhtml-mode
+(defun my-smartchr-keybindings-rhtml ()
+  (local-set-key (kbd "<") (smartchr '("<`!!'>" "<" "<% `!!' -%>" "<%= `!!' %>")))
+  )
+(add-hook 'rhtml-mode-hook 'my-smartchr-keybindings-rhtml)
 ;; Minor mode
 (defvar smartchr-mode nil)
 (defun smartchr-mode (arg)
@@ -415,6 +420,13 @@
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
+
+;;; rhtml mode
+(autoload 'rhtml-mode "rhtml-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.html\\.erb$" . rhtml-mode))
+(add-hook 'rhtml-mode-hook
+          '(lambda ()
+             (set-face-background 'erb-face nil)))
 
 ;;; Markdown Mode
 (autoload 'markdown-mode "markdown-mode.el"

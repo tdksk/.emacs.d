@@ -1,3 +1,6 @@
 [submodule "lisp/magit"]
 	path = lisp/magit
 	url = https://github.com/magit/magit.git
+[submodule "lisp/rhtml"]
+	path = lisp/rhtml
+	url = https://github.com/eschulte/rhtml.git
