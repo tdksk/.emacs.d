@@ -166,20 +166,13 @@
      :cleanup-fn (lambda ()
                    (delete-region beg end))
      )))
-;; for php-mode
-(defun my-smartchr-keybindings-php ()
+;; for cc-mode
+(defun my-smartchr-keybindings-cc ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
   (local-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
   )
-(add-hook 'php-mode-hook 'my-smartchr-keybindings-php)
-;; for objc-mode
-(defun my-smartchr-keybindings-objc ()
-  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
-  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
-  (local-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
-  )
-(add-hook 'objc-mode-hook 'my-smartchr-keybindings-objc)
+(add-hook 'c-mode-common-hook 'my-smartchr-keybindings-cc)
 ;; for perl-mode
 (defun my-smartchr-keybindings-perl ()
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
@@ -411,16 +404,6 @@
 (require 'rinari)
 (global-rinari-mode)
 
-;;; Objective-C Mode
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
-(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
-(add-hook 'objc-mode-hook
-          '(lambda ()
-             (define-key objc-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
-;; auto-complete-modeの自動起動
-(add-to-list 'ac-modes 'objc-mode)
-
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
@@ -489,6 +472,16 @@
       '(lambda()
          (YaTeX-define-begend-key "ba" "align")
          ))
+
+;;; Objective-C Mode
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
+(add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
+(add-hook 'objc-mode-hook
+          '(lambda ()
+             (define-key objc-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
+;; auto-complete-modeの自動起動
+(add-to-list 'ac-modes 'objc-mode)
 
 ;;; MATLAB mode
 (autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
