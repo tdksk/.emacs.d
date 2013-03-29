@@ -240,10 +240,10 @@
 ;; (set-face-foreground 'hl-line "black")
 
 ;;; カーソルの位置が何文字目かを表示する
-(column-number-mode t)
+;; (column-number-mode t)
 
 ;;; カーソルの位置が何行目かを表示する
-(line-number-mode t)
+;; (line-number-mode t)
 
 ;;; 行番号表示
 (setq linum-format "%3d ")
@@ -350,15 +350,17 @@
     (back-to-indentation)))
 
 ;;; 現在の関数名を表示
-(which-function-mode t)
+;; (which-function-mode t)
+;; (set-face-background 'which-func nil)
+;; (set-face-foreground 'which-func nil)
 
 ;;; モードライン
+(setq mode-line-frame-identification " ")
+(setq mode-line-position nil)
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "white")
 (set-face-foreground 'mode-line-inactive nil)
 (set-face-background 'mode-line-inactive "black")
-(set-face-background 'which-func nil)
-(set-face-foreground 'which-func nil)
 
 ;;; 時計の表示
 ;; (setq display-time-24hr-format t)
