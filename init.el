@@ -497,7 +497,10 @@
             (define-key grep-mode-map "j" 'next-line-linewise)
             (define-key grep-mode-map "k" 'previous-line-linewise)
             (define-key grep-mode-map "d" 'scroll-up)
-            (define-key grep-mode-map "u" 'scroll-down)))
+            (define-key grep-mode-map "u" 'scroll-down)
+            (define-key grep-mode-map (kbd "C-d") 'scroll-up)
+            (define-key grep-mode-map (kbd "C-u") 'scroll-down)))
+
 ;; git-grep
 (defun chomp (str)
   (replace-regexp-in-string "[\n\r]+$" "" str))
@@ -555,6 +558,8 @@
 (define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
 (define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
 (define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
+(define-key dired-mode-map (kbd "C-d") 'scroll-up)
+(define-key dired-mode-map (kbd "C-u") 'scroll-down)
 (define-key dired-mode-map "/" 'isearch-forward)
 (define-key dired-mode-map "n" 'isearch-repeat-forward)
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
@@ -630,6 +635,10 @@
              (linum-mode -1)
              (local-set-key (kbd "j") 'log-view-msg-next)
              (local-set-key (kbd "k") 'log-view-msg-prev)
+             (local-set-key (kbd "d") 'scroll-up)
+             (local-set-key (kbd "u") 'scroll-down)
+             (local-set-key (kbd "C-d") 'scroll-up)
+             (local-set-key (kbd "C-u") 'scroll-down)
              (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
              (local-set-key (kbd "RET") 'log-view-diff)
              (local-set-key (kbd "o") 'log-view-diff)
@@ -663,7 +672,11 @@
              (hl-line-mode t)
              (linum-mode -1)
              (local-set-key (kbd "j") 'next-line)
-             (local-set-key (kbd "k") 'previous-line)))
+             (local-set-key (kbd "k") 'previous-line)
+             (local-set-key (kbd "d") 'scroll-up)
+             (local-set-key (kbd "u") 'scroll-down)
+             (local-set-key (kbd "C-d") 'scroll-up)
+             (local-set-key (kbd "C-u") 'scroll-down)))
 
 ;;; 非標準Elispの設定
 (load "config/lisp")
