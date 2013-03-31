@@ -276,6 +276,18 @@
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)))
+(defun magit-browse ()
+  (interactive)
+  (let ((url (with-temp-buffer
+               (unless (zerop (call-process-shell-command "git remote -v" nil t))
+                 (error "Failed: 'git remote -v'"))
+               (goto-char (point-min))
+               (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
+                 (format "https://github.com/%s" (match-string 1))))))
+    (unless url
+      (error "Can't find repository URL"))
+    (browse-url url)))
+(define-key magit-mode-map (kbd "h") 'magit-browse)
 
 ;;; zsh like completion
 ;; (require 'zlc)
