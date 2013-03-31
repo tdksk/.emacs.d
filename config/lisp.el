@@ -11,25 +11,13 @@
 (setq ac-use-quick-help nil)  ; 補完中に出てくるツールチップヘルプを利用しない
 ;; (setq ac-expand-on-auto-complete nil)  ; 補完候補全体の共通部分を展開しない
 (setq ac-dwim t)  ; 空気を読む
-;; キーバインド
-;; (ac-set-trigger-key "\C-n")  ; トリガーキー
 (setq ac-use-menu-map t)  ; 補完メニュー表示時のみC-n/C-pで補完候補を選択する
-;; 辞書
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
-;; 情報源として
-;; * ac-source-filename
-;; * ac-source-words-in-same-mode-buffers
-;; を利用
-;; (setq-default ac-sources '(ac-source-filename ac-source-words-in-same-mode-buffers))
-;; また、Emacs Lispモードではac-source-symbolsを追加で利用
-;; (add-hook 'emacs-lisp-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-symbols t)))
-;; ;; 以下、自動で補完する人用
-;; (setq ac-auto-start 3)
-;; 以下、手動で補完する人用
-;; (setq ac-auto-start nil)
-;; (ac-set-trigger-key "TAB")              ; TABで補完開始(トリガーキー)
-;; or
-;; (define-key ac-mode-map (kbd "M-TAB") 'auto-complete) ; M-TABで補完開始
+(dolist (list '(scss-mode
+         coffee-mode
+         objc-mode
+         matlab-mode))
+  (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
           ;; 色
           (set-face-foreground 'ac-completion-face "blue")
@@ -260,16 +248,6 @@
 (set-face-background 'highlight-indentation-face "white")
 (set-face-background 'highlight-indentation-current-column-face "blue")
 ;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
-(add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'perl-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'ruby-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'coffee-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'haml-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'html-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'css-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'scss-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'js2-mode-hook 'highlight-indentation-current-column-mode)
-(add-hook 'php-mode-hook 'highlight-indentation-current-column-mode)
 
 ;;; git-gutter.el
 (require 'git-gutter)
@@ -330,14 +308,7 @@
              (setq php-manual-url "http://www.phppro.jp/phpmanual/")
              ;; php-align.el
              (require 'php-align)
-             (php-align-setup)
-             ;; key assign
-             (define-key php-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
-
-;;; HTML Mode
-(add-hook 'html-mode-hook
-          '(lambda ()
-             (local-set-key (kbd "C-c C-c") 'comment-dwim-line)))
+             (php-align-setup)))
 
 ;;; A CSS editing mode for Emacs
 (autoload 'css-mode "css-mode")
@@ -353,9 +324,7 @@
 (add-hook 'scss-mode-hook
           '(lambda ()
              (setq scss-compile-at-save nil)
-             (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))
-             (define-key scss-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
-(add-to-list 'ac-modes 'scss-mode)
+             (setq scss-sass-options '("--style expanded --cache-location ~/.sass-cache"))))
 
 ;;; JavaScript mode (js-mode)
 (add-hook 'js-mode-hook
@@ -387,8 +356,6 @@
 ;;; CoffeeScript Mode
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-;; auto-complete-modeの自動起動
-(add-to-list 'ac-modes 'coffee-mode)
 
 ;;; MMM Mode
 ;; (require 'mmm-auto)
@@ -406,8 +373,7 @@
           '(lambda ()
              (setq ruby-insert-encoding-magic-comment nil)  ; マジックコメントを追加しない
              (define-key ruby-mode-map "\C-m" 'newline-and-indent)
-             (define-key ruby-mode-map "\C-j" 'open-line-below)
-             (define-key ruby-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
+             (define-key ruby-mode-map "\C-j" 'open-line-below)))
 
 ;;; Rinari: Ruby on Rails Minor Mode
 (require 'rinari)
@@ -486,11 +452,6 @@
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
-(add-hook 'objc-mode-hook
-          '(lambda ()
-             (define-key objc-mode-map (kbd "C-c C-c") 'comment-dwim-line)))
-;; auto-complete-modeの自動起動
-(add-to-list 'ac-modes 'objc-mode)
 
 ;;; MATLAB mode
 (autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
@@ -498,10 +459,7 @@
       (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
 (autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
 (setq matlab-indent-function-body nil
-      matlab-highlight-cross-function-variables t
-      )
-;; auto-complete-modeの自動起動
-(add-to-list 'ac-modes 'matlab-mode)
+      matlab-highlight-cross-function-variables t)
 
 ;;; Twittering-mode
 (require 'twittering-mode)

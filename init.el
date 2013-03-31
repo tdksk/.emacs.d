@@ -50,19 +50,30 @@
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
 (define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
 
+;; C-c C-c
+(dolist (hook '(php-mode-hook
+                html-mode-hook
+                scss-mode-hook
+                ruby-mode-hook
+                objc-mode-hook))
+  (add-hook hook '(lambda ()
+                    (local-set-key (kbd "C-c C-c") 'comment-dwim-line))))
+
 ;; Languages use semicolon
-(add-hook 'perl-mode-hook 'use-semicolon-keybindings)
-(add-hook 'php-mode-hook 'use-semicolon-keybindings)
-(add-hook 'js2-mode-hook 'use-semicolon-keybindings)
-(add-hook 'css-mode-hook 'use-semicolon-keybindings)
-(add-hook 'scss-mode-hook 'use-semicolon-keybindings)
-(add-hook 'objc-mode-hook 'use-semicolon-keybindings)
+(dolist (hook '(perl-mode-hook
+                php-mode-hook
+                js2-mode-hook
+                css-mode-hook
+                scss-mode-hook
+                objc-mode-hook))
+  (add-hook hook 'use-semicolon-keybindings))
 ;; Languages not use semicolon
-(add-hook 'python-mode-hook 'unuse-semicolon-keybindings)
-(add-hook 'ruby-mode-hook 'unuse-semicolon-keybindings)
-(add-hook 'coffee-mode-hook 'unuse-semicolon-keybindings)
-(add-hook 'haml-mode-hook 'unuse-semicolon-keybindings)
-(add-hook 'html-mode-hook 'unuse-semicolon-keybindings)
+(dolist (hook '(python-mode-hook
+                ruby-mode-hook
+                coffee-mode-hook
+                haml-mode-hook
+                html-mode-hook))
+  (add-hook hook 'unuse-semicolon-keybindings))
 
 (defun next-line-linewise ()
   (interactive)
