@@ -15,6 +15,8 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/ac-dict")
 (dolist (list '(scss-mode
          coffee-mode
+         html-mode
+         rhtml-mode
          objc-mode
          matlab-mode))
   (add-to-list 'ac-modes list))
