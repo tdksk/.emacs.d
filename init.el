@@ -509,6 +509,8 @@
             (define-key grep-mode-map "o" (kbd "RET"))
             (define-key grep-mode-map "j" 'next-line-linewise)
             (define-key grep-mode-map "k" 'previous-line-linewise)
+            (define-key grep-mode-map "n" 'next-line-linewise)
+            (define-key grep-mode-map "p" 'previous-line-linewise)
             (define-key grep-mode-map "d" 'scroll-up)
             (define-key grep-mode-map "u" 'scroll-down)
             (define-key grep-mode-map (kbd "C-d") 'scroll-up)
