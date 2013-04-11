@@ -10,3 +10,6 @@
 [submodule "lisp/git-gutter"]
 	path = lisp/git-gutter
 	url = https://github.com/syohex/emacs-git-gutter.git
+[submodule "lisp/volatile-highlights"]
+	path = lisp/volatile-highlights
+	url = https://github.com/k-talo/volatile-highlights.el.git

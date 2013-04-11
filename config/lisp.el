@@ -245,6 +245,10 @@
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
 (define-key help-map iedit-toggle-key 'iedit-mode-toggle-on-function)
 
+;;; volatile-highlights
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
 ;;; Highlight Indentation
 (require 'highlight-indentation)
 (set-face-background 'highlight-indentation-face "white")
