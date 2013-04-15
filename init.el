@@ -25,6 +25,9 @@
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
+(define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
+(define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
 (define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
 (define-key global-map (kbd "C-M-j") 'newline)              ; インデントなしで改行
 (define-key global-map (kbd "C-j") 'open-line-below)        ; 下に行追加して移動
@@ -156,6 +159,29 @@
   (forward-line)
   (yank)
   (previous-line))
+
+(defun vimlike-f (char)
+  "search to forward char into current line and move point (vim 'f' command)"
+  (interactive "cSearch to forward char: ")
+  (when (= (char-after (point)) char)
+    (forward-char))
+  (search-forward (char-to-string char) (point-at-eol) nil 1)
+  (backward-char)
+  (setq vimlike-f-recent-search-char char
+        vimlike-f-recent-search-func 'vimlike-f))
+(defun vimlike-F (char)
+  "search to forward char into current line and move point. (vim 'F' command)"
+  (interactive "cSearch to backward char: ")
+  (search-backward (char-to-string char) (point-at-bol) nil 1)
+  (setq vimlike-f-recent-search-char char
+        vimlike-f-recent-search-func 'vimlike-F))
+(defun vimlike-semicolon ()
+  "search repeat recent vimlike 'f' or 'F' search char (vim ';' command)"
+  (interactive)
+  (if (and vimlike-f-recent-search-char
+           vimlike-f-recent-search-func)
+      (funcall vimlike-f-recent-search-func vimlike-f-recent-search-char)
+    (message "Empty recent search char.")))
 
 (defun switch-to-last-buffer ()
   (interactive)
