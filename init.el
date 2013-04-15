@@ -510,6 +510,29 @@
 ;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
 
+;;; re-builder
+(setq reb-re-syntax 'string)
+(add-hook 'reb-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "C-s") 'reb-next-match)
+             (local-set-key (kbd "C-r") 'reb-prev-match)
+             (local-set-key (kbd "C-c C-k") 'reb-quit)
+             (local-set-key (kbd "C-c C-c") 'reb-query-replace-this-regxp)))
+(defun reb-query-replace-this-regxp (replace)
+  "Uses the regexp built with re-builder to query the target buffer.
+This function must be run from within the re-builder buffer, not the target
+buffer.
+Argument REPLACE String used to replace the matched strings in the buffer.
+ Subexpression references can be used (\1, \2, etc)."
+  (interactive "sReplace with: ")
+  (if (eq major-mode 'reb-mode)
+      (let ((reg (reb-read-regexp)))
+        (select-window reb-target-window)
+        (save-excursion
+          (beginning-of-buffer)
+          (query-replace-regexp reg replace)))
+    (message "Not in a re-builder buffer!")))
+
 ;;; cua-mode
 (cua-mode t)
 (setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
