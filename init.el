@@ -259,6 +259,7 @@
 ;; (setq-default show-trailing-whitespace t)
 
 ;;; 空白や改行の視覚化
+(whitespace-mode t)
 (eval-after-load 'whitespace
   '(progn
      (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
@@ -392,12 +393,122 @@
 ;; (set-face-foreground 'which-func nil)
 
 ;;; モードライン
-(setq mode-line-frame-identification " ")
-(setq mode-line-position nil)
+(setq-default
+ mode-line-format
+ '("%e"
+   mode-line-mule-info
+   mode-line-client
+   mode-line-remote
+   " "
+   ;; read-only or modified status
+   (:eval
+    (cond (buffer-read-only
+           (propertize " RO " 'face 'mode-line-read-only-face))
+          ((buffer-modified-p)
+           (propertize " ** " 'face 'mode-line-modified-face))
+          (t "    ")))
+   " "
+   ;; directory and buffer/file name
+   (:propertize (:eval (shorten-directory default-directory 30))
+                face mode-line-folder-face)
+   (:propertize "%b"
+                face mode-line-filename-face)
+   ;; mode indicators: vc, recursive edit, major mode, minor modes, process, global
+   " "
+   (:propertize (vc-mode vc-mode)
+                face mode-line-vc-face)
+   "  "
+   (:propertize mode-name
+                face mode-line-mode-face)
+   (:eval (format-mode-line minor-mode-alist))
+   " "
+   (:propertize mode-line-process
+                face mode-line-process-face)
+   (global-mode-string global-mode-string)
+   " "
+   ))
+;; Helper function
+(defun shorten-directory (dir max-length)
+  "Show up to `max-length' characters of a directory name `dir'."
+  (let ((path (reverse (split-string (abbreviate-file-name dir) "/")))
+        (output ""))
+    (when (and path (equal "" (car path)))
+      (setq path (cdr path)))
+    (while (and path (< (length output) (- max-length 4)))
+      (setq output (concat (car path) "/" output))
+      (setq path (cdr path)))
+    (when path
+      (setq output (concat ".../" output)))
+    output))
+;; Extra mode line faces
+(make-face 'mode-line-read-only-face)
+(make-face 'mode-line-modified-face)
+(make-face 'mode-line-folder-face)
+(make-face 'mode-line-filename-face)
+(make-face 'mode-line-vc-face)
+(make-face 'mode-line-mode-face)
+(make-face 'mode-line-process-face)
+(set-face-attribute 'mode-line-read-only-face nil
+                    :inherit 'mode-line-face
+                    :foreground "blue"
+                    :background "black")
+(set-face-attribute 'mode-line-modified-face nil
+                    :inherit 'mode-line-face
+                    :foreground "red"
+                    :background "black")
+(set-face-attribute 'mode-line-folder-face nil
+                    :inherit 'mode-line-face
+                    :background "black"
+                    :weight 'bold)
+(set-face-attribute 'mode-line-filename-face nil
+                    :inherit 'mode-line-face
+                    :background "yellow"
+                    :weight 'bold)
+(set-face-attribute 'mode-line-vc-face nil
+                    :inherit 'mode-line-face
+                    :background "cyan"
+                    :weight 'bold)
+(set-face-attribute 'mode-line-mode-face nil
+                    :inherit 'mode-line-face
+                    :background "green"
+                    :weight 'bold)
+(set-face-attribute 'mode-line-process-face nil
+                    :inherit 'mode-line-face
+                    :background "magenta")
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "white")
 (set-face-foreground 'mode-line-inactive nil)
 (set-face-background 'mode-line-inactive "black")
+;; モード情報をコンパクトに
+(defvar mode-line-cleaner-alist
+  '(;; For minor-mode, first char is 'space'
+    (abbrev-mode . "")
+    (whitespace-mode . "")
+    (volatile-highlights-mode . "")
+    (view-mode . "")
+    (auto-complete-mode . " α")
+    (yas/minor-mode . " υ")
+    (git-gutter-mode . " γ")
+    (rinari-minor-mode . " Rr")
+    ;; Major modes
+    (python-mode . "Py")
+    (perl-mode . "Pl")
+    (ruby-mode . "Rb")
+    (js2-mode . "Js")
+    (lisp-interaction-mode . "Li")
+    (emacs-lisp-mode . "El")
+    (markdown-mode . "Md")))
+(defun clean-mode-line ()
+  (interactive)
+  (loop for (mode . mode-str) in mode-line-cleaner-alist
+        do
+        (let ((old-mode-str (cdr (assq mode minor-mode-alist))))
+          (when old-mode-str
+            (setcar old-mode-str mode-str))
+          ;; major mode
+          (when (eq mode major-mode)
+            (setq mode-name mode-str)))))
+(add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
 ;;; 時計の表示
 ;; (setq display-time-24hr-format t)

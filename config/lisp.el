@@ -227,10 +227,10 @@
 (eval-after-load "term-paste-mode"
   '(setcar (cdr (assq 'term-paste-mode minor-mode-alist))
            (if (fboundp 'propertize)
-               (list (propertize " Paste"
+               (list (propertize " Paste "
                                  'face
                                  '(:foreground "yellow" :background "black")))
-             " Paste")))
+             " Paste ")))
 
 ;;; yasnippet
 (require 'yasnippet)
