@@ -853,5 +853,21 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)))
 
+;;; Ediff
+(add-hook 'ediff-load-hook
+          '(lambda ()
+             (set-face-attribute 'ediff-fine-diff-A nil
+                                 :background "black")
+             (set-face-attribute 'ediff-current-diff-A nil
+                                 :background "white")
+             (set-face-attribute 'ediff-fine-diff-B nil
+                                 :background "black")
+             (set-face-attribute 'ediff-current-diff-B nil
+                                 :background "white")
+             (set-face-attribute 'ediff-fine-diff-C nil
+                                 :foreground "black" :background "magenta" :weight 'normal)
+             (set-face-attribute 'ediff-current-diff-C nil
+                                 :foreground "black" :background "white" :weight 'normal)))
+
 ;;; 非標準Elispの設定
 (load "config/lisp")
