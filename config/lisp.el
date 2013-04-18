@@ -539,6 +539,7 @@
     ("F" . vimlike-F)
     (";" . vimlike-semicolon)
     ("i" . view-mode)
+    ("e" . nil)
     ("s" . nil)
     ("r" . nil)
     (" " . nil)
