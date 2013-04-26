@@ -690,6 +690,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              ))
 
 ;;; grep-mode
+(require 'wgrep)
 (add-hook 'grep-mode-hook
           (lambda ()
             (setq hl-line-face 'dired-face)
@@ -703,7 +704,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
             (define-key grep-mode-map "d" 'scroll-up)
             (define-key grep-mode-map "u" 'scroll-down)
             (define-key grep-mode-map (kbd "C-d") 'scroll-up)
-            (define-key grep-mode-map (kbd "C-u") 'scroll-down)))
+            (define-key grep-mode-map (kbd "C-u") 'scroll-down)
+            (define-key grep-mode-map "i" 'wgrep-change-to-wgrep-mode)))
 
 ;; git-grep
 (defun chomp (str)
