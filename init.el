@@ -40,7 +40,7 @@
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
-(define-key global-map (kbd "M-d") 'kill-current-word)      ; カーソル位置の単語を削除する
+(define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する
 (define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
 (define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
@@ -148,10 +148,12 @@
       (comment-or-uncomment-region (line-beginning-position) (line-end-position))
     (comment-dwim arg)))
 
-(defun kill-current-word ()
+(defun kill-word-at-point ()
   (interactive)
-  (forward-word)
-  (backward-kill-word 1))
+  (let ((char (char-to-string (char-after (point)))))
+    (cond
+     ((string= " " char) (fixup-whitespace))
+     (t (forward-word) (backward-kill-word 1)))))
 
 (defun mark-sexp-ex ()
   (interactive)
