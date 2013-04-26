@@ -559,7 +559,6 @@
   ;; Disable distracting highlight when in view-mode
   (whitespace-mode (if view-mode -1 1))
   (highlight-indentation-current-column-mode (if view-mode -1 1))
-  (global-hl-line-mode (if view-mode -1 1))
   (show-paren-mode (if view-mode -1 1))
   ;; Toggle linum-mode and git-gutter-mode
   (git-gutter-mode (if view-mode -1 1))
