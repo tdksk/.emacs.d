@@ -25,11 +25,12 @@
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "C-M-j") 'scroll-up-line)       ; 1行分下にスクロール
+(define-key global-map (kbd "C-M-k") 'scroll-down-line)     ; 1行分上にスクロール
 (define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
 (define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
 (define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
 (define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
-(define-key global-map (kbd "C-M-j") 'newline)              ; インデントなしで改行
 (define-key global-map (kbd "C-j") 'open-line-below)        ; 下に行追加して移動
 (define-key global-map (kbd "M-j") 'open-line-above)        ; 上に行追加して移動
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に

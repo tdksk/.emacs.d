@@ -526,8 +526,8 @@
   `( ;; vi-like
     ("h" . other-window-backward-or-split)
     ("l" . other-window-or-split)
-    ("j" . View-scroll-line-forward)
-    ("k" . View-scroll-line-backward)
+    ("j" . scroll-up-line)
+    ("k" . scroll-down-line)
     ;; ("f" . View-scroll-page-forward)
     ;; ("b" . View-scroll-page-backward)
     ("g" . beginning-of-buffer)
