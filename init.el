@@ -174,13 +174,13 @@
 
 (defun move-to-top ()
   (interactive)
-  (move-to-window-line 0))
+  (move-to-window-line scroll-margin))
 (defun move-to-center ()
   (interactive)
   (move-to-window-line nil))
 (defun move-to-bottom ()
   (interactive)
-  (move-to-window-line -1))
+  (move-to-window-line (- -1 scroll-margin)))
 
 (defun vimlike-f (char)
   "search to forward char into current line and move point (vim 'f' command)"
@@ -328,7 +328,8 @@
 
 ;; 1行ずつスクロール
 (setq scroll-step 1
-      scroll-conservatively 10000)
+      scroll-conservatively 10000
+      scroll-margin 10)
 (setq comint-scroll-show-maximum-output t)  ; for shell-mode
 
 ;;; スクロール時にカーソルの位置を変えない
