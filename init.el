@@ -27,6 +27,9 @@
 (define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
 (define-key global-map (kbd "C-M-j") 'scroll-up-line)       ; 1行分下にスクロール
 (define-key global-map (kbd "C-M-k") 'scroll-down-line)     ; 1行分上にスクロール
+(define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
+(define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
+(define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
 (define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
 (define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
 (define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
@@ -166,6 +169,16 @@
   (forward-line)
   (yank)
   (previous-line))
+
+(defun move-to-top ()
+  (interactive)
+  (move-to-window-line 0))
+(defun move-to-center ()
+  (interactive)
+  (move-to-window-line nil))
+(defun move-to-bottom ()
+  (interactive)
+  (move-to-window-line -1))
 
 (defun vimlike-f (char)
   "search to forward char into current line and move point (vim 'f' command)"
