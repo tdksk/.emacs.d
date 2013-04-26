@@ -339,6 +339,13 @@
 ;;; 行の先頭でC-kを一回押すだけで行全体を消去する
 (setq kill-whole-line t)
 
+;;; kill-line で行が連結した時にインデントを削除
+(defadvice kill-line (before kill-line-and-fixup activate)
+  (when (and (not (bolp)) (eolp))
+    (forward-char)
+    (fixup-whitespace)
+    (backward-char)))
+
 ;;; リージョンを削除できるように
 (delete-selection-mode t)
 
