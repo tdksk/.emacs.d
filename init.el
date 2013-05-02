@@ -24,7 +24,7 @@
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
-(define-key global-map (kbd "M-g") 'goto-line)              ; 指定行へ移動
+(define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
 (define-key global-map (kbd "C-M-j") 'scroll-up-line)       ; 1行分下にスクロール
 (define-key global-map (kbd "C-M-k") 'scroll-down-line)     ; 1行分上にスクロール
 (define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
@@ -84,6 +84,17 @@
                 haml-mode-hook
                 html-mode-hook))
   (add-hook hook 'unuse-semicolon-keybindings))
+
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (if linum-mode (goto-line (read-number "Goto line: "))
+    (unwind-protect
+        (progn
+          (linum-mode 1)
+          (goto-line (read-number "Goto line: ")))
+      (linum-mode -1)
+      (git-gutter))))
 
 (defun next-line-linewise ()
   (interactive)
