@@ -13,3 +13,6 @@
 [submodule "lisp/volatile-highlights"]
 	path = lisp/volatile-highlights
 	url = https://github.com/k-talo/volatile-highlights.el.git
+[submodule "lisp/coffee-mode"]
+	path = lisp/coffee-mode
+	url = https://github.com/defunkt/coffee-mode.git
