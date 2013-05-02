@@ -152,7 +152,8 @@
   (interactive)
   (let ((char (char-to-string (char-after (point)))))
     (cond
-     ((string= " " char) (fixup-whitespace))
+     ((string-match "[\t ]" char) (delete-horizontal-space))
+     ((string-match "\n" char) (delete-char 1) (fixup-whitespace) (delete-char 1))
      (t (forward-word) (backward-kill-word 1)))))
 
 (defun mark-sexp-ex ()
