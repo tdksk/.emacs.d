@@ -896,7 +896,17 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (local-set-key (kbd "d") 'scroll-up)
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)))
+             (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "q") 'vc-annotate-quit-session)))
+(defadvice vc-annotate (around vc-annotate-fullscreen activate)
+  (window-configuration-to-register :vc-annotate-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+(defun vc-annotate-quit-session ()
+  "Restores the previous window configuration and kills the magit buffer"
+  (interactive)
+  (kill-buffer)
+  (jump-to-register :vc-annotate-fullscreen))
 
 ;;; Ediff
 (add-hook 'ediff-load-hook

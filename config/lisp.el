@@ -282,7 +282,17 @@
              (local-set-key (kbd "d") 'scroll-up)
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)))
+             (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "q") 'magit-log-quit-session)))
+(defadvice magit-log (around magit-log-fullscreen activate)
+  (window-configuration-to-register :magit-log-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+(defun magit-log-quit-session ()
+  "Restores the previous window configuration and kills the magit buffer"
+  (interactive)
+  (kill-buffer)
+  (jump-to-register :magit-log-fullscreen))
 (defun magit-browse ()
   (interactive)
   (let ((url (with-temp-buffer
