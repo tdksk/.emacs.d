@@ -38,6 +38,7 @@
 (define-key global-map (kbd "M-j") 'open-line-above)        ; 上に行追加して移動
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
+(define-key global-map (kbd "C-M-o") 'join-line-ex)         ; 行を連結
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する
@@ -120,6 +121,10 @@
       (transpose-lines 1))
     (forward-line)
     (move-to-column col)))
+
+(defun join-line-ex ()
+  (interactive)
+  (join-line -1))
 
 (defun semicolon-newline ()
   (interactive)
