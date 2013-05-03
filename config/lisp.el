@@ -472,6 +472,9 @@
 
 ;;; Helm
 (require 'helm-config)
+(helm-mode 1)
+;; blacklist
+(add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-mini)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
