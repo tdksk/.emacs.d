@@ -19,3 +19,6 @@
 [submodule "lisp/helm"]
 	path = lisp/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule "lisp/ruby-end"]
+	path = lisp/ruby-end
+	url = https://github.com/rejeep/ruby-end.git

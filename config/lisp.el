@@ -367,6 +367,7 @@
              (local-set-key (kbd ";") 'coffee-open-line-below)))
 
 ;;; Ruby Mode
+(require 'ruby-end)
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (setq ruby-insert-encoding-magic-comment nil)  ; マジックコメントを追加しない
