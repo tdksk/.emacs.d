@@ -80,7 +80,6 @@
 ;; Languages not use semicolon
 (dolist (hook '(python-mode-hook
                 ruby-mode-hook
-                coffee-mode-hook
                 haml-mode-hook
                 html-mode-hook))
   (add-hook hook 'unuse-semicolon-keybindings))

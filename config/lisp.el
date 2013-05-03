@@ -386,12 +386,15 @@
 ;;; CoffeeScript Mode
 (autoload 'coffee-mode "coffee-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.coffee$" . coffee-mode))
-(defun coffee-custom ()
-  "coffee-mode-hook"
-  (set (make-local-variable 'tab-width) 2)
-  (setq coffee-tab-width 2))
+(defun coffee-open-line-below ()
+  (interactive)
+  (end-of-line)
+  (coffee-newline-and-indent))
 (add-hook 'coffee-mode-hook
-          '(lambda() (coffee-custom)))
+          (lambda ()
+             (set (make-local-variable 'tab-width) 2)
+             (setq coffee-tab-width 2)
+             (local-set-key (kbd ";") 'coffee-open-line-below)))
 
 ;;; MMM Mode
 ;; (require 'mmm-auto)
