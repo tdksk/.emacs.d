@@ -366,17 +366,6 @@
              (setq coffee-tab-width 2)
              (local-set-key (kbd ";") 'coffee-open-line-below)))
 
-;;; MMM Mode
-;; (require 'mmm-auto)
-;; (setq mmm-global-mode 'maybe)
-;; (set-face-background 'mmm-default-submode-face nil) ;背景色が不要な場合
-;; (mmm-add-classes
-;;  '((embedded-css
-;;     :submode css-mode
-;;     :front "<style[^>]*>"
-;;     :back "</style>")))
-;; (mmm-add-mode-ext-class nil "\\.html\\'" 'embedded-css)
-
 ;;; Ruby Mode
 (add-hook 'ruby-mode-hook
           '(lambda ()
