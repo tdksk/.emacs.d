@@ -26,36 +26,6 @@
           (set-face-background 'ac-selection-face "blue")
           (set-face-foreground 'ac-selection-face "black"))
 
-;;; anything.el
-(require 'anything-startup)
-(define-key global-map (kbd "C-'") 'anything-filelist+)
-(define-key global-map (kbd "C-x b") 'anything-filelist+)
-(define-key global-map (kbd "C-x C-b") 'anything-filelist+)
-(define-key global-map (kbd "C-x C-_") 'anything-occur)
-(define-key global-map (kbd "C-x C-y") 'anything-show-kill-ring)
-(setq anything-idle-delay 0)
-(setq anything-input-idle-delay 0)
-;; anything-for-files で表示される recentf を増やす
-;; http://d.hatena.ne.jp/akisute3/20120409/1333899842
-(setq anything-c-source-recentf
-      `((name . "Recentf")
-      (init . (lambda ()
-                (require 'recentf)
-                (or recentf-mode (recentf-mode 1))))
-      (disable-shortcuts)
-      (candidates . recentf-list)
-      (keymap . ,anything-generic-files-map)
-      (help-message . anything-generic-file-help-message)
-      (candidate-number-limit . ,recentf-max-saved-items)  ; 標準定義にこれを追加した
-      (mode-line . anything-generic-file-mode-line-string)
-      (match anything-c-match-on-basename)
-      (type . file)))
-;;; anything-git-project
-(require 'anything-git-project)
-(define-key global-map (kbd "C-x C-g") 'anything-git-project)
-;;; anything-imenu
-(define-key global-map (kbd "C-x C-i") 'anything-imenu)
-
 ;;; smart-compile
 (require 'smart-compile)
 (global-set-key "\C-c\C-j" 'smart-compile)
@@ -70,7 +40,7 @@
 ;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
 (push '("*Warnings*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
-(push '("*anything*" :regexp t :height 20) popwin:special-display-config)
+(push '("*helm*" :regexp t :height 20) popwin:special-display-config)
 
 ;;; key-chord.el
 (require 'key-chord)
@@ -532,6 +502,54 @@
 ;; %' - truncated
 ;; %f - source
 ;; %# - id
+
+;;; Helm
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-'") 'helm-mini)
+(global-set-key (kbd "C-x C-b") 'helm-mini)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-x C-_") 'helm-occur)
+(global-set-key (kbd "C-x C-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-i") 'helm-imenu)
+(global-set-key (kbd "C-;") 'helm-git-project)
+(global-set-key (kbd "C-x C-g") 'helm-git-project)
+(setq helm-idle-delay 0)
+(setq helm-input-idle-delay 0)
+(eval-after-load 'helm
+  '(progn
+     (set-face-foreground 'helm-selection "black")))
+;; helm-git-project
+(defun helm-c-sources-git-project-for (pwd)
+  (loop for elt in
+        '(("Modified files" . "--modified")
+          ("Untracked files" . "--others --exclude-standard")
+          ("All controlled files in this project" . nil))
+        for title  = (format "%s (%s)" (car elt) pwd)
+        for option = (cdr elt)
+        for cmd    = (format "git ls-files %s" (or option ""))
+        collect
+        `((name . ,title)
+          (init . (lambda ()
+                    (unless (and (not ,option) (helm-candidate-buffer))
+                      (with-current-buffer (helm-candidate-buffer 'global)
+                        (call-process-shell-command ,cmd nil t nil)))))
+          (candidates-in-buffer)
+          (type . file))))
+(defun helm-git-project-topdir ()
+  (file-name-as-directory
+   (replace-regexp-in-string
+    "\n" ""
+    (shell-command-to-string "git rev-parse --show-toplevel"))))
+(defun helm-git-project ()
+  (interactive)
+  (let ((topdir (helm-git-project-topdir)))
+    (unless (file-directory-p topdir)
+      (error "I'm not in Git Repository!!"))
+    (let* ((default-directory topdir)
+           (sources (helm-c-sources-git-project-for default-directory)))
+      (helm-other-buffer sources
+                         (format "*helm git project in %s*" default-directory)))))
 
 ;;; view-mode, viewer.el
 (setq view-read-only t)

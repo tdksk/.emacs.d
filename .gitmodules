@@ -16,3 +16,6 @@
 [submodule "lisp/coffee-mode"]
 	path = lisp/coffee-mode
 	url = https://github.com/defunkt/coffee-mode.git
+[submodule "lisp/helm"]
+	path = lisp/helm
+	url = https://github.com/emacs-helm/helm.git
