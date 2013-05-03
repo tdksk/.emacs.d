@@ -28,6 +28,7 @@
 
 ;;; anything.el
 (require 'anything-startup)
+(define-key global-map (kbd "C-'") 'anything-filelist+)
 (define-key global-map (kbd "C-x b") 'anything-filelist+)
 (define-key global-map (kbd "C-x C-b") 'anything-filelist+)
 (define-key global-map (kbd "C-x C-_") 'anything-occur)
