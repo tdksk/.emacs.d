@@ -538,6 +538,7 @@
     (abbrev-mode . "")
     (whitespace-mode . "")
     (volatile-highlights-mode . "")
+    (helm-mode . "")
     (view-mode . "")
     (auto-complete-mode . " α")
     (yas/minor-mode . " υ")
