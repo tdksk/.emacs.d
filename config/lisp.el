@@ -470,39 +470,6 @@
 (setq matlab-indent-function-body nil
       matlab-highlight-cross-function-variables t)
 
-;;; Twittering-mode
-(require 'twittering-mode)
-(setq twittering-auth-method 'xauth)
-(setq twittering-username "tdksk")
-(setq twittering-icon-mode nil)
-(add-hook 'twittering-mode-hook
-          (lambda ()
-            ;; (set-face-bold-p 'twittering-username-face t)
-            (set-face-foreground 'twittering-username-face "green")
-            (set-face-foreground 'twittering-uri-face "yellow"))
-          )
-;; keyborad shortcuts
-(define-key twittering-mode-map (kbd ".") 'twittering-current-timeline)
-;; format
-(setq twittering-status-format "%FILL{%C{%R %b%d} %s%p %t from %f}")
-;; (setq twittering-status-format "%i %s (%S)%p %C{%R %D} from %f \n  %FILL{%t}\n")
-;; %s - screen_name
-;; %S - name
-;; %i - profile_image
-;; %d - description
-;; %l - location
-;; %L - " [location]"
-;; %u - url
-;; %j - user.id
-;; %p - protected?
-;; %c - created_at (raw UTC string)
-;; %C{time-format-str} - created_at (formatted with time-format-str)
-;; %@ - X seconds ago
-;; %t - text
-;; %' - truncated
-;; %f - source
-;; %# - id
-
 ;;; Helm
 (require 'helm-config)
 (global-set-key (kbd "M-x") 'helm-M-x)
