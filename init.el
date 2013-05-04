@@ -540,6 +540,7 @@
     (volatile-highlights-mode . "")
     (helm-mode . "")
     (view-mode . "")
+    (ruby-end-mode . "")
     (auto-complete-mode . " α")
     (yas/minor-mode . " υ")
     (git-gutter-mode . " γ")
