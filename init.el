@@ -23,7 +23,7 @@
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
-(define-key global-map (kbd "C-c f") 'find-name-dired)      ; ファイル名で検索
+(define-key global-map (kbd "C-c C-f") 'find-name-dired)    ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
 (define-key global-map (kbd "C-M-j") 'scroll-up-line)       ; 1行分下にスクロール
 (define-key global-map (kbd "C-M-k") 'scroll-down-line)     ; 1行分上にスクロール
@@ -53,8 +53,8 @@
 (define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 (define-key global-map (kbd "C-M-t") 'other-window-backward-or-split)
 (define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
+(define-key global-map (kbd "C-c f") 'flyspell-mode)        ; flyspell-mode
 (define-key global-map (kbd "C-c l") 'global-linum-mode)    ; linum-mode (global)
-(define-key global-map (kbd "C-c v") 'viper-mode)           ; viper-mode
 (define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
 (define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
 (define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
@@ -917,7 +917,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   ad-do-it
   (delete-other-windows))
 (defun vc-annotate-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
+  "Restores the previous window configuration and kills the vc-annotate buffer"
   (interactive)
   (kill-buffer)
   (jump-to-register :vc-annotate-fullscreen))

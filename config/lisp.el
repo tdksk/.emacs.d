@@ -246,6 +246,7 @@
 (global-set-key (kbd "C-x C-l") 'magit-log)
 (set-face-bold-p 'magit-item-highlight nil)
 (set-face-background 'magit-item-highlight "white")
+(add-hook 'magit-log-edit-mode-hook 'flyspell-mode)
 (add-hook 'magit-log-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
@@ -260,7 +261,7 @@
   ad-do-it
   (delete-other-windows))
 (defun magit-log-quit-session ()
-  "Restores the previous window configuration and kills the magit buffer"
+  "Restores the previous window configuration and kills the magit-log buffer"
   (interactive)
   (kill-buffer)
   (jump-to-register :magit-log-fullscreen))
@@ -395,6 +396,7 @@
 (setq auto-mode-alist
       ;; TODO: GitHub Flavored Markdown mode
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
@@ -429,6 +431,7 @@
 (setq dviprint-command-format "open %s")
 (add-hook 'yatex-mode-hook
           '(lambda ()
+             (flyspell-mode 1)
              (auto-fill-mode -1)))
 ;;
 ;; RefTeX (YaTeX)
