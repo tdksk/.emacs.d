@@ -18,13 +18,30 @@
          html-mode
          rhtml-mode
          objc-mode
-         matlab-mode))
+         matlab-mode
+         markdown-mode
+         magit-log-edit-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
           ;; 色
           (set-face-foreground 'ac-completion-face "blue")
           (set-face-background 'ac-selection-face "blue")
           (set-face-foreground 'ac-selection-face "black"))
+;; look command with auto-complete
+(defun ac-look-candidates ()
+  (if (not (executable-find "look"))
+      (message "Error: not found `look'")
+    (let ((cmd (format "look -f %s" ac-prefix)))
+      (ignore-errors
+        (split-string
+         (shell-command-to-string cmd) "\n")))))
+(defun ac-look ()
+  (interactive)
+  (auto-complete '(ac-source-look)))
+(ac-define-source look
+  '((candidates . ac-look-candidates)
+    (requires . 2)))
+(global-set-key (kbd "C-M-l") 'ac-look)
 
 ;;; smart-compile
 (require 'smart-compile)
