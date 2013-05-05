@@ -676,6 +676,18 @@
 ;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
 
+;;; ispell
+(eval-after-load "ispell"
+  '(progn
+     (setq-default ispell-program-name "aspell")
+     ;; 日本語が混ざっていてもスペルチェックできるように
+     (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
+
+;;; flyspell
+(eval-after-load "flyspell"
+  '(progn
+     (define-key flyspell-mode-map (kbd "C-.") 'ispell-word)))
+
 ;;; re-builder
 (setq reb-re-syntax 'string)
 (add-hook 'reb-mode-hook
