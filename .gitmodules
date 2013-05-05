@@ -22,3 +22,6 @@
 [submodule "lisp/ruby-end"]
 	path = lisp/ruby-end
 	url = https://github.com/rejeep/ruby-end.git
+[submodule "lisp/markdown-mode"]
+	path = lisp/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git

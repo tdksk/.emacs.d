@@ -20,6 +20,7 @@
          objc-mode
          matlab-mode
          markdown-mode
+         gfm-mode
          magit-log-edit-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
@@ -408,11 +409,14 @@
              (set-face-background 'erb-face nil)))
 
 ;;; Markdown Mode
-(autoload 'markdown-mode "markdown-mode.el"
+(autoload 'gfm-mode "markdown-mode"
   "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-      ;; TODO: GitHub Flavored Markdown mode
-      (cons '("\\.md" . markdown-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.text\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.mdown\\'" . gfm-mode))
+(add-to-list 'auto-mode-alist '("\\.mdt\\'" . gfm-mode))
+;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-hook 'markdown-mode-hook 'flyspell-mode)
 
 ;;; YaTeX mode
