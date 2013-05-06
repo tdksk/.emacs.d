@@ -632,7 +632,8 @@
 ;;; flyspell
 (eval-after-load "flyspell"
   '(progn
-     (define-key flyspell-mode-map (kbd "C-.") 'ispell-word)))
+     (define-key flyspell-mode-map (kbd "C-.") 'ispell-word)
+     (define-key flyspell-mode-map (kbd "C-;") nil)))
 
 ;;; re-builder
 (setq reb-re-syntax 'string)
