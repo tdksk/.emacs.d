@@ -43,9 +43,6 @@
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する
-(define-key global-map (kbd "M-SPC") 'mark-sexp-ex)         ; S式をリージョン選択する
-(define-key global-map (kbd "C-M-SPC") 'mark-sexp-ex)       ; S式をリージョン選択する
-(define-key global-map (kbd "C-M-@") 'mark-sexp-ex)         ; S式をリージョン選択する
 (define-key global-map (kbd "M-k") 'kill-line-ex)           ; 1行kill
 (define-key global-map (kbd "M-y") 'yank-bottom-line)       ; 下の行にyank
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
@@ -177,12 +174,6 @@
      ((string-match "[\t ]" char) (delete-horizontal-space))
      ((string-match "\n" char) (delete-char 1) (fixup-whitespace) (delete-char 1))
      (t (forward-word) (backward-kill-word 1)))))
-
-(defun mark-sexp-ex ()
-  (interactive)
-  (backward-sexp)
-  (mark-sexp)
-  (exchange-point-and-mark))
 
 (defun kill-line-ex ()
   (interactive)

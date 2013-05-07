@@ -25,3 +25,6 @@
 [submodule "lisp/markdown-mode"]
 	path = lisp/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "lisp/expand-region"]
+	path = lisp/expand-region
+	url = https://github.com/magnars/expand-region.el.git

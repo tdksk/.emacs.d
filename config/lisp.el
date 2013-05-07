@@ -99,6 +99,12 @@
   (interactive)
   (pseudo-motion-interactive-base-in 'kill-region ?\"))
 
+;;; expand-region.el
+(require 'expand-region)
+(global-set-key (kbd "M-SPC") 'er/expand-region)
+(global-set-key (kbd "C-M-SPC") 'er/expand-region)
+(global-set-key (kbd "C-M-@") 'er/expand-region)
+
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
 (global-set-key (kbd "M-c") 'duplicate-thing)
