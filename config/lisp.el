@@ -495,6 +495,8 @@
 (helm-mode 1)
 ;; blacklist
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-mini)
 (global-set-key (kbd "C-x C-b") 'helm-mini)
