@@ -28,3 +28,6 @@
 [submodule "lisp/expand-region"]
 	path = lisp/expand-region
 	url = https://github.com/magnars/expand-region.el.git
+[submodule "lisp/yatex"]
+	path = lisp/yatex
+	url = https://github.com/emacsmirror/yatex.git
