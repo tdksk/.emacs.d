@@ -62,7 +62,8 @@
                 html-mode-hook
                 scss-mode-hook
                 ruby-mode-hook
-                objc-mode-hook))
+                objc-mode-hook
+                yatex-mode-hook))
   (add-hook hook '(lambda ()
                     (local-set-key (kbd "C-c C-c") 'comment-dwim-line))))
 
