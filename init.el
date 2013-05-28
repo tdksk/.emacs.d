@@ -222,7 +222,7 @@
 
 (defun switch-to-last-buffer ()
   (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
+  (switch-to-buffer (other-buffer)))
 
 (defun other-window-or-split ()
   (interactive)
