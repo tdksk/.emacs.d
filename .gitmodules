@@ -37,3 +37,6 @@
 [submodule "lisp/dash"]
 	path = lisp/dash
 	url = https://github.com/magnars/dash.el.git
+[submodule "lisp/git-messenger"]
+	path = lisp/git-messenger
+	url = https://github.com/syohex/emacs-git-messenger.git

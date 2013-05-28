@@ -306,6 +306,9 @@
     (browse-url url)))
 (define-key magit-mode-map (kbd "h") 'magit-browse)
 
+(require 'git-messenger)
+(global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
+
 ;;; zsh like completion
 ;; (require 'zlc)
 ;; (let ((map minibuffer-local-map))
