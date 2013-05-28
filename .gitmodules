@@ -31,3 +31,9 @@
 [submodule "lisp/yatex"]
 	path = lisp/yatex
 	url = https://github.com/emacsmirror/yatex.git
+[submodule "lisp/wrap-region"]
+	path = lisp/wrap-region
+	url = https://github.com/rejeep/wrap-region.git
+[submodule "lisp/dash"]
+	path = lisp/dash
+	url = https://github.com/magnars/dash.el.git

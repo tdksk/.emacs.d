@@ -535,6 +535,7 @@
     (ruby-end-mode . "")
     (auto-complete-mode . " α")
     (yas/minor-mode . " υ")
+    (wrap-region-mode . " ω")
     (git-gutter-mode . " γ")
     (rinari-minor-mode . " Rr")
     ;; Major modes

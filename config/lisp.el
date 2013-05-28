@@ -99,6 +99,10 @@
   (interactive)
   (pseudo-motion-interactive-base-in 'kill-region ?\"))
 
+;;; wrap-region.el
+(require 'wrap-region)
+(wrap-region-global-mode t)
+
 ;;; expand-region.el
 (require 'expand-region)
 (global-set-key (kbd "M-SPC") 'er/expand-region)
