@@ -249,6 +249,50 @@
     (set-window-buffer thiswin (window-buffer))
     (set-window-buffer (selected-window) thisbuf)))
 
+;;; Replace single/double quote with double/single quote
+;;; https://github.com/rejeep/ruby-tools
+(defun string-at-point-p ()
+  "Check if cursor is at a string or not."
+  (string-region))
+(defun string-region ()
+  "Return region for string at point."
+  (let ((orig-point (point)) (regex "\\([\"']\\)\\(?:[^\\1]\\|\\\\.\\)*?\\(\\1\\)") beg end)
+    (save-excursion
+      (goto-char (line-beginning-position))
+      (while (and (re-search-forward regex (line-end-position) t) (not (and beg end)))
+        (let ((match-beg (match-beginning 0)) (match-end (match-end 0)))
+          (when (and
+                 (> orig-point match-beg)
+                 (< orig-point match-end))
+            (setq beg match-beg)
+            (setq end match-end))))
+      (and beg end (list beg end)))))
+(defun replace-single-double-quote ()
+  "Replace single/double quote with double/single quote."
+  (interactive)
+  (let* ((at-string
+          (string-at-point-p)))
+    (when at-string
+      (let* ((region
+              (and at-string (string-region)))
+             (min (nth 0 region))
+             (max (nth 1 region))
+             (string-quote
+              (buffer-substring-no-properties min (1+ min)))
+             (content
+              (buffer-substring-no-properties (1+ min) (1- max))))
+        (setq string-quote
+              (if (equal string-quote "'") "\"" "'"))
+        (setq content
+              (if (equal string-quote "'")
+                  (replace-regexp-in-string "\\\\\"" "\"" (replace-regexp-in-string "\\([^\\\\]\\)'" "\\1\\\\'" content))
+                (replace-regexp-in-string "\\\\\'" "'" (replace-regexp-in-string "\\([^\\\\]\\)\"" "\\1\\\\\"" content))))
+        (let ((orig-point (point)))
+          (delete-region min max)
+          (insert
+           (format "%s%s%s" string-quote content string-quote))
+          (goto-char orig-point))))))
+
 ;;; minibuffer で C-w の前の単語を削除
 (define-key minibuffer-local-completion-map (kbd "C-w") 'backward-kill-word)
 
@@ -601,8 +645,8 @@
    major-mode
    '(
      ("　" 0 my-face-b-1 append)
-;;      ("\t" 0 my-face-b-2 append)
-;;      ("[ ]+$" 0 my-face-u-1 append)
+     ;;      ("\t" 0 my-face-b-2 append)
+     ;;      ("[ ]+$" 0 my-face-u-1 append)
      ("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
@@ -705,13 +749,13 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (interactive
    (let ((root (concat (git-root-directory) "/")))
      (ffap-copy-string-as-kill)
-       (list
-        (read-shell-command
-         "Search for: "
-         (car kill-ring))
-        (read-file-name
-         "Directory for git grep: " root root t)
-        )))
+     (list
+      (read-shell-command
+       "Search for: "
+       (car kill-ring))
+      (read-file-name
+       "Directory for git grep: " root root t)
+      )))
   (let ((grep-use-null-device nil)
         (command
          (format (concat
@@ -754,19 +798,19 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
 (defadvice dired-advertised-find-file
-    (before kill-dired-buffer activate)
-      (setq my-dired-before-buffer (current-buffer)))
+  (before kill-dired-buffer activate)
+  (setq my-dired-before-buffer (current-buffer)))
 (defadvice dired-advertised-find-file
-    (after kill-dired-buffer-after activate)
-      (if (eq major-mode 'dired-mode)
-                (kill-buffer my-dired-before-buffer)))
+  (after kill-dired-buffer-after activate)
+  (if (eq major-mode 'dired-mode)
+      (kill-buffer my-dired-before-buffer)))
 (defadvice dired-up-directory
-    (before kill-up-dired-buffer activate)
-      (setq my-dired-before-buffer (current-buffer)))
+  (before kill-up-dired-buffer activate)
+  (setq my-dired-before-buffer (current-buffer)))
 (defadvice dired-up-directory
-    (after kill-up-dired-buffer-after activate)
-      (if (eq major-mode 'dired-mode)
-                (kill-buffer my-dired-before-buffer)))
+  (after kill-up-dired-buffer-after activate)
+  (if (eq major-mode 'dired-mode)
+      (kill-buffer my-dired-before-buffer)))
 ;; サブディレクトリも削除やコピーできるように
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)

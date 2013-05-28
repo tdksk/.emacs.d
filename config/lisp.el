@@ -72,6 +72,7 @@
 (key-chord-define-global "90" 'kill-textobjects-in-paren)
 (key-chord-define-global "io" 'kill-textobjects-in-single-quote)
 (key-chord-define-global "ui" 'kill-textobjects-in-double-quote)
+(key-chord-define-global "uo" 'replace-single-double-quote)
 
 ;;; textobjects.el
 (require 'textobjects)
