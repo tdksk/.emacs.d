@@ -751,8 +751,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
      (ffap-copy-string-as-kill)
      (list
       (read-shell-command
-       "Search for: "
-       (car kill-ring))
+       "Search for: ")
       (read-file-name
        "Directory for git grep: " root root t)
       )))
