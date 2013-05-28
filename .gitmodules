@@ -40,3 +40,6 @@
 [submodule "lisp/git-messenger"]
 	path = lisp/git-messenger
 	url = https://github.com/syohex/emacs-git-messenger.git
+[submodule "lisp/popwin"]
+	path = lisp/popwin
+	url = https://github.com/m2ym/popwin-el.git
