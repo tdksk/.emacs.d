@@ -54,8 +54,13 @@
 ;;; popwin.el
 ;;; ポップアップウィンドウ表示
 (require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
-;; *Help*, *Completions*, *compilatoin*, *Occur*以外でポップアップ表示するもの
+(popwin-mode 1)
+;; 初期化
+(setq popwin:special-display-config nil)
+;; 対象
+(push 'help-mode popwin:special-display-config)
+(push '(completion-list-mode :noselect t) popwin:special-display-config)
+(push '(compilation-mode :noselect t) popwin:special-display-config)
 (push '("*Warnings*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
 (push '("*helm*" :regexp t :height 20) popwin:special-display-config)
