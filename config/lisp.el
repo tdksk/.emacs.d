@@ -107,7 +107,9 @@
 
 ;;; wrap-region.el
 (require 'wrap-region)
-(wrap-region-global-mode t)
+(add-hook 'active-region-mode-hook
+          (lambda ()
+            (wrap-region-mode (if active-region-mode 1 -1))))
 
 ;;; expand-region.el
 (require 'expand-region)

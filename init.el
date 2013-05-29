@@ -659,6 +659,27 @@
 ;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
 
+;;; active-region-mode
+;;; http://stackoverflow.com/questions/5651327/
+(defvar active-region-mode-map
+  (let ((map (make-sparse-keymap)))
+    map))
+(define-minor-mode active-region-mode
+  "Active Region minor mode."
+  :init-value nil
+  :keymap active-region-mode-map
+  :group 'active-region)
+(defun active-region-on ()
+  (active-region-mode 1))
+(defun active-region-off ()
+  (active-region-mode -1))
+(add-hook 'activate-mark-hook 'active-region-on)
+(add-hook 'deactivate-mark-hook 'active-region-off)
+(define-key active-region-mode-map (kbd "C-g") 'quit-active-region)
+(defun quit-active-region()
+  (interactive)
+  (cua-set-mark))
+
 ;;; ispell
 (eval-after-load "ispell"
   '(progn
