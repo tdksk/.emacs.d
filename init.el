@@ -58,7 +58,8 @@
 (define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
 
 ;; C-c C-c
-(dolist (hook '(php-mode-hook
+(dolist (hook '(c-mode-common-hook
+                php-mode-hook
                 html-mode-hook
                 scss-mode-hook
                 ruby-mode-hook
@@ -68,7 +69,8 @@
                     (local-set-key (kbd "C-c C-c") 'comment-dwim-line))))
 
 ;; Languages use semicolon
-(dolist (hook '(perl-mode-hook
+(dolist (hook '(c-mode-common-hook
+                perl-mode-hook
                 php-mode-hook
                 js2-mode-hook
                 css-mode-hook
