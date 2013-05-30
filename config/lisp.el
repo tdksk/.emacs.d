@@ -287,7 +287,10 @@
 (global-set-key (kbd "C-x C-n") 'magit-status)
 (global-set-key (kbd "C-x C-l") 'magit-log)
 (set-face-bold-p 'magit-item-highlight nil)
-(set-face-background 'magit-item-highlight "white")
+(set-face-attribute 'magit-item-highlight nil :inherit nil)
+(set-face-background 'magit-item-highlight "blue")
+(defvar magit-highlight-status t)
+(define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
 (add-hook 'magit-log-edit-mode-hook 'flyspell-mode)
 (add-hook 'magit-log-mode-hook
           '(lambda ()
@@ -298,6 +301,19 @@
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)
              (local-set-key (kbd "q") 'magit-log-quit-session)))
+(defun magit-toggle-highlight ()
+  (interactive)
+  (if magit-highlight-status
+      (magit-disable-highlight)
+    (magit-enable-highlight)))
+(defun magit-enable-highlight ()
+  (interactive)
+  (set-face-background 'magit-item-highlight "blue")
+  (setq magit-highlight-status t))
+(defun magit-disable-highlight ()
+  (interactive)
+  (set-face-background 'magit-item-highlight "black")
+  (setq magit-highlight-status nil))
 (defadvice magit-log (around magit-log-fullscreen activate)
   (window-configuration-to-register :magit-log-fullscreen)
   ad-do-it
@@ -318,7 +334,7 @@
     (unless url
       (error "Can't find repository URL"))
     (browse-url url)))
-(define-key magit-mode-map (kbd "h") 'magit-browse)
+(define-key magit-mode-map (kbd "H") 'magit-browse)
 
 (require 'git-messenger)
 (global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
