@@ -872,6 +872,31 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (setq dired-file-coding-system coding-system)
   (dired-map-over-marks-check
    (function dired-convert-coding-system) arg 'convert-coding-system t))
+;; direx
+(require 'direx)
+(require 'direx-project)
+(setq direx:leaf-icon "  "
+      direx:open-icon "▾ "
+      direx:closed-icon "▸ ")
+(defun dired-jump-ex ()
+  (interactive)
+  (or (ignore-errors
+        (direx-project:jump-to-project-root-other-window) t)
+      (direx:jump-to-directory-other-window)))
+(define-key direx:direx-mode-map (kbd "j") 'direx:next-item)
+(define-key direx:direx-mode-map (kbd "k") 'direx:previous-item)
+(define-key direx:direx-mode-map (kbd "o") 'direx:maybe-find-item)
+(define-key direx:direx-mode-map (kbd "u") 'direx:up-item)
+(define-key direx:direx-mode-map (kbd "C-d") 'scroll-up)
+(define-key direx:direx-mode-map (kbd "C-u") 'scroll-down)
+(define-key direx:direx-mode-map "/" 'isearch-forward)
+(define-key direx:direx-mode-map "n" 'isearch-repeat-forward)
+(define-key direx:direx-mode-map "N" 'isearch-repeat-backward)
+(global-set-key (kbd "C-x j") 'dired-jump-ex)
+(add-hook 'direx:direx-mode-hook
+          (lambda ()
+            (setq hl-line-face 'dired-face)
+            (hl-line-mode t)))
 
 ;;; VC
 (global-set-key (kbd "C-x =") 'vc-diff)

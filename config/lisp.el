@@ -64,6 +64,7 @@
 (push '("*Warnings*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
 (push '("*helm*" :regexp t :height 20) popwin:special-display-config)
+(push '(direx:direx-mode :position left :width 40 :dedicated t) popwin:special-display-config)
 
 ;;; key-chord.el
 (require 'key-chord)
