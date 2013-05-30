@@ -330,6 +330,11 @@
 ;;   (define-key map (kbd "C-n") 'zlc-select-next)
 ;;   (define-key map (kbd "C-c") 'zlc-reset))
 
+;;; dash-at-point
+(autoload 'dash-at-point "dash-at-point"
+  "Search the word at point with Dash." t nil)
+(global-set-key (kbd "C-c C-d") 'dash-at-point)
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
@@ -423,6 +428,9 @@
 ;;; Rinari: Ruby on Rails Minor Mode
 (require 'rinari)
 (global-rinari-mode)
+(add-hook 'rinari-minor-mode-hook
+          (lambda ()
+            (setq dash-at-point-docset "rails")))
 
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)

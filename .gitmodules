@@ -46,3 +46,6 @@
 [submodule "lisp/direx"]
 	path = lisp/direx
 	url = https://github.com/m2ym/direx-el.git
+[submodule "lisp/dash-at-point"]
+	path = lisp/dash-at-point
+	url = https://github.com/stanaka/dash-at-point.git
