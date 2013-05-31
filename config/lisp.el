@@ -351,6 +351,22 @@
   "Search the word at point with Dash." t nil)
 (global-set-key (kbd "C-c C-d") 'dash-at-point)
 
+;;; flycheck
+(require 'flycheck)
+(dolist (list '(php-mode-hook
+                ruby-mode-hook
+                python-mode-hook
+                coffee-mode-hook))
+  (add-hook list 'flycheck-mode))
+(eval-after-load "flycheck"
+  '(progn
+     (set-face-attribute 'flycheck-error-face nil
+                         :foreground "black" :weight 'normal
+                         :background "red")
+     (set-face-attribute 'flycheck-warning-face nil
+                         :foreground "black" :weight 'normal
+                         :background "yellow")))
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist

@@ -49,3 +49,9 @@
 [submodule "lisp/dash-at-point"]
 	path = lisp/dash-at-point
 	url = https://github.com/stanaka/dash-at-point.git
+[submodule "lisp/flycheck"]
+	path = lisp/flycheck
+	url = https://github.com/lunaryorn/flycheck.git
+[submodule "lisp/s"]
+	path = lisp/s
+	url = https://github.com/magnars/s.el.git
