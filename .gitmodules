@@ -49,3 +49,6 @@
 [submodule "lisp/dash-at-point"]
 	path = lisp/dash-at-point
 	url = https://github.com/stanaka/dash-at-point.git
+[submodule "lisp/quickrun"]
+	path = lisp/quickrun
+	url = https://github.com/syohex/emacs-quickrun.git

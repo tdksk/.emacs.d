@@ -46,10 +46,31 @@
 
 ;;; smart-compile
 (require 'smart-compile)
-(global-set-key "\C-c\C-j" 'smart-compile)
-(global-set-key "\C-cj" 'smart-compile)
+(global-set-key (kbd "C-c j") 'smart-compile)
 (define-key menu-bar-tools-menu [compile] '("Compile..." . smart-compile))
 (setq compilation-window-height 1)
+
+;;; quickrun
+(require 'quickrun)
+(global-set-key (kbd "C-c C-j") 'quickrun)
+(quickrun-add-command "c++/g++/opencv"
+                      '((:command . "g++")
+                        (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv`"
+                                     "%e %a"))
+                        (:remove  . ("%e"))
+                        (:description . "Compile C++ file with g++ including OpenCV and execute")))
+(quickrun-add-command "c++/g++/opengl"
+                      '((:command . "g++")
+                        (:exec    . ("%c -O2 %o -o %e %s -framework GLUT -framework OpenGL"
+                                     "%e %a"))
+                        (:remove  . ("%e"))
+                        (:description . "Compile C++ file with g++ including OpenGL and execute")))
+(quickrun-add-command "c++/g++/opencv+gl"
+                      '((:command . "g++")
+                        (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv` -framework GLUT -framework OpenGL"
+                                     "%e %a"))
+                        (:remove  . ("%e"))
+                        (:description . "Compile C++ file with g++ including OpenCV and OpenGL and execute")))
 
 ;;; popwin.el
 ;;; ポップアップウィンドウ表示
