@@ -52,3 +52,9 @@
 [submodule "lisp/quickrun"]
 	path = lisp/quickrun
 	url = https://github.com/syohex/emacs-quickrun.git
+[submodule "lisp/flycheck"]
+	path = lisp/flycheck
+	url = https://github.com/lunaryorn/flycheck.git
+[submodule "lisp/s"]
+	path = lisp/s
+	url = https://github.com/magnars/s.el.git
