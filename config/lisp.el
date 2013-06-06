@@ -24,10 +24,12 @@
          magit-log-edit-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
-          ;; 色
-          (set-face-foreground 'ac-completion-face "blue")
-          (set-face-background 'ac-selection-face "blue")
-          (set-face-foreground 'ac-selection-face "black"))
+          (set-face-attribute 'ac-completion-face nil
+                              :foreground "blue"
+                              :weight 'bold)
+          (set-face-attribute 'ac-selection-face nil
+                              :foreground "black"
+                              :background "blue"))
 ;; look command with auto-complete
 (defun ac-look-candidates ()
   (if (not (executable-find "look"))
