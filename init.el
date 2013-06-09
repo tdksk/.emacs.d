@@ -981,5 +981,10 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (set-face-attribute 'ediff-current-diff-C nil
                                  :foreground "black" :background "white" :weight 'normal)))
 
+;;; emacsclient
+(require 'server)
+(unless (server-running-p)
+  (server-start))
+
 ;;; 非標準Elispの設定
 (load "config/lisp")
