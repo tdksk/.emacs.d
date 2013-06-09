@@ -58,3 +58,6 @@
 [submodule "lisp/s"]
 	path = lisp/s
 	url = https://github.com/magnars/s.el.git
+[submodule "lisp/undo-tree"]
+	path = lisp/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git

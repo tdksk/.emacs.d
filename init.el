@@ -579,6 +579,7 @@
     (helm-mode . "")
     (view-mode . "")
     (ruby-end-mode . "")
+    (undo-tree-mode . "")
     (auto-complete-mode . " α")
     (yas/minor-mode . " υ")
     (wrap-region-mode . " ω")

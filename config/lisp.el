@@ -90,6 +90,17 @@
 (push '("*helm*" :regexp t :height 20) popwin:special-display-config)
 (push '(direx:direx-mode :position left :width 40 :dedicated t) popwin:special-display-config)
 
+;;; undo-tree.el
+(require 'undo-tree)
+(global-undo-tree-mode 1)
+(global-set-key (kbd "M-/") 'undo-tree-redo)
+(add-hook 'undo-tree-visualizer-mode-hook
+          (lambda ()
+            (local-set-key (kbd "j") 'undo-tree-visualize-redo)
+            (local-set-key (kbd "k") 'undo-tree-visualize-undo)
+            (local-set-key (kbd "h") 'undo-tree-visualize-switch-branch-left)
+            (local-set-key (kbd "l") 'undo-tree-visualize-switch-branch-right)))
+
 ;;; key-chord.el
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.02)
