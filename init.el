@@ -615,8 +615,10 @@
 
 ;;; 選択範囲に色をつける
 (setq transient-mark-mode t)
-(set-face-background 'region "blue")
-(set-face-foreground 'region "black")
+(set-face-attribute 'region nil
+                    :background "blue"
+                    :foreground "black"
+                    :weight 'normal)
 
 ;;; コメントの色
 (set-face-foreground 'font-lock-comment-face "red")
