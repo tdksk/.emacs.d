@@ -146,7 +146,7 @@
 (defun semicolon-newline ()
   (interactive)
   (end-of-line)
-  (if (looking-back "^[ \t]*$")
+  (if (or (looking-back "^[ \t]*$") (looking-back "[({\[,.]$"))
       (newline-and-indent)
     (if (not (looking-back ";"))
         (insert ";")
