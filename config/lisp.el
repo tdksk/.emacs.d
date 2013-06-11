@@ -559,6 +559,9 @@
 (add-to-list 'auto-mode-alist '("\\.mdt\\'" . gfm-mode))
 ;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'gfm-mode-hook
+          (lambda ()
+            (visual-line-mode -1)))
 
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
