@@ -355,10 +355,10 @@
 
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
-;; (setq hl-line-face 'underline)  ; 下線
-(setq hl-line-face 'bold)  ; 太字
-;; (set-face-background 'hl-line "white")
-;; (set-face-foreground 'hl-line "black")
+(set-face-attribute 'hl-line nil
+                    :inherit nil
+                    :background "black"
+                    :weight 'bold)
 
 ;;; カーソルの位置が何文字目かを表示する
 ;; (column-number-mode t)
