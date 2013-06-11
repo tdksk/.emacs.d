@@ -204,6 +204,41 @@
      :cleanup-fn (lambda ()
                    (delete-region beg end))
      )))
+(defun my-smartchr-codeblock ()
+  "Insert a multiline comment like below.
+\n```\n`!!'\n```"
+  ;; ```
+  ;; `!!'
+  ;; ```
+  (lexical-let (beg end)
+    (smartchr-make-struct
+     :insert-fn (lambda ()
+                  (setq beg (point))
+                  (insert "```\n\n```")
+                  (indent-region beg (point))
+                  (setq end (point))
+                  (forward-line -1)
+                  (goto-char (point-at-eol)))
+     :cleanup-fn (lambda ()
+                   (delete-region beg end))
+     )))
+;; single quote
+(defun my-smartchr-keybindings-single-quote ()
+  (local-set-key (kbd "\'") (smartchr '("\'`!!'\'" "\'"))))
+(dolist (hook '(c-mode-common-hook
+                perl-mode-hook
+                ruby-mode-hook
+                python-mode-hook
+                php-mode-hook
+                js2-mode-hook
+                coffee-mode-hook
+                css-mode-hook
+                scss-mode-hook
+                html-mode-hook
+                haml-mode-hook
+                objc-mode-hook
+                sh-mode-hook))
+  (add-hook hook 'my-smartchr-keybindings-single-quote))
 ;; for cc-mode
 (defun my-smartchr-keybindings-cc ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
@@ -237,6 +272,8 @@
          (global-set-key (kbd "(") (smartchr '("(`!!')" "(")))
          (global-set-key (kbd "[") (smartchr '("[`!!']" "[")))
          (global-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+         (global-set-key (kbd "\"") (smartchr '("\"`!!'\"" "\"")))
+         (global-set-key (kbd "`") (smartchr '("\``!!'\`" "\`" my-smartchr-codeblock)))
          (global-set-key (kbd ">") (smartchr '(">" " => " " => \'`!!'\'" " => \"`!!'\"")))
          (global-set-key (kbd "F") (smartchr '("F" "$")))
          (global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
@@ -248,6 +285,8 @@
          (global-set-key (kbd "(") 'self-insert-command)
          (global-set-key (kbd "[") 'self-insert-command)
          (global-set-key (kbd "{") 'self-insert-command)
+         (global-set-key (kbd "\"") 'self-insert-command)
+         (global-set-key (kbd "`") 'self-insert-command)
          (global-set-key (kbd ">") 'self-insert-command)
          (global-set-key (kbd "F") 'self-insert-command)
          (global-set-key (kbd "L") 'self-insert-command)
