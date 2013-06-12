@@ -19,8 +19,6 @@
          rhtml-mode
          objc-mode
          matlab-mode
-         markdown-mode
-         gfm-mode
          magit-log-edit-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
