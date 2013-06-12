@@ -373,10 +373,11 @@
 (defadvice linum-schedule (around my-linum-schedule () activate)
   (run-with-idle-timer 0.2 nil #'linum-update-current))
 (add-hook 'linum-mode-hook
-          '(lambda ()
-             (set-face-bold-p 'linum t)
-             (set-face-background 'linum nil)
-             (set-face-foreground 'linum "black")))
+          (lambda ()
+            (set-face-attribute 'linum nil
+                                :foreground "black"
+                                :background "black"
+                                :weight 'bold)))
 ;; (defvar my-linum-hook-name nil)
 ;; (mapc (lambda (hook-name)
 ;;         (add-hook hook-name (lambda () (linum-mode t))))
