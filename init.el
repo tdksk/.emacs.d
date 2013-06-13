@@ -626,18 +626,30 @@
 (set-face-foreground 'font-lock-comment-delimiter-face "red")
 
 ;;; その他色
-(set-face-background 'isearch "green")
-(set-face-foreground 'isearch "black")
-(set-face-background 'isearch-lazy-highlight-face "yellow")
-(set-face-foreground 'isearch-lazy-highlight-face "black")
-(set-face-background 'isearch-fail "red")
-(set-face-foreground 'isearch-fail "black")
-(set-face-background 'highlight "green")
-(set-face-foreground 'highlight "black")
-(set-face-background 'font-lock-warning-face "red")
-(set-face-foreground 'font-lock-warning-face "black")
-(set-face-background 'match "blue")
-(set-face-foreground 'match "black")
+(set-face-attribute 'isearch nil
+                    :background "green"
+                    :foreground "black"
+                    :weight 'normal)
+(set-face-attribute 'isearch-lazy-highlight-face nil
+                    :background "yellow"
+                    :foreground "black"
+                    :weight 'normal)
+(set-face-attribute 'isearch-fail nil
+                    :background "red"
+                    :foreground "black"
+                    :weight 'normal)
+(set-face-attribute 'highlight nil
+                    :background "green"
+                    :foreground "black"
+                    :weight 'normal)
+(set-face-attribute 'match nil
+                    :background "blue"
+                    :foreground "black"
+                    :weight 'normal)
+(set-face-attribute 'font-lock-warning-face nil
+                    :background "red"
+                    :foreground "black"
+                    :weight 'normal)
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
