@@ -361,7 +361,7 @@
 (global-set-key (kbd "C-x C-l") 'magit-log)
 (set-face-bold-p 'magit-item-highlight nil)
 (set-face-attribute 'magit-item-highlight nil :inherit nil)
-(set-face-background 'magit-item-highlight "blue")
+(set-face-background 'magit-item-highlight "black")
 (defvar magit-highlight-status t)
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
 (add-hook 'magit-log-edit-mode-hook 'flyspell-mode)
