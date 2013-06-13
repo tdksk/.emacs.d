@@ -694,6 +694,32 @@
            (sources (helm-c-sources-git-project-for default-directory)))
       (helm-other-buffer sources
                          (format "*helm git project in %s*" default-directory)))))
+;; helm-git-commit-messages
+(defvar helm-c-source-git-commit-messages
+  '((name . "Git Commit Messages")
+    (init . helm-c-git-commit-messages-init)
+    (action . (("Insert" . (lambda (candidate)
+                             (insert
+                              (replace-regexp-in-string "\0" "\n" candidate))))))
+    (real-to-display . helm-c-git-commit-messages-real-to-display)
+    (migemo)
+    (multiline)
+    (candidates-in-buffer)))
+(defun helm-c-git-commit-messages-init ()
+  (with-current-buffer (helm-candidate-buffer 'global)
+    (call-process-shell-command
+     "git log --format=\"%x00%B\" | tr '\\n\\000\' '\\000\\n' | sed -e '/^$/d' -e 's/\\x0\\+$//'"
+     nil (current-buffer))))
+(defun helm-git-commit-messages ()
+  "`helm' for git commit messages."
+  (interactive)
+  (helm-other-buffer 'helm-c-source-git-commit-messages
+                     "*helm commit messages*"))
+(defun helm-c-git-commit-messages-real-to-display (candidate)
+  (replace-regexp-in-string "\0" "\n" candidate))
+(defun magit-enable-helm ()
+  (define-key magit-log-edit-mode-map (kbd "C-'") 'helm-git-commit-messages))
+(add-hook 'magit-mode-hook 'magit-enable-helm)
 
 ;;; view-mode, viewer.el
 (setq view-read-only t)
