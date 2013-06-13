@@ -642,10 +642,17 @@
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
+;; my buffers
+(defun helm-my-buffers ()
+  (interactive)
+  (helm-other-buffer '(helm-source-buffers-list
+                       helm-source-recentf
+                       helm-source-files-in-current-dir)
+                     "*helm my buffers*"))
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-'") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-mini)
-(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "C-'") 'helm-my-buffers)
+(global-set-key (kbd "C-x C-b") 'helm-my-buffers)
+(global-set-key (kbd "C-x b") 'helm-my-buffers)
 (global-set-key (kbd "C-x C-_") 'helm-occur)
 (global-set-key (kbd "C-x C-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
