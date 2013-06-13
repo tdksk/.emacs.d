@@ -61,3 +61,6 @@
 [submodule "lisp/undo-tree"]
 	path = lisp/undo-tree
 	url = http://www.dr-qubit.org/git/undo-tree.git
+[submodule "lisp/auto-complete"]
+	path = lisp/auto-complete
+	url = https://github.com/auto-complete/auto-complete.git
