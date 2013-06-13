@@ -418,6 +418,7 @@
 (define-key magit-mode-map (kbd "H") 'magit-browse)
 
 (require 'git-messenger)
+(setq git-messenger:show-detail t)
 (global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
 
 ;;; zsh like completion
