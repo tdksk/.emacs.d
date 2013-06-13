@@ -18,7 +18,10 @@
          rhtml-mode
          objc-mode
          matlab-mode
-         magit-log-edit-mode))
+         markdown-mode
+         gfm-mode
+         magit-log-edit-mode
+         yatex-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
           (set-face-attribute 'ac-completion-face nil
@@ -27,6 +30,12 @@
           (set-face-attribute 'ac-selection-face nil
                               :foreground "black"
                               :background "blue"))
+;; auto-complete の候補に日本語を含む単語が含まれないようにする
+;; http://d.hatena.ne.jp/IMAKADO/20090813/1250130343
+(defadvice ac-word-candidates (after remove-word-contain-japanese activate)
+  (let ((contain-japanese (lambda (s) (string-match (rx (category japanese)) s))))
+    (setq ad-return-value
+          (remove-if contain-japanese ad-return-value))))
 ;; look command with auto-complete
 (defun ac-look-candidates ()
   (if (not (executable-find "look"))
