@@ -351,7 +351,8 @@
      (set-face-underline 'whitespace-tab t)
      (set-face-bold-p 'whitespace-newline t)
      (set-face-foreground 'whitespace-newline "black")
-     (set-face-background 'whitespace-newline nil)))
+     (set-face-background 'whitespace-newline nil)
+     (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n])))))
 
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
