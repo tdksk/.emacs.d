@@ -666,12 +666,14 @@
 (global-set-key (kbd "C-x C-y") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key (kbd "C-;") 'helm-git-project)
-(global-set-key (kbd "C-x C-g") 'helm-git-project)
 (setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
 (eval-after-load 'helm
   '(progn
      (set-face-foreground 'helm-selection "black")))
+;; helm-ag
+(require 'helm-ag)
+(global-set-key (kbd "C-x C-g") 'helm-ag)
 ;; helm-git-project
 (defun helm-c-sources-git-project-for (pwd)
   (loop for elt in
