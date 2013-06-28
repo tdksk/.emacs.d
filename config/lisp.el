@@ -651,6 +651,7 @@
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
+(add-to-list 'helm-completing-read-handlers-alist '(mkdir))
 ;; my buffers
 (defun helm-my-buffers ()
   (interactive)
