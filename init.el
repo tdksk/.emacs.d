@@ -346,13 +346,16 @@
 (eval-after-load 'whitespace
   '(progn
      (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
-     (set-face-foreground 'whitespace-tab "blue")
-     (set-face-background 'whitespace-tab nil)
-     (set-face-underline 'whitespace-tab t)
-     (set-face-bold-p 'whitespace-newline t)
-     (set-face-foreground 'whitespace-newline "black")
-     (set-face-background 'whitespace-newline nil)
-     (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n])))))
+     (set-face-attribute 'whitespace-tab nil
+                         :foreground "black"
+                         :background "nil"
+                         :weight 'bold
+                         :underline t)
+     (set-face-attribute 'whitespace-newline nil
+                         :foreground "black"
+                         :background "nil"
+                         :weight 'bold)
+     (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n]) (tab-mark ?\t [?\u00BB ?\t])))))
 
 ;;; 現在行を目立たせる
 (global-hl-line-mode)
