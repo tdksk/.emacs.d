@@ -577,7 +577,9 @@
 (add-hook 'markdown-mode-hook 'flyspell-mode)
 (add-hook 'gfm-mode-hook
           (lambda ()
-            (visual-line-mode -1)))
+            (visual-line-mode -1)
+            (local-set-key (kbd "M-p") 'move-line-up)
+            (local-set-key (kbd "M-n") 'move-line-down)))
 
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
