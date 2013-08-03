@@ -348,12 +348,11 @@
      (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
      (set-face-attribute 'whitespace-tab nil
                          :foreground "black"
-                         :background "nil"
-                         :weight 'bold
-                         :underline t)
+                         :background "black"
+                         :weight 'bold)
      (set-face-attribute 'whitespace-newline nil
                          :foreground "black"
-                         :background "nil"
+                         :background nil
                          :weight 'bold)
      (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n]) (tab-mark ?\t [?\u00BB ?\t])))))
 
