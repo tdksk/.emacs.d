@@ -25,8 +25,6 @@
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c C-f") 'find-name-dired)    ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
-(define-key global-map (kbd "C-M-j") 'scroll-up-line)       ; 1行分下にスクロール
-(define-key global-map (kbd "C-M-k") 'scroll-down-line)     ; 1行分上にスクロール
 (define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
 (define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
 (define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
@@ -1017,7 +1015,20 @@ Argument REPLACE String used to replace the matched strings in the buffer.
         (process-send-string proc text)
         (process-send-eof proc))))
   (setq interprogram-cut-function 'paste-to-osx)
-  (setq interprogram-paste-function 'copy-from-osx))
+  (setq interprogram-paste-function 'copy-from-osx)
+  ;; canary
+  (defun canary-reload ()
+    (interactive)
+    (shell-command "osascript ~/.emacs.d/scripts/canary-reload.scpt"))
+  (defun canary-scroll-next ()
+    (interactive)
+    (shell-command "osascript ~/.emacs.d/scripts/canary-scroll.scpt next"))
+  (defun canary-scroll-previous ()
+    (interactive)
+    (shell-command "osascript ~/.emacs.d/scripts/canary-scroll.scpt previous"))
+  (global-set-key (kbd "M-r") 'canary-reload)
+  (global-set-key (kbd "C-M-j") 'canary-scroll-next)
+  (global-set-key (kbd "C-M-k") 'canary-scroll-previous))
 
 ;;; 非標準Elispの設定
 (load "config/lisp")
