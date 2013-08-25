@@ -25,8 +25,9 @@
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
           (set-face-attribute 'ac-completion-face nil
-                              :foreground "blue"
-                              :weight 'bold)
+                              :foreground "black"
+                              :background "white"
+                              :weight 'normal)
           (set-face-attribute 'ac-selection-face nil
                               :foreground "black"
                               :background "blue"))
