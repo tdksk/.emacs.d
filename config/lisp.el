@@ -339,6 +339,11 @@
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
 (define-key help-map iedit-toggle-key 'iedit-mode-toggle-on-function)
 
+;;; Evil Numbers
+(require 'evil-numbers)
+(global-set-key (kbd "M-=") 'evil-numbers/inc-at-pt)
+(global-set-key (kbd "M--") 'evil-numbers/dec-at-pt)
+
 ;;; volatile-highlights
 (require 'volatile-highlights)
 ;; TODO: Warning: `interactive-p' is an obsolete function (as of 23.2); use `called-interactively-p' instead.
