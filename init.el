@@ -352,6 +352,8 @@
                          :foreground "black"
                          :background nil
                          :weight 'bold)
+     (set-face-attribute 'whitespace-empty nil
+                         :background "black")
      (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n]) (tab-mark ?\t [?\u00BB ?\t])))))
 
 ;;; 現在行を目立たせる
