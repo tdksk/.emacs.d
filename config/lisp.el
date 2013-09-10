@@ -896,3 +896,12 @@ to next line."
     (error (if (eq this-command 'evil-paste-pop-next)
                (call-interactively 'next-line)
              (signal (car err) (cdr err))))))
+(lexical-let ((default-color (cons (face-background 'mode-line)
+                                   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook
+            (lambda ()
+              (let ((color (cond ((minibufferp) default-color)
+                                 ((evil-insert-state-p) '("black" . "white"))
+                                 (t default-color))))
+                (set-face-background 'mode-line (car color))
+                (set-face-foreground 'mode-line (cdr color))))))
