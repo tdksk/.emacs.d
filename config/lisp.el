@@ -20,7 +20,7 @@
          matlab-mode
          markdown-mode
          gfm-mode
-         magit-log-edit-mode
+         git-commit-mode
          yatex-mode))
   (add-to-list 'ac-modes list))
 (add-hook 'AC-mode-hook
@@ -378,7 +378,6 @@
 (set-face-background 'magit-item-highlight "black")
 (defvar magit-highlight-status t)
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
-(add-hook 'magit-log-edit-mode-hook 'flyspell-mode)
 (add-hook 'magit-log-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
@@ -426,7 +425,8 @@
   '(define-key git-commit-mode-map (kbd "C-c C-k") 'magit-exit-commit-mode))
 (defun magit-commit-mode-init ()
   (when (looking-at "\n")
-    (open-line 1)))
+    (open-line 1))
+  (flyspell-mode 1))
 (add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
 (defadvice magit-status (around magit-fullscreen activate)
   (window-configuration-to-register :magit-fullscreen)
@@ -760,8 +760,7 @@
 (defun helm-c-git-commit-messages-real-to-display (candidate)
   (replace-regexp-in-string "\0" "\n" candidate))
 (defun magit-enable-helm ()
-  ;; (define-key magit-log-edit-mode-map (kbd "C-'") 'helm-git-commit-messages)
-  )
+  (define-key git-commit-mode-map (kbd "C-'") 'helm-git-commit-messages))
 (add-hook 'magit-mode-hook 'magit-enable-helm)
 
 ;;; view-mode, viewer.el
