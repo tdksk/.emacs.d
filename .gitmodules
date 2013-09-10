@@ -70,3 +70,12 @@
 [submodule "lisp/evil-numbers"]
 	path = lisp/evil-numbers
 	url = https://github.com/cofi/evil-numbers.git
+[submodule "lisp/git-modes"]
+	path = lisp/git-modes
+	url = https://github.com/magit/git-modes
+[submodule "lisp/f"]
+	path = lisp/f
+	url = https://github.com/rejeep/f.el.git
+[submodule "lisp/pkg-info"]
+	path = lisp/pkg-info
+	url = https://github.com/lunaryorn/pkg-info.el.git

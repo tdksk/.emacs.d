@@ -456,10 +456,10 @@
   (add-hook list 'flycheck-mode))
 (eval-after-load "flycheck"
   '(progn
-     (set-face-attribute 'flycheck-error-face nil
+     (set-face-attribute 'flycheck-error nil
                          :foreground "black" :weight 'normal
                          :background "red")
-     (set-face-attribute 'flycheck-warning-face nil
+     (set-face-attribute 'flycheck-warning nil
                          :foreground "black" :weight 'normal
                          :background "yellow")))
 
@@ -738,7 +738,8 @@
 (defun helm-c-git-commit-messages-real-to-display (candidate)
   (replace-regexp-in-string "\0" "\n" candidate))
 (defun magit-enable-helm ()
-  (define-key magit-log-edit-mode-map (kbd "C-'") 'helm-git-commit-messages))
+  ;; (define-key magit-log-edit-mode-map (kbd "C-'") 'helm-git-commit-messages)
+  )
 (add-hook 'magit-mode-hook 'magit-enable-helm)
 
 ;;; view-mode, viewer.el
