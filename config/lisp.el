@@ -418,6 +418,28 @@
   (interactive)
   (kill-buffer)
   (jump-to-register :magit-log-fullscreen))
+(defun magit-exit-commit-mode ()
+  (interactive)
+  (kill-buffer)
+  (delete-window))
+(eval-after-load "git-commit-mode"
+  '(define-key git-commit-mode-map (kbd "C-c C-k") 'magit-exit-commit-mode))
+(defun magit-commit-mode-init ()
+  (when (looking-at "\n")
+    (open-line 1)))
+(add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
+(defadvice magit-status (around magit-fullscreen activate)
+  (window-configuration-to-register :magit-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+(defun magit-quit-session ()
+  "Restores the previous window configuration and kills the magit buffer"
+  (interactive)
+  (kill-buffer)
+  (jump-to-register :magit-fullscreen))
+(define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
+(defadvice git-commit-commit (after move-to-magit-buffer activate)
+  (delete-window))
 (defun magit-browse ()
   (interactive)
   (let ((url (with-temp-buffer
