@@ -79,3 +79,6 @@
 [submodule "lisp/pkg-info"]
 	path = lisp/pkg-info
 	url = https://github.com/lunaryorn/pkg-info.el.git
+[submodule "lisp/evil"]
+	path = lisp/evil
+	url = git://gitorious.org/evil/evil.git

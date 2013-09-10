@@ -340,7 +340,7 @@
 ;; (setq-default show-trailing-whitespace t)
 
 ;;; 空白や改行の視覚化
-(whitespace-mode t)
+(global-whitespace-mode t)
 (eval-after-load 'whitespace
   '(progn
      (setq whitespace-style '(face tabs tab-mark newline newline-mark empty trailing space-before-tab space-after-tab))
@@ -370,6 +370,7 @@
 ;; (line-number-mode t)
 
 ;;; 行番号表示
+(linum-mode -1)
 (setq linum-format "%3d ")
 ;; 遅延させて軽くする
 (setq linum-delay t)
@@ -579,6 +580,7 @@
   '(;; For minor-mode, first char is 'space'
     (abbrev-mode . "")
     (whitespace-mode . "")
+    (global-whitespace-mode . "")
     (volatile-highlights-mode . "")
     (helm-mode . "")
     (view-mode . "")

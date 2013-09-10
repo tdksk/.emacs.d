@@ -112,11 +112,11 @@
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.02)
 (key-chord-mode 1)
-(key-chord-define-global "jk" 'view-mode)
-(key-chord-define-global "di" 'kill-textobjects-in)
-(key-chord-define-global "da" 'kill-textobjects-an)
-(key-chord-define-global "yi" 'copy-textobjects-in)
-(key-chord-define-global "ya" 'copy-textobjects-an)
+;; (key-chord-define-global "jk" 'view-mode)
+;; (key-chord-define-global "di" 'kill-textobjects-in)
+;; (key-chord-define-global "da" 'kill-textobjects-an)
+;; (key-chord-define-global "yi" 'copy-textobjects-in)
+;; (key-chord-define-global "ya" 'copy-textobjects-an)
 (key-chord-define-global "90" 'kill-textobjects-in-paren)
 (key-chord-define-global "io" 'kill-textobjects-in-single-quote)
 (key-chord-define-global "ui" 'kill-textobjects-in-double-quote)
@@ -354,10 +354,22 @@
 (set-face-background 'highlight-indentation-face "white")
 (set-face-background 'highlight-indentation-current-column-face "blue")
 ;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
+(dolist (hook '(c-mode-common-hook
+                perl-mode-hook
+                php-mode-hook
+                js2-mode-hook
+                css-mode-hook
+                scss-mode-hook
+                objc-mode-hook
+                python-mode-hook
+                ruby-mode-hook
+                haml-mode-hook
+                html-mode-hook))
+  (add-hook hook 'highlight-indentation-current-column-mode))
 
 ;;; git-gutter.el
 (require 'git-gutter)
-;; (global-git-gutter-mode t)
+(global-git-gutter-mode t)
 (define-key global-map (kbd "C-c g") 'git-gutter)
 (setq git-gutter:update-hooks '(after-save-hook after-revert-hook window-configuration-change-hook git-gutter-mode-on-hook))
 (setq git-gutter:unchanged-sign " ")
@@ -777,61 +789,110 @@
   (define-key git-commit-mode-map (kbd "C-'") 'helm-git-commit-messages))
 (add-hook 'magit-mode-hook 'magit-enable-helm)
 
-;;; view-mode, viewer.el
-(setq view-read-only t)
-(require 'viewer)
-(viewer-stay-in-setup)  ; 書き込み不能な場合はview-modeを抜けないように
-(setq view-mode-by-default-regexp "\\.*")  ; view-modeでファイルを開く
-;; view-modeのときはモードラインの色を変える
-(setq viewer-modeline-color-unwritable "yellow"
-      viewer-modeline-color-view "blue")
-(viewer-change-modeline-color-setup)
-(defvar pager-keybind
-  `( ;; vi-like
-    ("h" . other-window-backward-or-split)
-    ("l" . other-window-or-split)
-    ("j" . scroll-up-line)
-    ("k" . scroll-down-line)
-    ;; ("f" . View-scroll-page-forward)
-    ;; ("b" . View-scroll-page-backward)
-    ("H" . move-to-top)
-    ("M" . move-to-center)
-    ("L" . move-to-bottom)
-    ("g" . beginning-of-buffer)
-    ("G" . end-of-buffer)
-    ("/" . isearch-forward)
-    ("n" . isearch-repeat-forward)
-    ("N" . isearch-repeat-backward)
-    ("f" . vimlike-f)
-    ("F" . vimlike-F)
-    (";" . vimlike-semicolon)
-    ("i" . view-mode)
-    ("e" . nil)
-    ("s" . nil)
-    ("r" . nil)
-    (" " . nil)
-    ("\C-m" . nil)
-    ("\C-?" . nil)
-    ))
-(defun define-many-keys (keymap key-table &optional includes)
-  (let (key cmd)
-    (dolist (key-cmd key-table)
-      (setq key (car key-cmd)
-            cmd (cdr key-cmd))
-      (if (or (not includes) (member key includes))
-          (define-key keymap key cmd))))
-  keymap)
-(defun view-mode-hook0 ()
-  (define-many-keys view-mode-map pager-keybind)
-  ;; Disable distracting highlight when in view-mode
-  (whitespace-mode (if view-mode -1 1))
-  (highlight-indentation-current-column-mode (if view-mode -1 1))
-  ;; (show-paren-mode (if view-mode -1 1))
-  ;; Toggle linum-mode and git-gutter-mode
-  (git-gutter-mode (if view-mode -1 1))
-  (linum-mode (if view-mode 1 -1))
-  (unless view-mode (git-gutter))
-  )
-(add-hook 'view-mode-hook 'view-mode-hook0)
-;; (defadvice view-mode-disable (after hl-line-mode-disable activate)
-;;   (hl-line-mode -1))
+;; ;;; view-mode, viewer.el
+;; (setq view-read-only t)
+;; (require 'viewer)
+;; (viewer-stay-in-setup)  ; 書き込み不能な場合はview-modeを抜けないように
+;; (setq view-mode-by-default-regexp "\\.*")  ; view-modeでファイルを開く
+;; ;; view-modeのときはモードラインの色を変える
+;; (setq viewer-modeline-color-unwritable "yellow"
+;;       viewer-modeline-color-view "blue")
+;; (viewer-change-modeline-color-setup)
+;; (defvar pager-keybind
+;;   `( ;; vi-like
+;;     ("h" . other-window-backward-or-split)
+;;     ("l" . other-window-or-split)
+;;     ("j" . scroll-up-line)
+;;     ("k" . scroll-down-line)
+;;     ;; ("f" . View-scroll-page-forward)
+;;     ;; ("b" . View-scroll-page-backward)
+;;     ("H" . move-to-top)
+;;     ("M" . move-to-center)
+;;     ("L" . move-to-bottom)
+;;     ("g" . beginning-of-buffer)
+;;     ("G" . end-of-buffer)
+;;     ("/" . isearch-forward)
+;;     ("n" . isearch-repeat-forward)
+;;     ("N" . isearch-repeat-backward)
+;;     ("f" . vimlike-f)
+;;     ("F" . vimlike-F)
+;;     (";" . vimlike-semicolon)
+;;     ("i" . view-mode)
+;;     ("e" . nil)
+;;     ("s" . nil)
+;;     ("r" . nil)
+;;     (" " . nil)
+;;     ("\C-m" . nil)
+;;     ("\C-?" . nil)
+;;     ))
+;; (defun define-many-keys (keymap key-table &optional includes)
+;;   (let (key cmd)
+;;     (dolist (key-cmd key-table)
+;;       (setq key (car key-cmd)
+;;             cmd (cdr key-cmd))
+;;       (if (or (not includes) (member key includes))
+;;           (define-key keymap key cmd))))
+;;   keymap)
+;; (defun view-mode-hook0 ()
+;;   (define-many-keys view-mode-map pager-keybind)
+;;   ;; Disable distracting highlight when in view-mode
+;;   (whitespace-mode (if view-mode -1 1))
+;;   (highlight-indentation-current-column-mode (if view-mode -1 1))
+;;   ;; (show-paren-mode (if view-mode -1 1))
+;;   ;; Toggle linum-mode and git-gutter-mode
+;;   (git-gutter-mode (if view-mode -1 1))
+;;   (linum-mode (if view-mode 1 -1))
+;;   (unless view-mode (git-gutter))
+;;   )
+;; (add-hook 'view-mode-hook 'view-mode-hook0)
+;; ;; (defadvice view-mode-disable (after hl-line-mode-disable activate)
+;; ;;   (hl-line-mode -1))
+
+;;; Evil
+(setq evil-want-C-u-scroll t)
+(setq evil-want-C-i-jump nil)
+(setq evil-search-module 'evil-search)
+(setq evil-ex-search-vim-style-regexp t)
+(require 'evil)
+(evil-mode 1)
+(defun evil-swap-key (map key1 key2)
+  "Swap KEY1 and KEY2 in MAP."
+  (let ((def1 (lookup-key map key1))
+        (def2 (lookup-key map key2)))
+    (define-key map key1 def2)
+    (define-key map key2 def1)))
+(evil-swap-key evil-motion-state-map "j" "gj")
+(evil-swap-key evil-motion-state-map "k" "gk")
+(define-key evil-normal-state-map (kbd "C-z") 'switch-to-last-buffer)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-next-line)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-previous-line)
+(define-key evil-normal-state-map (kbd "g n") 'git-gutter:next-hunk)
+(define-key evil-normal-state-map (kbd "g p") 'git-gutter:previous-hunk)
+(define-key evil-normal-state-map (kbd "g =") 'git-gutter:popup-hunk)
+(define-key evil-normal-state-map (kbd "g r") 'git-gutter:revert-hunk)
+(define-key evil-normal-state-map (kbd "C-t") nil)
+(define-key evil-insert-state-map (kbd "C-z") nil)
+(define-key evil-insert-state-map (kbd "C-n") nil)
+(define-key evil-insert-state-map (kbd "C-p") nil)
+(define-key evil-insert-state-map (kbd "C-e") nil)
+(define-key evil-insert-state-map (kbd "C-y") nil)
+(define-key evil-insert-state-map (kbd "C-k") nil)
+(define-key evil-insert-state-map (kbd "C-o") nil)
+(defadvice evil-paste-pop (around evil-paste-or-move-line activate)
+  ;; evil-paste-popできなかったらprevious-lineする
+  "If there is no just-yanked stretch of killed text, just move
+to previous line."
+  (condition-case err
+      ad-do-it
+    (error (if (eq this-command 'evil-paste-pop)
+               (call-interactively 'previous-line)
+             (signal (car err) (cdr err))))))
+(defadvice evil-paste-pop-next (around evil-paste-or-move-line activate)
+  ;; evil-paste-pop-nextできなかったらnext-lineする
+  "If there is no just-yanked stretch of killed text, just move
+to next line."
+  (condition-case err
+      ad-do-it
+    (error (if (eq this-command 'evil-paste-pop-next)
+               (call-interactively 'next-line)
+             (signal (car err) (cdr err))))))
