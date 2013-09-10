@@ -479,6 +479,11 @@
     (browse-url url)))
 (define-key magit-mode-map (kbd "H") 'magit-browse)
 
+;;; git-commit-mode
+(when (require 'git-commit-mode nil t)
+  (set-face-foreground 'git-commit-summary-face "white"))
+
+;;; git-messenger.el
 (require 'git-messenger)
 (setq git-messenger:show-detail t)
 (global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
