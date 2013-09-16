@@ -354,11 +354,8 @@
 (set-face-background 'highlight-indentation-face "white")
 (set-face-background 'highlight-indentation-current-column-face "blue")
 ;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
-(dolist (hook '(c-mode-common-hook
-                perl-mode-hook
-                php-mode-hook
+(dolist (hook '(perl-mode-hook
                 js2-mode-hook
-                css-mode-hook
                 scss-mode-hook
                 objc-mode-hook
                 python-mode-hook
