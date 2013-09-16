@@ -448,7 +448,9 @@
   (kill-buffer)
   (delete-window))
 (eval-after-load "git-commit-mode"
-  '(define-key git-commit-mode-map (kbd "C-c C-k") 'magit-exit-commit-mode))
+  '(progn
+     (setq git-commit-max-summary-line-length nil)
+     (define-key git-commit-mode-map (kbd "C-c C-k") 'magit-exit-commit-mode)))
 (defun magit-commit-mode-init ()
   (when (looking-at "\n")
     (open-line 1))
