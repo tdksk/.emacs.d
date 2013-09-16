@@ -640,6 +640,11 @@
             (local-set-key (kbd "M-p") 'move-line-up)
             (local-set-key (kbd "M-n") 'move-line-down)))
 
+;;; Org Mode
+(add-hook 'org-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-'") 'helm-my-buffers)))
+
 ;;; YaTeX mode
 ;; /usr/share/emacs/site-lisp/
 ;; /usr/share/info/
