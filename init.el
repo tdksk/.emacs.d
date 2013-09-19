@@ -20,6 +20,7 @@
 (define-key global-map (kbd "M-?") 'help-for-help)          ; ヘルプ
 (define-key global-map (kbd "C-z") nil)                     ; サスペンド無効
 (define-key global-map (kbd "C-c TAB") 'indent-region)      ; インデント
+(define-key global-map (kbd "M-;") 'comment-dwim-line)      ; コメントアウト
 (define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
 (define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
@@ -28,9 +29,9 @@
 (define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
 (define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
 (define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
-(define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
-(define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
-(define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
+;; (define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
+;; (define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
+;; (define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
 (define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
 (define-key global-map (kbd "C-j") 'open-line-below)        ; 下に行追加して移動
 (define-key global-map (kbd "M-j") 'open-line-above)        ; 上に行追加して移動
