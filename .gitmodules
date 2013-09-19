@@ -82,3 +82,6 @@
 [submodule "lisp/evil"]
 	path = lisp/evil
 	url = git://gitorious.org/evil/evil.git
+[submodule "lisp/evil-surround"]
+	path = lisp/evil-surround
+	url = https://github.com/timcharper/evil-surround.git

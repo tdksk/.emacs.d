@@ -915,3 +915,7 @@ to next line."
                                  (t default-color))))
                 (set-face-background 'mode-line (car color))
                 (set-face-foreground 'mode-line (cdr color))))))
+
+;;; evil-surround
+(require 'surround)
+(global-surround-mode 1)
