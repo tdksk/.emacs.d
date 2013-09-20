@@ -480,7 +480,9 @@
 
 ;;; git-commit-mode
 (when (require 'git-commit-mode nil t)
-  (set-face-foreground 'git-commit-summary-face "white"))
+  (set-face-foreground 'git-commit-summary-face "white")
+  (set-face-foreground 'git-commit-overlong-summary-face "white")
+  (set-face-background 'git-commit-overlong-summary-face "black"))
 
 ;;; git-messenger.el
 (require 'git-messenger)
