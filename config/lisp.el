@@ -862,8 +862,8 @@
 ;;; Evil
 (setq evil-want-C-u-scroll t)
 (setq evil-want-C-i-jump nil)
-(setq evil-search-module 'evil-search)
-(setq evil-ex-search-vim-style-regexp t)
+;; (setq evil-search-module 'evil-search)
+;; (setq evil-ex-search-vim-style-regexp t)
 (setq evil-shift-width 2)
 (require 'evil)
 (evil-mode 1)
