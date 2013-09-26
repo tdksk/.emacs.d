@@ -339,6 +339,10 @@
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
 (define-key help-map iedit-toggle-key 'iedit-mode-toggle-on-function)
 
+;;; anzu
+(require 'anzu)
+(global-anzu-mode t)
+
 ;;; Evil Numbers
 (require 'evil-numbers)
 (global-set-key (kbd "M-=") 'evil-numbers/inc-at-pt)

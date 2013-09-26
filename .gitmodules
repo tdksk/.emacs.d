@@ -85,3 +85,6 @@
 [submodule "lisp/evil-surround"]
 	path = lisp/evil-surround
 	url = https://github.com/timcharper/evil-surround.git
+[submodule "lisp/anzu"]
+	path = lisp/anzu
+	url = https://github.com/syohex/emacs-anzu.git

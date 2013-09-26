@@ -587,6 +587,8 @@
     (whitespace-mode . "")
     (global-whitespace-mode . "")
     (volatile-highlights-mode . "")
+    (anzu-mode . "")
+    (isearch-mode . "")
     (helm-mode . "")
     (view-mode . "")
     (ruby-end-mode . "")
