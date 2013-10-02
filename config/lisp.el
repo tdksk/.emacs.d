@@ -364,6 +364,7 @@
                 objc-mode-hook
                 python-mode-hook
                 ruby-mode-hook
+                coffee-mode-hook
                 haml-mode-hook
                 html-mode-hook))
   (add-hook hook 'highlight-indentation-current-column-mode))
