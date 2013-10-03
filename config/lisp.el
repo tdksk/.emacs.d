@@ -893,6 +893,7 @@
 (define-key evil-normal-state-map (kbd "g n") 'git-gutter:next-hunk)
 (define-key evil-normal-state-map (kbd "g p") 'git-gutter:previous-hunk)
 (define-key evil-normal-state-map (kbd "g =") 'git-gutter:popup-hunk)
+(define-key evil-normal-state-map (kbd "g s") 'git-gutter:stage-hunk)
 (define-key evil-normal-state-map (kbd "g r") 'git-gutter:revert-hunk)
 (define-key evil-normal-state-map (kbd "C-t") nil)
 (define-key evil-insert-state-map (kbd "C-z") nil)
