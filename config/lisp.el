@@ -607,6 +607,12 @@
 
 ;;; Ruby Mode
 (require 'ruby-end)
+(defun ruby-anti-hash-rocket ()
+  (interactive)
+  (save-excursion
+    (setq replaced (replace-regexp-in-string ":\\([a-z0-9_]+\\)\s*=>" "\\1:" (buffer-string)))
+    (erase-buffer)
+    (insert replaced)))
 (add-hook 'ruby-mode-hook
           '(lambda ()
              (setq ruby-insert-encoding-magic-comment nil)  ; マジックコメントを追加しない
