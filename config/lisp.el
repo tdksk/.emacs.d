@@ -343,6 +343,7 @@
 ;;; anzu
 (require 'anzu)
 (global-anzu-mode t)
+(setq anzu-search-threshold 1000)
 
 ;;; Evil Numbers
 (require 'evil-numbers)
