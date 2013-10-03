@@ -1026,8 +1026,10 @@ Argument REPLACE String used to replace the matched strings in the buffer.
         (process-send-string proc text)
         (process-send-eof proc))))
   (setq interprogram-cut-function 'paste-to-osx)
-  ;; NOT use because of evil-paste-after and evil-paste-before
   ;; (setq interprogram-paste-function 'copy-from-osx)
+  (setq interprogram-paste-function
+        (lambda ()
+          (when (evil-insert-state-p) (copy-from-osx))))
   ;; canary
   (defun canary-reload ()
     (interactive)
