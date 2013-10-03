@@ -904,24 +904,24 @@
 (define-key evil-insert-state-map (kbd "C-y") nil)
 (define-key evil-insert-state-map (kbd "C-k") nil)
 (define-key evil-insert-state-map (kbd "C-o") nil)
-(defadvice evil-paste-pop (around evil-paste-or-move-line activate)
-  ;; evil-paste-popできなかったらprevious-lineする
-  "If there is no just-yanked stretch of killed text, just move
-to previous line."
-  (condition-case err
-      ad-do-it
-    (error (if (eq this-command 'evil-paste-pop)
-               (call-interactively 'previous-line)
-             (signal (car err) (cdr err))))))
-(defadvice evil-paste-pop-next (around evil-paste-or-move-line activate)
-  ;; evil-paste-pop-nextできなかったらnext-lineする
-  "If there is no just-yanked stretch of killed text, just move
-to next line."
-  (condition-case err
-      ad-do-it
-    (error (if (eq this-command 'evil-paste-pop-next)
-               (call-interactively 'next-line)
-             (signal (car err) (cdr err))))))
+;; (defadvice evil-paste-pop (around evil-paste-or-move-line activate)
+;;   ;; evil-paste-popできなかったらprevious-lineする
+;;   "If there is no just-yanked stretch of killed text, just move
+;; to previous line."
+;;   (condition-case err
+;;       ad-do-it
+;;     (error (if (eq this-command 'evil-paste-pop)
+;;                (call-interactively 'previous-line)
+;;              (signal (car err) (cdr err))))))
+;; (defadvice evil-paste-pop-next (around evil-paste-or-move-line activate)
+;;   ;; evil-paste-pop-nextできなかったらnext-lineする
+;;   "If there is no just-yanked stretch of killed text, just move
+;; to next line."
+;;   (condition-case err
+;;       ad-do-it
+;;     (error (if (eq this-command 'evil-paste-pop-next)
+;;                (call-interactively 'next-line)
+;;              (signal (car err) (cdr err))))))
 (lexical-let ((default-color (cons (face-background 'mode-line)
                                    (face-foreground 'mode-line))))
   (add-hook 'post-command-hook
