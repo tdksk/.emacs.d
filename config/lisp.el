@@ -16,6 +16,7 @@
          coffee-mode
          html-mode
          rhtml-mode
+         haml-mode
          objc-mode
          matlab-mode
          markdown-mode
