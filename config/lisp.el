@@ -897,7 +897,7 @@
 (define-key evil-normal-state-map (kbd "g s") 'git-gutter:stage-hunk)
 (define-key evil-normal-state-map (kbd "g r") 'git-gutter:revert-hunk)
 (define-key evil-normal-state-map (kbd "g m") 'git-messenger:popup-message)
-(define-key evil-normal-state-map (kbd "C-t") nil)
+(define-key evil-normal-state-map (kbd "C-t") 'other-window-or-split)
 (define-key evil-insert-state-map (kbd "C-z") nil)
 (define-key evil-insert-state-map (kbd "C-n") nil)
 (define-key evil-insert-state-map (kbd "C-p") nil)
@@ -905,6 +905,8 @@
 (define-key evil-insert-state-map (kbd "C-y") nil)
 (define-key evil-insert-state-map (kbd "C-k") nil)
 (define-key evil-insert-state-map (kbd "C-o") nil)
+(define-key evil-insert-state-map (kbd "C-d") nil)
+(define-key evil-insert-state-map (kbd "C-t") nil)
 ;; (defadvice evil-paste-pop (around evil-paste-or-move-line activate)
 ;;   ;; evil-paste-popできなかったらprevious-lineする
 ;;   "If there is no just-yanked stretch of killed text, just move
