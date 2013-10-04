@@ -898,6 +898,7 @@
 (define-key evil-normal-state-map (kbd "g r") 'git-gutter:revert-hunk)
 (define-key evil-normal-state-map (kbd "g m") 'git-messenger:popup-message)
 (define-key evil-normal-state-map (kbd "C-t") 'other-window-or-split)
+(define-key evil-normal-state-map (kbd "SPC") 'save-buffer)
 (define-key evil-insert-state-map (kbd "C-z") nil)
 (define-key evil-insert-state-map (kbd "C-n") nil)
 (define-key evil-insert-state-map (kbd "C-p") nil)
