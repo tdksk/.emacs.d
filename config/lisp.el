@@ -169,6 +169,8 @@
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
 (global-set-key (kbd "M-c") 'duplicate-thing)
+;; with comment out
+(global-set-key (kbd "C-M-c") (lambda () (interactive) (duplicate-thing '(1))))
 
 ;;; smartchr.el
 (require 'smartchr)
