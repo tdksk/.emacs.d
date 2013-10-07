@@ -819,7 +819,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;; dired拡張
 (require 'dired-x)
 (defface dired-face
-  `((t (:background "white" :foreground "black")))
+  `((t (:background "white" :foreground "black" :weight normal)))
   "Face for dired-mode."
   :group 'dired-mode)
 (add-hook 'dired-mode-hook
