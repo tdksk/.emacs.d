@@ -46,7 +46,7 @@
 (define-key global-map (kbd "M-y") 'yank-bottom-line)       ; 下の行にyank
 (define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
 (define-key global-map (kbd "C-z") 'switch-to-last-buffer)  ; 直前のバッファに切り替え
-;; (define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
+(define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
 (define-key global-map (kbd "C-M-t") 'other-window-backward-or-split)
 (define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
 (define-key global-map (kbd "C-c f") 'flyspell-mode)        ; flyspell-mode
