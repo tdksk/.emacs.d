@@ -890,6 +890,7 @@
     (define-key map key2 def1)))
 (evil-swap-key evil-motion-state-map "j" "gj")
 (evil-swap-key evil-motion-state-map "k" "gk")
+(define-key evil-normal-state-map (kbd "Y") (kbd "y$"))
 (define-key evil-normal-state-map (kbd "C-z") 'switch-to-last-buffer)
 (define-key evil-normal-state-map (kbd "C-j") 'scroll-up-line)
 (define-key evil-normal-state-map (kbd "C-k") 'scroll-down-line)
