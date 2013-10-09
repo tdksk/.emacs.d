@@ -810,7 +810,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
         (command
          (format (concat
                   "cd %s && "
-                  "PAGER='' git grep -I -n -i --break --color -e %s")
+                  "PAGER='' git grep -I -n -i --break --color -e '%s'")
                  grep-dir
                  search-word)))
     (grep command)))
