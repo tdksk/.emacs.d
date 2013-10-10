@@ -900,6 +900,7 @@
 (define-key evil-normal-state-map (kbd "C-k") 'scroll-down-line)
 (define-key evil-normal-state-map (kbd "g h") 'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "g l") 'evil-end-of-line)
+(define-key evil-normal-state-map (kbd "g o") 'open-at-point)
 (define-key evil-normal-state-map (kbd "g n") 'git-gutter:next-hunk)
 (define-key evil-normal-state-map (kbd "g p") 'git-gutter:previous-hunk)
 (define-key evil-normal-state-map (kbd "g =") 'git-gutter:popup-hunk)

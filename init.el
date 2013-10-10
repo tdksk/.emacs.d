@@ -844,6 +844,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (define-key dired-mode-map "n" 'isearch-repeat-forward)
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
 (define-key dired-mode-map "i" 'wdired-change-to-wdired-mode)      ; ファイル名編集
+(define-key dired-mode-map "f" 'open-current-dir)
+(define-key dired-mode-map (kbd "SPC") 'dired-do-open)
 ;;; フォルダを開く時, 新しいバッファを作成しない
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
@@ -1030,6 +1032,29 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (setq interprogram-paste-function
         (lambda ()
           (when (evil-insert-state-p) (copy-from-osx))))
+  ;; open
+  (defun open-current-dir ()
+    (interactive)
+    (shell-command "open ."))
+  (defun open-at-point ()
+    "Ask /usr/bin/open to open the thing at or before point."
+    (interactive)
+    (require 'ffap)
+    (let ((file (or (ffap-url-at-point)
+                    (ffap-file-at-point))))
+      (unless (stringp file)
+        (error "No file or URL found"))
+      (when (file-exists-p (expand-file-name file))
+        (setq file (expand-file-name file)))
+      (message "Open: %s" file)
+      (start-process "open_ps" nil "open" file)))
+  (defun dired-do-open (&optional arg)
+    "In dired, invoke /usr/bin/open on the marked files.
+If no files are marked or a specific numeric prefix arg is given,
+the next ARG files are used.  Just \\[universal-argument] means the current file."
+    (interactive "P")
+    (let ((files (dired-get-marked-files nil arg)))
+      (apply 'start-process "open_ps" nil "open" files)))
   ;; canary
   (defun canary-reload ()
     (interactive)
