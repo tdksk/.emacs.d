@@ -758,16 +758,30 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;; (setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
 ;; (global-set-key (kbd "M-RET") 'cua-set-rectangle-mark)  ; 矩形選択開始
 
+;;; tmux
+(global-set-key (kbd "M-t") 'open-current-directory-in-tmux-new-window)
+(defun open-current-directory-in-tmux-new-window ()
+  "カレントディレクトリをtmuxの新しいwindowで開く."
+  (interactive)
+  (let* ((dir (if buffer-file-name
+                  (file-name-directory buffer-file-name)
+                (expand-file-name "~/")))
+         (cmd (concat "tmux new-window \"cd " dir "; exec $SHELL\"")))
+    (cond ((eq (shell-command cmd) 0)
+           (message "Open directory %s in tmux new window." dir))
+          (t
+           (message "Failed to create new window in tmux.")))))
+
 ;;; Term Mode
-(global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
-(global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
-(add-hook 'term-mode-hook
-          '(lambda ()
-             (linum-mode -1)
-             ;; キーバインド
-             (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
-             (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
-             ))
+;; (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
+;; (global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
+;; (add-hook 'term-mode-hook
+;;           '(lambda ()
+;;              (linum-mode -1)
+;;              ;; キーバインド
+;;              (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
+;;              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
+;;              ))
 
 ;;; grep-mode
 (require 'wgrep)
