@@ -89,10 +89,11 @@
   (if linum-mode (goto-line (read-number "Goto line: "))
     (unwind-protect
         (progn
+          (git-gutter-mode -1)
           (linum-mode 1)
           (goto-line (read-number "Goto line: ")))
       (linum-mode -1)
-      (git-gutter))))
+      (git-gutter-mode 1))))
 
 (defun next-line-linewise ()
   (interactive)
