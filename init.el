@@ -710,10 +710,10 @@
   (active-region-mode -1))
 (add-hook 'activate-mark-hook 'active-region-on)
 (add-hook 'deactivate-mark-hook 'active-region-off)
-(define-key active-region-mode-map (kbd "C-g") 'quit-active-region)
-(defun quit-active-region()
-  (interactive)
-  (cua-set-mark))
+;; (define-key active-region-mode-map (kbd "C-g") 'quit-active-region)
+;; (defun quit-active-region()
+;;   (interactive)
+;;   (cua-set-mark))
 
 ;;; ispell
 (eval-after-load "ispell"
