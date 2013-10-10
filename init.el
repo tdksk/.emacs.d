@@ -333,10 +333,14 @@
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
 ;; (setq show-paren-style 'mixed)
 ;;; 色
-(set-face-background 'show-paren-match-face "cyan")
-(set-face-foreground 'show-paren-match-face "black")
-(set-face-background 'show-paren-mismatch-face "red")
-(set-face-foreground 'show-paren-mismatch-face "black")
+(set-face-attribute 'show-paren-match nil
+                    :foreground "black"
+                    :background "cyan"
+                    :weight 'normal)
+(set-face-attribute 'show-paren-mismatch nil
+                    :foreground "black"
+                    :background "red"
+                    :weight 'normal)
 
 ;;; 行末の空白を表示
 ;; (setq-default show-trailing-whitespace t)
