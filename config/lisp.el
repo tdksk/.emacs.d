@@ -881,8 +881,8 @@
 ;;; Evil
 (setq evil-want-C-u-scroll t)
 (setq evil-want-C-i-jump nil)
-;; (setq evil-search-module 'evil-search)
-;; (setq evil-ex-search-vim-style-regexp t)
+(setq evil-search-module 'evil-search)
+(setq evil-ex-search-vim-style-regexp t)
 (setq evil-shift-width 2)
 (require 'evil)
 (evil-mode 1)
@@ -910,6 +910,7 @@
 (define-key evil-normal-state-map (kbd "C-t") nil)
 (define-key evil-normal-state-map (kbd "RET") (kbd "o <escape>"))
 (define-key evil-normal-state-map (kbd "SPC") 'save-buffer)
+(define-key evil-normal-state-map (kbd "<escape>") 'evil-ex-nohighlight)
 (define-key evil-insert-state-map (kbd "C-z") nil)
 (define-key evil-insert-state-map (kbd "C-n") nil)
 (define-key evil-insert-state-map (kbd "C-p") nil)
