@@ -747,11 +747,11 @@ Argument REPLACE String used to replace the matched strings in the buffer.
     (message "Not in a re-builder buffer!")))
 
 ;;; cua-mode
-(cua-mode t)
-(set-face-foreground 'cua-rectangle "black")
-(set-face-background 'cua-rectangle "magenta")
-(setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
-(global-set-key (kbd "M-RET") 'cua-set-rectangle-mark)  ; 矩形選択開始
+;; (cua-mode t)
+;; (set-face-foreground 'cua-rectangle "black")
+;; (set-face-background 'cua-rectangle "magenta")
+;; (setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
+;; (global-set-key (kbd "M-RET") 'cua-set-rectangle-mark)  ; 矩形選択開始
 
 ;;; Term Mode
 (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
