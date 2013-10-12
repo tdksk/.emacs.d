@@ -799,6 +799,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
             (define-key grep-mode-map "u" 'scroll-down)
             (define-key grep-mode-map (kbd "C-d") 'scroll-up)
             (define-key grep-mode-map (kbd "C-u") 'scroll-down)
+            (define-key grep-mode-map (kbd "C-f") 'scroll-up)
+            (define-key grep-mode-map (kbd "C-b") 'scroll-down)
             (define-key grep-mode-map "i" 'wgrep-change-to-wgrep-mode)))
 
 ;; git-grep
@@ -859,6 +861,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
 (define-key dired-mode-map (kbd "C-d") 'scroll-up)
 (define-key dired-mode-map (kbd "C-u") 'scroll-down)
+(define-key dired-mode-map (kbd "C-f") 'scroll-up)
+(define-key dired-mode-map (kbd "C-b") 'scroll-down)
 (define-key dired-mode-map "/" 'isearch-forward)
 (define-key dired-mode-map "n" 'isearch-repeat-forward)
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
@@ -965,6 +969,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "C-f") 'scroll-up)
+             (local-set-key (kbd "C-b") 'scroll-down)
              (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
              (local-set-key (kbd "RET") 'log-view-diff)
              (local-set-key (kbd "o") 'log-view-diff)
@@ -1003,6 +1009,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "C-f") 'scroll-up)
+             (local-set-key (kbd "C-b") 'scroll-down)
              (local-set-key (kbd "q") 'vc-annotate-quit-session)))
 (defadvice vc-annotate (around vc-annotate-fullscreen activate)
   (window-configuration-to-register :vc-annotate-fullscreen)

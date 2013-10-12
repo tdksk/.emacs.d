@@ -409,6 +409,8 @@
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "C-f") 'scroll-up)
+             (local-set-key (kbd "C-b") 'scroll-down)
              (local-set-key (kbd "q") 'magit-log-quit-session)))
 (add-hook 'magit-commit-mode-hook
           '(lambda ()
@@ -417,7 +419,9 @@
              (local-set-key (kbd "d") 'scroll-up)
              (local-set-key (kbd "u") 'scroll-down)
              (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)))
+             (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "C-f") 'scroll-up)
+             (local-set-key (kbd "C-b") 'scroll-down)))
 (defun magit-toggle-highlight ()
   (interactive)
   (if magit-highlight-status
