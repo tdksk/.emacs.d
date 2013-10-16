@@ -401,6 +401,12 @@
 (defvar magit-highlight-status t)
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
 (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
+(add-hook 'magit-mode-hook
+          '(lambda ()
+             (local-set-key (kbd "j") 'magit-goto-next-section)
+             (local-set-key (kbd "k") 'magit-goto-previous-section)
+             (local-set-key (kbd "K") 'magit-discard-item)
+             (local-set-key (kbd "o") 'magit-visit-item)))
 (add-hook 'magit-log-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
