@@ -780,7 +780,9 @@
 (setq helm-input-idle-delay 0)
 (eval-after-load 'helm
   '(progn
-     (set-face-foreground 'helm-selection "black")))
+     (set-face-foreground 'helm-selection "black")
+     (define-key helm-map (kbd "C-w") 'backward-kill-word)
+     (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))))
 ;; helm-ag
 (require 'helm-ag)
 (global-set-key (kbd "C-x C-g") 'helm-ag)
