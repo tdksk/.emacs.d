@@ -369,7 +369,6 @@
 (dolist (hook '(perl-mode-hook
                 js2-mode-hook
                 scss-mode-hook
-                objc-mode-hook
                 python-mode-hook
                 ruby-mode-hook
                 coffee-mode-hook
