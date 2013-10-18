@@ -751,14 +751,6 @@
             (setq-default indent-tabs-mode nil)
             (local-set-key (kbd "C-c C-o") 'ff-find-other-file)))
 
-;;; MATLAB mode
-(autoload 'matlab-mode "matlab" "Enter Matlab mode." t)
-(setq auto-mode-alist
-      (cons '("\\.m\\'" . matlab-mode) auto-mode-alist))
-(autoload 'matlab-shell "matlab" "Interactive Matlab mode." t)
-(setq matlab-indent-function-body nil
-      matlab-highlight-cross-function-variables t)
-
 ;;; Helm
 (require 'helm-config)
 (helm-mode 1)
