@@ -749,7 +749,8 @@
             (c-set-style "cc-mode")
             (setq-default tab-width 4)
             (setq-default indent-tabs-mode nil)
-            (local-set-key (kbd "C-c C-o") 'ff-find-other-file)))
+            (local-set-key (kbd "C-c C-o") 'ff-find-other-file)
+            (local-set-key (kbd "M-r") 'xcode-run)))
 
 ;;; Helm
 (require 'helm-config)
