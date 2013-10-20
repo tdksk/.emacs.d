@@ -58,11 +58,9 @@
 
 ;; C-c C-c
 (dolist (hook '(c-mode-common-hook
-                php-mode-hook
                 html-mode-hook
                 scss-mode-hook
                 ruby-mode-hook
-                objc-mode-hook
                 yatex-mode-hook))
   (add-hook hook '(lambda ()
                     (local-set-key (kbd "C-c C-c") 'comment-dwim-line))))
@@ -70,11 +68,9 @@
 ;; Languages use semicolon
 (dolist (hook '(c-mode-common-hook
                 perl-mode-hook
-                php-mode-hook
                 js2-mode-hook
                 css-mode-hook
-                scss-mode-hook
-                objc-mode-hook))
+                scss-mode-hook))
   (add-hook hook 'use-semicolon-keybindings))
 ;; Languages not use semicolon
 (dolist (hook '(python-mode-hook

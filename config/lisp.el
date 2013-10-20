@@ -239,14 +239,12 @@
                 perl-mode-hook
                 ruby-mode-hook
                 python-mode-hook
-                php-mode-hook
                 js2-mode-hook
                 coffee-mode-hook
                 css-mode-hook
                 scss-mode-hook
                 html-mode-hook
                 haml-mode-hook
-                objc-mode-hook
                 sh-mode-hook))
   (add-hook hook 'my-smartchr-keybindings-single-quote))
 ;; for cc-mode
@@ -540,6 +538,25 @@
                          :foreground "black" :weight 'normal
                          :background "yellow")))
 
+;;; CC Mode
+(setq ff-other-file-alist
+      '(("\\.mm?$" (".h"))
+        ("\\.cc$"  (".hh" ".h"))
+        ("\\.hh$"  (".cc" ".C"))
+        ("\\.c$"   (".h"))
+        ("\\.h$"   (".c" ".cc" ".C" ".CC" ".cxx" ".cpp" ".m" ".mm"))
+        ("\\.C$"   (".H"  ".hh" ".h"))
+        ("\\.H$"   (".C"  ".CC"))
+        ("\\.CC$"  (".HH" ".H"  ".hh" ".h"))
+        ("\\.HH$"  (".CC"))
+        ("\\.cxx$" (".hh" ".h"))
+        ("\\.cpp$" (".hpp" ".hh" ".h"))
+        ("\\.hpp$" (".cpp" ".c"))))
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (local-set-key (kbd "C-c C-o") 'ff-find-other-file)
+            (local-set-key (kbd "C-c C-d") 'dash-at-point)))
+
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
@@ -731,25 +748,11 @@
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@interface" . objc-mode))
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@protocol" . objc-mode))
-(setq ff-other-file-alist
-      '(("\\.mm?$" (".h"))
-        ("\\.cc$"  (".hh" ".h"))
-        ("\\.hh$"  (".cc" ".C"))
-        ("\\.c$"   (".h"))
-        ("\\.h$"   (".c" ".cc" ".C" ".CC" ".cxx" ".cpp" ".m" ".mm"))
-        ("\\.C$"   (".H"  ".hh" ".h"))
-        ("\\.H$"   (".C"  ".CC"))
-        ("\\.CC$"  (".HH" ".H"  ".hh" ".h"))
-        ("\\.HH$"  (".CC"))
-        ("\\.cxx$" (".hh" ".h"))
-        ("\\.cpp$" (".hpp" ".hh" ".h"))
-        ("\\.hpp$" (".cpp" ".c"))))
 (add-hook 'objc-mode-hook
           (lambda ()
             (c-set-style "cc-mode")
             (setq-default tab-width 4)
             (setq-default indent-tabs-mode nil)
-            (local-set-key (kbd "C-c C-o") 'ff-find-other-file)
             (local-set-key (kbd "M-r") 'xcode-run)))
 
 ;;; Helm
