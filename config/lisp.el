@@ -777,6 +777,7 @@
 (global-set-key (kbd "C-;") 'helm-git-project)
 (setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
+(setq helm-ff-transformer-show-only-basename nil)
 (eval-after-load 'helm
   '(progn
      (set-face-foreground 'helm-selection "black")
