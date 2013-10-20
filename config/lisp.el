@@ -532,6 +532,7 @@
   (add-hook list 'flycheck-mode))
 (eval-after-load "flycheck"
   '(progn
+     (setq flycheck-display-errors-delay 0.3)
      (set-face-attribute 'flycheck-error nil
                          :foreground "black" :weight 'normal
                          :background "red")
