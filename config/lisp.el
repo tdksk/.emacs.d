@@ -951,6 +951,7 @@
 (define-key evil-insert-state-map (kbd "C-k") nil)
 (define-key evil-insert-state-map (kbd "C-o") nil)
 (define-key evil-insert-state-map (kbd "C-d") nil)
+(define-key evil-insert-state-map (kbd "C-w") nil)
 (define-key evil-insert-state-map (kbd "C-t") 'transpose-chars)
 (defun switch-linum-mode-git-gutter-mode ()
   (interactive)
