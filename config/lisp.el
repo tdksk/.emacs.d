@@ -24,14 +24,13 @@
          git-commit-mode
          yatex-mode))
   (add-to-list 'ac-modes list))
-(add-hook 'AC-mode-hook
-          (set-face-attribute 'ac-completion-face nil
-                              :foreground "black"
-                              :background "white"
-                              :weight 'normal)
-          (set-face-attribute 'ac-selection-face nil
-                              :foreground "black"
-                              :background "blue"))
+(set-face-attribute 'ac-completion-face nil
+                    :foreground "black"
+                    :background "white"
+                    :weight 'normal)
+(set-face-attribute 'ac-selection-face nil
+                    :foreground "black"
+                    :background "blue")
 ;; auto-complete の候補に日本語を含む単語が含まれないようにする
 ;; http://d.hatena.ne.jp/IMAKADO/20090813/1250130343
 (defadvice ac-word-candidates (after remove-word-contain-japanese activate)
@@ -53,6 +52,22 @@
   '((candidates . ac-look-candidates)
     (requires . 2)))
 (global-set-key (kbd "C-M-l") 'ac-look)
+;; emacs-clang-complete-async
+(require 'auto-complete-clang-async)
+(defun ac-cc-mode-setup ()
+  (setq ac-clang-complete-executable "~/.emacs.d/lisp/emacs-clang-complete-async/clang-complete")
+  (setq ac-sources (append '(ac-source-clang-async ac-source-yasnippet) ac-sources))
+  (set-face-attribute 'ac-clang-candidate-face nil
+                      :foreground "white"
+                      :background "black"
+                      :weight 'normal)
+  (set-face-attribute 'ac-clang-selection-face nil
+                      :foreground "black"
+                      :background "blue")
+  (ac-clang-launch-completion-process))
+(defun ac-cc-mode-config ()
+  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup))
+(ac-cc-mode-config)
 
 ;;; smart-compile
 (require 'smart-compile)

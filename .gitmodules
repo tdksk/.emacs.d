@@ -100,3 +100,6 @@
 [submodule "lisp/js2-mode"]
 	path = lisp/js2-mode
 	url = https://github.com/mooz/js2-mode.git
+[submodule "lisp/emacs-clang-complete-async"]
+	path = lisp/emacs-clang-complete-async
+	url = https://github.com/Golevka/emacs-clang-complete-async.git
