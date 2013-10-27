@@ -983,6 +983,8 @@
 (define-key evil-insert-state-map (kbd "C-d") nil)
 (define-key evil-insert-state-map (kbd "C-w") nil)
 (define-key evil-insert-state-map (kbd "C-t") 'transpose-chars)
+(define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
+(define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (defun switch-linum-mode-git-gutter-mode ()
   (interactive)
   (if (not linum-mode)
