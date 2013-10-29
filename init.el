@@ -855,6 +855,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
 (define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
 (define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
+(define-key dired-mode-map (kbd "C-t") 'other-window-or-split)
 (define-key dired-mode-map (kbd "C-d") 'scroll-up)
 (define-key dired-mode-map (kbd "C-u") 'scroll-down)
 (define-key dired-mode-map (kbd "C-f") 'scroll-up)
