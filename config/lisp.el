@@ -418,7 +418,11 @@
              (local-set-key (kbd "j") 'magit-goto-next-section)
              (local-set-key (kbd "k") 'magit-goto-previous-section)
              (local-set-key (kbd "K") 'magit-discard-item)
-             (local-set-key (kbd "o") 'magit-visit-item)))
+             (local-set-key (kbd "o") 'magit-visit-item)
+             (local-set-key (kbd "C-d") 'scroll-up)
+             (local-set-key (kbd "C-u") 'scroll-down)
+             (local-set-key (kbd "C-f") 'scroll-up)
+             (local-set-key (kbd "C-b") 'scroll-down)))
 (add-hook 'magit-log-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
