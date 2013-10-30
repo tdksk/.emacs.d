@@ -371,7 +371,6 @@
 
 ;;; volatile-highlights
 (require 'volatile-highlights)
-;; TODO: Warning: `interactive-p' is an obsolete function (as of 23.2); use `called-interactively-p' instead.
 (volatile-highlights-mode t)
 
 ;;; Highlight Indentation
