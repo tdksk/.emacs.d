@@ -103,3 +103,6 @@
 [submodule "lisp/emacs-clang-complete-async"]
 	path = lisp/emacs-clang-complete-async
 	url = https://github.com/Golevka/emacs-clang-complete-async.git
+[submodule "lisp/evil-matchit"]
+	path = lisp/evil-matchit
+	url = https://github.com/redguardtoo/evil-matchit.git

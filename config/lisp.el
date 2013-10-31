@@ -1029,3 +1029,7 @@
 ;;; evil-surround
 (require 'surround)
 (global-surround-mode 1)
+
+;;; evil-matchit
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
