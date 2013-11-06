@@ -973,6 +973,8 @@
 (define-key evil-normal-state-map (kbd "g C-p") 'flycheck-previous-error)
 (define-key evil-normal-state-map (kbd "g SPC") 'switch-linum-mode-git-gutter-mode)
 (define-key evil-normal-state-map (kbd "C-t") nil)
+(define-key evil-normal-state-map (kbd "q") nil)
+(define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
 (define-key evil-normal-state-map (kbd "RET") (kbd "o <escape>"))
 (define-key evil-normal-state-map (kbd "M-RET") (kbd "O <escape>"))
 (define-key evil-normal-state-map (kbd "SPC") 'save-buffer)
