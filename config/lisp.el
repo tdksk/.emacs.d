@@ -658,6 +658,12 @@
              (local-set-key (kbd ";") 'coffee-open-line-below)))
 
 ;;; Ruby Mode
+(autoload 'ruby-mode "ruby-mode"
+  "Mode for editing ruby source files" t)
+(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Capfile$" . ruby-mode))
+(add-to-list 'auto-mode-alist '("Gemfile$" . ruby-mode))
+(setq ruby-insert-encoding-magic-comment nil)
 (require 'ruby-end)
 (require 'ruby-block)
 (ruby-block-mode t)
@@ -683,11 +689,6 @@
     (setq replaced (replace-regexp-in-string ":\\([a-z0-9_]+\\)\s*=>" "\\1:" (buffer-string)))
     (erase-buffer)
     (insert replaced)))
-(add-hook 'ruby-mode-hook
-          '(lambda ()
-             (setq ruby-insert-encoding-magic-comment nil)  ; マジックコメントを追加しない
-             (define-key ruby-mode-map "\C-m" 'newline-and-indent)
-             (define-key ruby-mode-map "\C-j" 'open-line-below)))
 
 ;;; Rinari: Ruby on Rails Minor Mode
 (require 'rinari)
