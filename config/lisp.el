@@ -659,6 +659,9 @@
 
 ;;; Ruby Mode
 (require 'ruby-end)
+(require 'ruby-block)
+(ruby-block-mode t)
+(setq ruby-block-highlight-toggle t)
 (setq ruby-deep-indent-paren-style nil)
 (defadvice ruby-indent-line (after unindent-closing-paren activate)
   (let ((column (current-column))
