@@ -328,6 +328,14 @@
 (setq show-paren-delay 0)  ; ハイライトまでの遅延
 ;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
 ;; (setq show-paren-style 'mixed)
+(defadvice show-paren-function (after evil-echo-paren-matching-line activate)
+  "If a matching paren is off-screen, echo the matching line."
+  (when (char-equal (char-syntax (char-before (+ (point) 1))) ?\))
+    (forward-char)
+    (let ((matching-text (blink-matching-open)))
+      (when matching-text
+        (message matching-text)))
+    (backward-char)))
 ;;; 色
 (set-face-attribute 'show-paren-match nil
                     :foreground "black"
