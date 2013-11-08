@@ -454,9 +454,11 @@
 (setq process-kill-without-query t)
 
 ;;; 最近使ったファイルを保存する
-(recentf-mode t)
-(global-set-key "\C-xf" 'recentf-open-files)  ; 履歴一覧を開く
-(setq recentf-max-saved-items 100)
+(setq recentf-max-saved-items 1000)
+(setq recentf-exclude '(".recentf"))
+(setq recentf-auto-cleanup 10)
+(run-with-idle-timer 30 t 'recentf-save-list)
+(recentf-mode 1)
 
 ;;; ファイルに変更があったら自動的にバッファ更新
 (global-auto-revert-mode t)
