@@ -966,6 +966,10 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;;             (hl-line-mode t)))
 
 ;;; VC
+;; avoid "Symbolic link to Git-controlled source file; follow link? (y or n)"
+(setq vc-follow-symlinks t)
+;; avoid recording symlink path to .recentf
+(setq-default find-file-visit-truename t)
 (global-set-key (kbd "C-x =") 'vc-diff)
 (global-set-key (kbd "C-x l") 'vc-print-log)
 (global-set-key (kbd "C-x L") 'vc-print-root-log)
