@@ -558,6 +558,23 @@
     (when path
       (setq output (concat ".../" output)))
     output))
+;; Show git status in mode line
+;; http://superuser.com/questions/576953/how-do-i-show-the-git-status-in-the-emacs-bottom-bar
+(defadvice vc-git-mode-line-string (after plus-minus (file) compile activate)
+  (setq ad-return-value
+        (concat ad-return-value
+                (let ((plus-minus (vc-git--run-command-string
+                                   file "diff" "--numstat" "--")))
+                  (and plus-minus
+                       (string-match "^\\([0-9]+\\)\t\\([0-9]+\\)\t" plus-minus)
+                       (format "|+%s|-%s" (match-string 1 plus-minus) (match-string 2 plus-minus))))))
+  (setq ad-return-value (replace-regexp-in-string "^Git\\(-\\|:\\)" "" ad-return-value)))
+(dolist (hook '(after-revert-hook
+                window-configuration-change-hook
+                git-gutter-mode-on-hook))
+  (add-hook hook
+            (lambda ()
+              (vc-mode-line (buffer-file-name (current-buffer))))))
 ;; Extra mode line faces
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
