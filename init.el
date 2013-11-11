@@ -454,6 +454,12 @@
 (setq process-kill-without-query t)
 
 ;;; 最近使ったファイルを保存する
+(defadvice recentf-save-list
+  (after hide-recentf-save-list-message activate)
+  (message nil))
+(defadvice recentf-cleanup
+  (after hide-recentf-cleanup-message activate)
+  (message nil))
 (setq recentf-max-saved-items 1000)
 (setq recentf-exclude '(".recentf"))
 (setq recentf-auto-cleanup 10)
