@@ -885,6 +885,8 @@
 (defun magit-enable-helm ()
   (define-key git-commit-mode-map (kbd "C-'") 'helm-git-commit-messages))
 (add-hook 'magit-mode-hook 'magit-enable-helm)
+;;; helm-open-github
+(require 'helm-open-github)
 
 ;; ;;; view-mode, viewer.el
 ;; (setq view-read-only t)

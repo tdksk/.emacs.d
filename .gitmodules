@@ -106,3 +106,15 @@
 [submodule "lisp/evil-matchit"]
 	path = lisp/evil-matchit
 	url = https://github.com/redguardtoo/evil-matchit.git
+[submodule "lisp/gh"]
+	path = lisp/gh
+	url = https://github.com/sigma/gh.el.git
+[submodule "lisp/pcache"]
+	path = lisp/pcache
+	url = https://github.com/sigma/pcache.git
+[submodule "lisp/logito"]
+	path = lisp/logito
+	url = https://github.com/sigma/logito.git
+[submodule "lisp/helm-open-github"]
+	path = lisp/helm-open-github
+	url = https://github.com/syohex/emacs-helm-open-github.git
