@@ -125,18 +125,18 @@
             (local-set-key (kbd "l") 'undo-tree-visualize-switch-branch-right)))
 
 ;;; key-chord.el
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.02)
-(key-chord-mode 1)
+;; (require 'key-chord)
+;; (setq key-chord-two-keys-delay 0.02)
+;; (key-chord-mode 1)
 ;; (key-chord-define-global "jk" 'view-mode)
 ;; (key-chord-define-global "di" 'kill-textobjects-in)
 ;; (key-chord-define-global "da" 'kill-textobjects-an)
 ;; (key-chord-define-global "yi" 'copy-textobjects-in)
 ;; (key-chord-define-global "ya" 'copy-textobjects-an)
-(key-chord-define-global "90" 'kill-textobjects-in-paren)
-(key-chord-define-global "io" 'kill-textobjects-in-single-quote)
-(key-chord-define-global "ui" 'kill-textobjects-in-double-quote)
-(key-chord-define-global "uo" 'replace-single-double-quote)
+;; (key-chord-define-global "90" 'kill-textobjects-in-paren)
+;; (key-chord-define-global "io" 'kill-textobjects-in-single-quote)
+;; (key-chord-define-global "ui" 'kill-textobjects-in-double-quote)
+;; (key-chord-define-global "uo" 'replace-single-double-quote)
 
 ;;; textobjects.el
 (require 'textobjects)
