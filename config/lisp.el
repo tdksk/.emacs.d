@@ -505,15 +505,17 @@
   (delete-window))
 (defun magit-browse ()
   (interactive)
-  (let ((url (with-temp-buffer
-               (unless (zerop (call-process-shell-command "git remote -v" nil t))
-                 (error "Failed: 'git remote -v'"))
-               (goto-char (point-min))
-               (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
-                 (format "https://github.com/%s" (match-string 1))))))
-    (unless url
-      (error "Can't find repository URL"))
-    (browse-url url)))
+  (if (zerop (call-process-shell-command "git config --get hub.host" nil t))
+      (shell-command "hub browse")
+    (let ((url (with-temp-buffer
+                 (unless (zerop (call-process-shell-command "git remote -v" nil t))
+                   (error "Failed: 'git remote -v'"))
+                 (goto-char (point-min))
+                 (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
+                   (format "https://github.com/%s" (match-string 1))))))
+      (unless url
+        (error "Can't find repository URL"))
+      (browse-url url))))
 (define-key magit-mode-map (kbd "H") 'magit-browse)
 
 ;;; git-commit-mode
