@@ -693,6 +693,10 @@
     (erase-buffer)
     (insert replaced)))
 
+;;; RSpec Mode
+(require 'rspec-mode)
+(setq rspec-use-rake-flag nil)
+
 ;;; Rinari: Ruby on Rails Minor Mode
 (require 'rinari)
 (global-rinari-mode)
