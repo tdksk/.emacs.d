@@ -1017,8 +1017,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (local-set-key (kbd "g") 'log-view-annotate-version)))
 (add-hook 'diff-mode-hook
           '(lambda ()
-             (setq hl-line-face 'dired-face)
-             (hl-line-mode t)
              (linum-mode -1)
              ;; (diff-auto-refine-mode t)
              (set-face-attribute 'diff-added nil
