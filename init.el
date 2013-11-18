@@ -524,7 +524,8 @@
            (propertize " RO " 'face 'mode-line-read-only-face))
           ((buffer-modified-p)
            (propertize " ** " 'face 'mode-line-modified-face))
-          (t "    ")))
+          (t
+           (propertize "%4l" 'face 'mode-line-position-face))))
    " "
    ;; directory and buffer/file name
    (:propertize (:eval (shorten-directory default-directory 30))
@@ -578,6 +579,7 @@
 ;; Extra mode line faces
 (make-face 'mode-line-read-only-face)
 (make-face 'mode-line-modified-face)
+(make-face 'mode-line-position-face)
 (make-face 'mode-line-folder-face)
 (make-face 'mode-line-filename-face)
 (make-face 'mode-line-vc-face)
@@ -591,6 +593,10 @@
                     :inherit 'mode-line-face
                     :foreground "red"
                     :background "black")
+(set-face-attribute 'mode-line-position-face nil
+                    :inherit 'mode-line-face
+                    :background "black"
+                    :weight 'bold)
 (set-face-attribute 'mode-line-folder-face nil
                     :inherit 'mode-line-face
                     :background "black"
