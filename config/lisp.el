@@ -691,6 +691,9 @@
 ;;; RSpec Mode
 (require 'rspec-mode)
 (setq rspec-use-rake-flag nil)
+(add-hook 'rspec-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-r") 'rspec-verify-single)))
 
 ;;; Rinari: Ruby on Rails Minor Mode
 (require 'rinari)
