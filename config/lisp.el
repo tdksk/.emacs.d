@@ -804,6 +804,7 @@
 (add-to-list 'helm-completing-read-handlers-alist '(find-file-at-point))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy))
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-symlink))
 (add-to-list 'helm-completing-read-handlers-alist '(mkdir))
 (add-to-list 'helm-completing-read-handlers-alist '(diff))
 ;; my buffers
