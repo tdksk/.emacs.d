@@ -54,7 +54,8 @@
 (global-set-key (kbd "C-M-l") 'ac-look)
 ;; emacs-clang-complete-async
 (require 'auto-complete-clang-async)
-(defun ac-cc-mode-setup ()
+(defun ac-clang-complete-setup ()
+  ;; TODO: Fix loading twice
   (setq ac-clang-complete-executable "~/.emacs.d/lisp/emacs-clang-complete-async/clang-complete")
   (setq ac-sources (append '(ac-source-clang-async ac-source-yasnippet) ac-sources))
   (set-face-attribute 'ac-clang-candidate-face nil
@@ -65,9 +66,7 @@
                       :foreground "black"
                       :background "blue")
   (ac-clang-launch-completion-process))
-(defun ac-cc-mode-config ()
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup))
-(ac-cc-mode-config)
+(add-hook 'objc-mode-hook 'ac-clang-complete-setup)
 
 ;;; smart-compile
 (require 'smart-compile)
