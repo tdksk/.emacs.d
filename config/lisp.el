@@ -265,7 +265,7 @@
 (defun my-smartchr-keybindings-cc ()
   (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
-  (local-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
+  (local-set-key (kbd "/") (smartchr '("/" "//" "/* `!!' */" my-smartchr-comment)))
   )
 (add-hook 'c-mode-common-hook 'my-smartchr-keybindings-cc)
 ;; for perl-mode
@@ -297,7 +297,7 @@
          (global-set-key (kbd "K") (smartchr '("K" "&")))
          (global-set-key (kbd "L") (smartchr '("L" "->" "LL")))
          (global-set-key (kbd "I") (smartchr '("I" "\'`!!'\'" "\"`!!'\"")))
-         (global-set-key (kbd "/") (smartchr '("/" "// " "/* `!!' */" my-smartchr-comment)))
+         (global-set-key (kbd "/") (smartchr '("/" "//" "/* `!!' */" my-smartchr-comment)))
          (message "smartchr on"))
         (t
          ;; TODO: for some major mode
