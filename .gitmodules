@@ -121,3 +121,6 @@
 [submodule "lisp/rspec-mode"]
 	path = lisp/rspec-mode
 	url = https://github.com/pezra/rspec-mode.git
+[submodule "lisp/ac-ispell"]
+	path = lisp/ac-ispell
+	url = https://github.com/syohex/emacs-ac-ispell.git
