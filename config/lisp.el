@@ -51,7 +51,7 @@
 (ac-define-source look
   '((candidates . ac-look-candidates)
     (requires . 2)))
-(global-set-key (kbd "C-M-l") 'ac-look)
+(global-set-key (kbd "M-l") 'ac-look)
 ;; emacs-clang-complete-async
 (require 'auto-complete-clang-async)
 (defun ac-clang-complete-setup ()

@@ -26,9 +26,9 @@
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c C-f") 'find-name-dired)    ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
-(define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
-(define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
-(define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
+;; (define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
+;; (define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
+;; (define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
 ;; (define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
 ;; (define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
 ;; (define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
