@@ -51,7 +51,6 @@
 (ac-define-source look
   '((candidates . ac-look-candidates)
     (requires . 2)))
-(global-set-key (kbd "M-l") 'ac-look)
 ;; emacs-clang-complete-async
 (require 'auto-complete-clang-async)
 (defun ac-clang-complete-setup ()
@@ -1012,6 +1011,7 @@
 (define-key evil-insert-state-map (kbd "C-t") 'transpose-chars)
 (define-key evil-insert-state-map (kbd "C-u") 'evil-cancel-insert)
 (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state-and-save-buffer)
+(define-key evil-insert-state-map (kbd "C-i") 'ac-look)
 (define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (defun switch-linum-mode-git-gutter-mode ()
