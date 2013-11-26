@@ -381,7 +381,7 @@
 
 ;;; 行番号表示
 (linum-mode -1)
-(setq linum-format "%3d ")
+(setq linum-format "%4d ")
 ;; 遅延させて軽くする
 (setq linum-delay t)
 (defadvice linum-schedule (around my-linum-schedule () activate)
