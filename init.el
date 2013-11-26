@@ -824,8 +824,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (add-hook 'grep-mode-hook
           (lambda ()
             (evil-emacs-state)
-            (setq hl-line-face 'dired-face)
-            (hl-line-mode t)
             (linum-mode -1)
             (define-key grep-mode-map "o" (kbd "RET"))
             (define-key grep-mode-map "j" 'next-line-linewise)
@@ -879,14 +877,8 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;;; dired-mode
 ;; dired拡張
 (require 'dired-x)
-(defface dired-face
-  `((t (:background "white" :foreground "black" :weight normal)))
-  "Face for dired-mode."
-  :group 'dired-mode)
 (add-hook 'dired-mode-hook
           '(lambda ()
-             (setq hl-line-face 'dired-face)
-             (hl-line-mode t)
              (linum-mode -1)
              ;; キーバインド
              (define-key dired-mode-map "\C-t" 'next-multiframe-window)  ; フレーム間移動
@@ -989,10 +981,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;; (define-key direx:direx-mode-map "n" 'isearch-repeat-forward)
 ;; (define-key direx:direx-mode-map "N" 'isearch-repeat-backward)
 ;; (global-set-key (kbd "C-x j") 'dired-jump-ex)
-;; (add-hook 'direx:direx-mode-hook
-;;           (lambda ()
-;;             (setq hl-line-face 'dired-face)
-;;             (hl-line-mode t)))
 
 ;;; VC
 ;; avoid "Symbolic link to Git-controlled source file; follow link? (y or n)"
@@ -1005,8 +993,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (global-set-key (kbd "C-x g") 'vc-annotate)
 (add-hook 'log-view-mode-hook
           '(lambda ()
-             (setq hl-line-face 'dired-face)
-             (hl-line-mode t)
              (linum-mode -1)
              (local-set-key (kbd "j") 'log-view-msg-next)
              (local-set-key (kbd "k") 'log-view-msg-prev)
@@ -1043,8 +1029,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
           '(lambda ()
              (switch-to-buffer (current-buffer))
              (delete-other-windows)
-             (setq hl-line-face 'dired-face)
-             (hl-line-mode t)
              (linum-mode -1)
              (local-set-key (kbd "j") 'next-line)
              (local-set-key (kbd "k") 'previous-line)
