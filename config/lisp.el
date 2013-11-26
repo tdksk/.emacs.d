@@ -531,13 +531,6 @@
 (setq git-messenger:show-detail t)
 (global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
 
-;;; zsh like completion
-;; (require 'zlc)
-;; (let ((map minibuffer-local-map))
-;;   (define-key map (kbd "C-p") 'zlc-select-previous)
-;;   (define-key map (kbd "C-n") 'zlc-select-next)
-;;   (define-key map (kbd "C-c") 'zlc-reset))
-
 ;;; dash-at-point
 (autoload 'dash-at-point "dash-at-point"
   "Search the word at point with Dash." t nil)
@@ -640,11 +633,6 @@
 (add-hook 'js2-mode-hook
           '(lambda ()
              (setq js2-basic-offset 2)
-             ;; (require 'js)
-             ;; (setq js-indent-level 2
-             ;;       js-expr-indent-offset 2
-             ;;       indent-tabs-mode nil)
-             ;; (set (make-local-variable 'indent-line-function) 'js-indent-line)
              (define-key js2-mode-map "\C-m" nil)
              (define-key js2-mode-map "\C-a" nil)))
 
@@ -900,65 +888,6 @@
 ;;; helm-open-github
 (require 'helm-open-github)
 
-;; ;;; view-mode, viewer.el
-;; (setq view-read-only t)
-;; (require 'viewer)
-;; (viewer-stay-in-setup)  ; 書き込み不能な場合はview-modeを抜けないように
-;; (setq view-mode-by-default-regexp "\\.*")  ; view-modeでファイルを開く
-;; ;; view-modeのときはモードラインの色を変える
-;; (setq viewer-modeline-color-unwritable "yellow"
-;;       viewer-modeline-color-view "blue")
-;; (viewer-change-modeline-color-setup)
-;; (defvar pager-keybind
-;;   `( ;; vi-like
-;;     ("h" . other-window-backward-or-split)
-;;     ("l" . other-window-or-split)
-;;     ("j" . scroll-up-line)
-;;     ("k" . scroll-down-line)
-;;     ;; ("f" . View-scroll-page-forward)
-;;     ;; ("b" . View-scroll-page-backward)
-;;     ("H" . move-to-top)
-;;     ("M" . move-to-center)
-;;     ("L" . move-to-bottom)
-;;     ("g" . beginning-of-buffer)
-;;     ("G" . end-of-buffer)
-;;     ("/" . isearch-forward)
-;;     ("n" . isearch-repeat-forward)
-;;     ("N" . isearch-repeat-backward)
-;;     ("f" . vimlike-f)
-;;     ("F" . vimlike-F)
-;;     (";" . vimlike-semicolon)
-;;     ("i" . view-mode)
-;;     ("e" . nil)
-;;     ("s" . nil)
-;;     ("r" . nil)
-;;     (" " . nil)
-;;     ("\C-m" . nil)
-;;     ("\C-?" . nil)
-;;     ))
-;; (defun define-many-keys (keymap key-table &optional includes)
-;;   (let (key cmd)
-;;     (dolist (key-cmd key-table)
-;;       (setq key (car key-cmd)
-;;             cmd (cdr key-cmd))
-;;       (if (or (not includes) (member key includes))
-;;           (define-key keymap key cmd))))
-;;   keymap)
-;; (defun view-mode-hook0 ()
-;;   (define-many-keys view-mode-map pager-keybind)
-;;   ;; Disable distracting highlight when in view-mode
-;;   (whitespace-mode (if view-mode -1 1))
-;;   (highlight-indentation-current-column-mode (if view-mode -1 1))
-;;   ;; (show-paren-mode (if view-mode -1 1))
-;;   ;; Toggle linum-mode and git-gutter-mode
-;;   (git-gutter-mode (if view-mode -1 1))
-;;   (linum-mode (if view-mode 1 -1))
-;;   (unless view-mode (git-gutter))
-;;   )
-;; (add-hook 'view-mode-hook 'view-mode-hook0)
-;; ;; (defadvice view-mode-disable (after hl-line-mode-disable activate)
-;; ;;   (hl-line-mode -1))
-
 ;;; Evil
 (setq evil-want-C-u-scroll t)
 (setq evil-want-C-i-jump nil)
@@ -1040,24 +969,6 @@
   (interactive)
   (evil-normal-state)
   (save-buffer))
-;; (defadvice evil-paste-pop (around evil-paste-or-move-line activate)
-;;   ;; evil-paste-popできなかったらprevious-lineする
-;;   "If there is no just-yanked stretch of killed text, just move
-;; to previous line."
-;;   (condition-case err
-;;       ad-do-it
-;;     (error (if (eq this-command 'evil-paste-pop)
-;;                (call-interactively 'previous-line)
-;;              (signal (car err) (cdr err))))))
-;; (defadvice evil-paste-pop-next (around evil-paste-or-move-line activate)
-;;   ;; evil-paste-pop-nextできなかったらnext-lineする
-;;   "If there is no just-yanked stretch of killed text, just move
-;; to next line."
-;;   (condition-case err
-;;       ad-do-it
-;;     (error (if (eq this-command 'evil-paste-pop-next)
-;;                (call-interactively 'next-line)
-;;              (signal (car err) (cdr err))))))
 (lexical-let ((default-color (cons (face-background 'mode-line)
                                    (face-foreground 'mode-line))))
   (add-hook 'post-command-hook

@@ -346,9 +346,6 @@
                     :background "red"
                     :weight 'normal)
 
-;;; 行末の空白を表示
-;; (setq-default show-trailing-whitespace t)
-
 ;;; 空白や改行の視覚化
 (global-whitespace-mode t)
 (eval-after-load 'whitespace
@@ -373,12 +370,6 @@
                     :background "black"
                     :weight 'bold)
 
-;;; カーソルの位置が何文字目かを表示する
-;; (column-number-mode t)
-
-;;; カーソルの位置が何行目かを表示する
-;; (line-number-mode t)
-
 ;;; 行番号表示
 (linum-mode -1)
 (setq linum-format "%4d ")
@@ -392,15 +383,6 @@
                                 :foreground "black"
                                 :background "black"
                                 :weight 'bold)))
-;; (defvar my-linum-hook-name nil)
-;; (mapc (lambda (hook-name)
-;;         (add-hook hook-name (lambda () (linum-mode t))))
-;;       my-linum-hook-name)
-;; (setq my-linum-hook-name '(emacs-lisp-mode-hook slime-mode-hook sh-mode-hook text-mode-hook
-;;                                                 php-mode-hook python-mode-hook ruby-mode-hook
-;;                                                 css-mode-hook yaml-mode-hook org-mode-hook
-;;                                                 howm-mode-hook js2-mode-hook javascript-mode-hook
-;;                                                 smarty-mode-hook sgml-mode-hook))
 
 ;; 1行ずつスクロール
 (setq scroll-step 1
@@ -475,11 +457,6 @@
 ;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
-
-;;; 部分一致の補完機能を使う
-;;; p-bでprint-bufferとか
-;; emacs 24 では標準で有効
-;; (partial-completion-mode t)
 
 ;;; 補完可能なものを随時表示
 ;;; 少しうるさい
@@ -659,11 +636,6 @@
             (setq mode-name mode-str)))))
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
-;;; 時計の表示
-;; (setq display-time-24hr-format t)
-;; (setq display-time-default-load-average nil)
-;; (display-time-mode t)
-
 ;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
 
@@ -706,18 +678,12 @@
 
 ;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
-;; (defface my-face-b-2 '((t (:foreground "white" :underline t))) nil)
-;; (defface my-face-u-1 '((t (:foreground "cyan" :underline t))) nil)
 (defvar my-face-b-1 'my-face-b-1)
-;; (defvar my-face-b-2 'my-face-b-2)
-;; (defvar my-face-u-1 'my-face-u-1)
 (defadvice font-lock-mode (before my-font-lock-mode ())
   (font-lock-add-keywords
    major-mode
    '(
      ("　" 0 my-face-b-1 append)
-     ;;      ("\t" 0 my-face-b-2 append)
-     ;;      ("[ ]+$" 0 my-face-u-1 append)
      ("\\<\\(FIXME\\|TODO\\|XXX+\\|BUG\\):" 1 font-lock-warning-face prepend)
      )))
 (ad-enable-advice 'font-lock-mode 'before 'my-font-lock-mode)
@@ -807,17 +773,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
            (message "Open directory %s in tmux new window." dir))
           (t
            (message "Failed to create new window in tmux.")))))
-
-;;; Term Mode
-;; (global-set-key "\C-x\C-o" '(lambda ()(interactive)(term "/bin/bash")))
-;; (global-set-key "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash")))
-;; (add-hook 'term-mode-hook
-;;           '(lambda ()
-;;              (linum-mode -1)
-;;              ;; キーバインド
-;;              (define-key term-raw-map "\C-t" 'other-window-or-split)                           ; フレーム間移動
-;;              (define-key term-raw-map "\M-t" '(lambda ()(interactive)(ansi-term "/bin/bash"))) ; 新規バッファ
-;;              ))
 
 ;;; grep-mode
 (require 'wgrep)
@@ -1021,9 +976,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
                                  :foreground "magenta" :background nil :weight 'normal)
              ;; (set-face-attribute 'diff-refine-change nil
              ;;                     :foreground nil :background nil :inverse-video t)
-             ;; TODO: "k" を previous-line にバインド (現在は diff-hunk-kill にバインドされている)
-             ;; (local-set-key (kbd "j") 'next-line)
-             ;; (local-set-key (kbd "k") 'previous-line)
              ))
 (add-hook 'vc-annotate-mode-hook
           '(lambda ()
