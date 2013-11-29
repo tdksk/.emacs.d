@@ -786,6 +786,19 @@
                (concat YaTeX-prefix ">") 'YaTeX-comment-region)
              (define-key reftex-mode-map
                (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
+(dolist (hook '(reftex-select-bib-mode-hook
+                reftex-toc-mode-hook))
+  (add-hook hook
+            (lambda ()
+              (local-set-key (kbd "j") (kbd "n"))
+              (local-set-key (kbd "k") (kbd "p"))
+              (local-set-key (kbd "o") (kbd "RET"))
+              (local-set-key (kbd "d") 'scroll-up)
+              (local-set-key (kbd "u") 'scroll-down)
+              (local-set-key (kbd "C-d") 'scroll-up)
+              (local-set-key (kbd "C-u") 'scroll-down)
+              (local-set-key (kbd "C-f") 'scroll-up)
+              (local-set-key (kbd "C-b") 'scroll-down))))
 ;; ユーザ定義コマンド
 (setq yatex-mode-load-hook
       '(lambda()
