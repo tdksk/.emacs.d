@@ -380,10 +380,10 @@
 
 ;;; Highlight Indentation
 (require 'highlight-indentation)
-(set-face-background 'highlight-indentation-face "white")
-(set-face-background 'highlight-indentation-current-column-face "blue")
-;; (add-hook 'highlight-indentation-current-column-mode-hook 'highlight-indentation-mode)
-(dolist (hook '(perl-mode-hook
+(setq highlight-indentation-offset 2)
+(set-face-background 'highlight-indentation-face "black")
+(dolist (hook '(c-mode-common-hook
+                perl-mode-hook
                 js2-mode-hook
                 scss-mode-hook
                 python-mode-hook
@@ -391,7 +391,7 @@
                 coffee-mode-hook
                 haml-mode-hook
                 html-mode-hook))
-  (add-hook hook 'highlight-indentation-current-column-mode))
+  (add-hook hook 'highlight-indentation-mode))
 
 ;;; git-gutter.el
 (require 'git-gutter)
