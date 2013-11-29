@@ -120,8 +120,14 @@
 (push '("*quickrun*" :position right :width .5 :noselect t) popwin:special-display-config)
 (push '("*Warnings*") popwin:special-display-config)
 (push '("*Process List*") popwin:special-display-config)
+(push '("*YaTeX-typesetting*") popwin:special-display-config)
 (push '("*helm*" :regexp t :height 20) popwin:special-display-config)
 ;; (push '(direx:direx-mode :position left :width 40 :dedicated t) popwin:special-display-config)
+;; for YaTeX
+(defadvice YaTeX-showup-buffer (around popwin-yatex:YaTeX-showup-buffer (buffer &optional func select) activate)
+  (popwin:display-buffer-1 buffer
+                           :default-config-keywords `(:noselect ,(not select))
+                           :if-config-not-found (lambda (buffer) ad-do-it)))
 
 ;;; undo-tree.el
 (require 'undo-tree)
@@ -768,7 +774,7 @@
           '(lambda ()
              (flyspell-mode 1)
              (auto-fill-mode -1)
-             (local-set-key (kbd "M-r") (kbd "C-c C-t j C-x 1"))))
+             (local-set-key (kbd "M-r") (kbd "C-c C-t j C-g"))))
 ;;
 ;; RefTeX (YaTeX)
 ;;
