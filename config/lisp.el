@@ -69,6 +69,8 @@
 (add-hook 'objc-mode-hook 'ac-clang-complete-setup)
 ;; ac-ispell
 (require 'ac-ispell)
+(custom-set-variables
+ '(ac-ispell-requires 4))
 (eval-after-load "auto-complete"
   '(progn
      (ac-ispell-setup)))
