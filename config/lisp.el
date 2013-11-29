@@ -773,11 +773,21 @@
 ;; (setq dvi2-command "open -a Preview")
 (setq dvi2-command "open -a TeXShop")
 (setq dviprint-command-format "open %s")
+(defun replace-punctuation-marks-for-academics ()
+  (interactive)
+  (beginning-of-line)
+  (setq current-line (count-lines (point-min) (point)))
+  (setq replaced (replace-regexp-in-string "。" "．" (replace-regexp-in-string "、" "，" (buffer-string))))
+  (erase-buffer)
+  (insert replaced)
+  (goto-line (+ 1 current-line))
+  (beginning-of-line))
 (add-hook 'yatex-mode-hook
           '(lambda ()
              (flyspell-mode 1)
              (auto-fill-mode -1)
-             (local-set-key (kbd "M-r") (kbd "C-c C-t j C-g"))))
+             (local-set-key (kbd "C-M-r") 'replace-punctuation-marks-for-academics)
+             (local-set-key (kbd "M-r") (kbd "C-M-r C-x C-s C-c C-t j C-g"))))
 ;;
 ;; RefTeX (YaTeX)
 ;;
