@@ -7,6 +7,7 @@
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
+(ac-flyspell-workaround)  ; enable auto-complete with flyspell
 (setq ac-auto-show-menu 0)  ; 補完メニュー表示までの時間
 (setq ac-use-quick-help nil)  ; 補完中に出てくるツールチップヘルプを利用しない
 ;; (setq ac-expand-on-auto-complete nil)  ; 補完候補全体の共通部分を展開しない
