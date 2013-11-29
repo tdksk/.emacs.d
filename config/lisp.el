@@ -688,10 +688,13 @@
       (when (> offset 0) (forward-char offset)))))
 (defun ruby-anti-hash-rocket ()
   (interactive)
-  (save-excursion
-    (setq replaced (replace-regexp-in-string ":\\([a-z0-9_]+\\)\s*=>" "\\1:" (buffer-string)))
-    (erase-buffer)
-    (insert replaced)))
+  (beginning-of-line)
+  (setq current-line (count-lines (point-min) (point)))
+  (setq replaced (replace-regexp-in-string ":\\([a-z0-9_]+\\)\s*=>" "\\1:" (buffer-string)))
+  (erase-buffer)
+  (insert replaced)
+  (goto-line (+ 1 current-line))
+  (beginning-of-line))
 
 ;;; RSpec Mode
 (require 'rspec-mode)
