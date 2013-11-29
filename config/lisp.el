@@ -767,7 +767,8 @@
 (add-hook 'yatex-mode-hook
           '(lambda ()
              (flyspell-mode 1)
-             (auto-fill-mode -1)))
+             (auto-fill-mode -1)
+             (local-set-key (kbd "M-r") (kbd "C-c C-t j C-x 1"))))
 ;;
 ;; RefTeX (YaTeX)
 ;;
