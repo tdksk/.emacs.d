@@ -605,6 +605,7 @@
     (whitespace-mode . "")
     (global-whitespace-mode . "")
     (volatile-highlights-mode . "")
+    (highlight-indentation-mode . "")
     (anzu-mode . "")
     (isearch-mode . "")
     (helm-mode . "")
