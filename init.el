@@ -38,7 +38,7 @@
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
 (define-key global-map (kbd "M-o") 'open-line-ex)           ; 空行を下に追加
-(define-key global-map (kbd "C-M-o") 'join-line-ex)         ; 行を連結
+;; (define-key global-map (kbd "C-M-o") 'join-line-ex)         ; 行を連結
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する

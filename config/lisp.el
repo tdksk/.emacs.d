@@ -372,8 +372,7 @@
 (add-hook 'iedit-mode-hook
           (lambda ()
             ;; TODO: Enable these keymaps if cursor is out of iedit region
-            (define-key iedit-occurrence-keymap (kbd "<escape>") (kbd "M-i <escape>"))
-            (define-key iedit-occurrence-keymap (kbd "TAB") 'iedit-next-occurrence)))
+            (define-key iedit-occurrence-keymap (kbd "<escape>") (kbd "M-i <escape>"))))
 
 ;;; anzu
 (require 'anzu)
@@ -931,7 +930,7 @@
 
 ;;; Evil
 (setq evil-want-C-u-scroll t)
-;; (setq evil-want-C-i-jump nil)
+(setq evil-want-C-i-jump nil)
 (setq evil-search-module 'evil-search)
 (setq evil-ex-search-vim-style-regexp t)
 (setq evil-shift-width 2)
@@ -950,6 +949,7 @@
 (define-key evil-normal-state-map (kbd "C-z") 'switch-to-last-buffer)
 (define-key evil-normal-state-map (kbd "C-j") 'scroll-up-line)
 (define-key evil-normal-state-map (kbd "C-k") 'scroll-down-line)
+(define-key evil-normal-state-map (kbd "C-M-o") 'evil-jump-forward)
 (define-key evil-normal-state-map (kbd "g h") 'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "g l") 'evil-end-of-line)
 (define-key evil-normal-state-map (kbd "g o") 'open-at-point)
