@@ -946,7 +946,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (setq-default find-file-visit-truename t)
 (global-set-key (kbd "C-x =") 'vc-diff)
 (global-set-key (kbd "C-x l") 'vc-print-log)
-(global-set-key (kbd "C-x L") 'vc-print-root-log)
 (global-set-key (kbd "C-x g") 'vc-annotate)
 (add-hook 'log-view-mode-hook
           '(lambda ()
