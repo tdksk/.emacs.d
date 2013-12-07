@@ -523,7 +523,6 @@
 ;;; git-messenger.el
 (require 'git-messenger)
 (setq git-messenger:show-detail t)
-(global-set-key (kbd "C-x C-p") 'git-messenger:popup-message)
 
 ;;; dash-at-point
 (autoload 'dash-at-point "dash-at-point"
@@ -834,7 +833,7 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-my-buffers)
 (global-set-key (kbd "C-x C-_") 'helm-occur)
-(global-set-key (kbd "C-x C-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key (kbd "C-;") 'helm-git-project)
 (setq helm-idle-delay 0)
