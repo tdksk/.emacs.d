@@ -827,6 +827,7 @@
 (defun helm-my-buffers ()
   (interactive)
   (helm-other-buffer '(helm-source-buffers-list
+                       helm-source-bookmarks
                        helm-source-recentf
                        helm-source-files-in-current-dir)
                      "*helm my buffers*"))
