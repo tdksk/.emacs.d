@@ -420,6 +420,7 @@
 
 ;;; Magit
 (require 'magit)
+(require 'magit-blame)
 (global-set-key (kbd "C-x C-n") 'magit-status)
 (global-set-key (kbd "C-x C-l") 'magit-log)
 (global-set-key (kbd "C-x C-b") 'magit-branch-manager)
