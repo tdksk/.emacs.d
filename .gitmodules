@@ -124,3 +124,6 @@
 [submodule "lisp/ac-ispell"]
 	path = lisp/ac-ispell
 	url = https://github.com/syohex/emacs-ac-ispell.git
+[submodule "lisp/helm-git-grep"]
+	path = lisp/helm-git-grep
+	url = https://github.com/yasuyk/helm-git-grep.git

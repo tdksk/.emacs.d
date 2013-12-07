@@ -847,7 +847,10 @@
      (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))))
 ;; helm-ag
 (require 'helm-ag)
-(global-set-key (kbd "C-x C-g") 'helm-ag)
+;; helm-git-grep
+(require 'helm-git-grep)
+(global-set-key (kbd "C-x C-g") 'helm-git-grep-at-point)
+(define-key helm-git-grep-map (kbd "C-w") 'backward-kill-word)
 ;; helm-git-project
 (defun helm-c-sources-git-project-for (pwd)
   (loop for elt in
