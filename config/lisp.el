@@ -526,6 +526,16 @@
   (set-face-foreground 'git-commit-overlong-summary-face "white")
   (set-face-background 'git-commit-overlong-summary-face "black"))
 
+;;; git-rebase-mode
+(add-hook 'git-rebase-mode-hook
+          (lambda ()
+            (evil-emacs-state)
+            (local-set-key (kbd "j") (kbd "n"))
+            (local-set-key (kbd "k") (kbd "p"))
+            (local-set-key (kbd "o") (kbd "RET"))
+            (local-set-key (kbd "q") 'git-rebase-abort)
+            (local-set-key (kbd "a") nil)))
+
 ;;; git-messenger.el
 (require 'git-messenger)
 (setq git-messenger:show-detail t)
