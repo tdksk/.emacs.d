@@ -964,6 +964,8 @@
 (define-key evil-insert-state-map (kbd "C-u") 'evil-cancel-insert)
 (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state-and-save-buffer)
 (define-key evil-insert-state-map (kbd "M-l") 'ac-look)
+(define-key evil-visual-state-map (kbd "j") 'evil-next-line)
+(define-key evil-visual-state-map (kbd "k") 'evil-previous-line)
 (define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (defun switch-linum-mode-git-gutter-mode ()
