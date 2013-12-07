@@ -127,3 +127,6 @@
 [submodule "lisp/helm-git-grep"]
 	path = lisp/helm-git-grep
 	url = https://github.com/yasuyk/helm-git-grep.git
+[submodule "lisp/iedit"]
+	path = lisp/iedit
+	url = https://github.com/victorhge/iedit.git
