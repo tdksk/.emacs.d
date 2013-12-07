@@ -369,6 +369,11 @@
 (define-key isearch-mode-map iedit-toggle-key 'iedit-mode-from-isearch)
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
 (define-key help-map iedit-toggle-key 'iedit-mode-toggle-on-function)
+(add-hook 'iedit-mode-hook
+          (lambda ()
+            ;; TODO: Enable these keymaps if cursor is out of iedit region
+            (define-key iedit-occurrence-keymap (kbd "<escape>") (kbd "M-i <escape>"))
+            (define-key iedit-occurrence-keymap (kbd "TAB") 'iedit-next-occurrence)))
 
 ;;; anzu
 (require 'anzu)
