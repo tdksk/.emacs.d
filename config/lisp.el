@@ -18,6 +18,7 @@
          html-mode
          rhtml-mode
          haml-mode
+         slim-mode
          objc-mode
          matlab-mode
          markdown-mode
@@ -276,6 +277,7 @@
                 scss-mode-hook
                 html-mode-hook
                 haml-mode-hook
+                slim-mode-hook
                 sh-mode-hook))
   (add-hook hook 'my-smartchr-keybindings-single-quote))
 ;; for cc-mode
@@ -400,6 +402,7 @@
                 ruby-mode-hook
                 coffee-mode-hook
                 haml-mode-hook
+                slim-mode-hook
                 html-mode-hook))
   (add-hook hook 'highlight-indentation-mode))
 
@@ -715,6 +718,10 @@
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
+
+;;; Slim Mode
+(autoload 'slim-mode "slim-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.slim$" . slim-mode))
 
 ;;; rhtml mode
 (autoload 'rhtml-mode "rhtml-mode" nil t)

@@ -76,6 +76,7 @@
 (dolist (hook '(python-mode-hook
                 ruby-mode-hook
                 haml-mode-hook
+                slim-mode-hook
                 html-mode-hook))
   (add-hook hook 'unuse-semicolon-keybindings))
 
