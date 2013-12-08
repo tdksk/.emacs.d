@@ -723,6 +723,10 @@
           '(lambda ()
              (set-face-background 'erb-face nil)))
 
+;;; YAML Mode
+(autoload 'yaml-mode "yaml-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+
 ;;; Markdown Mode
 (autoload 'gfm-mode "markdown-mode"
   "Major mode for editing Markdown files" t)

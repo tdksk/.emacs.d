@@ -130,3 +130,6 @@
 [submodule "lisp/iedit"]
 	path = lisp/iedit
 	url = https://github.com/victorhge/iedit.git
+[submodule "lisp/yaml-mode"]
+	path = lisp/yaml-mode
+	url = https://github.com/yoshiki/yaml-mode.git
