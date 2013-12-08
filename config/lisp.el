@@ -424,6 +424,7 @@
 (global-set-key (kbd "C-x C-l") 'magit-log)
 (global-set-key (kbd "C-x L") 'magit-file-log)
 (global-set-key (kbd "C-x C-r") 'magit-reflog)
+(global-set-key (kbd "C-x g") 'magit-blame-mode)
 (global-set-key (kbd "C-x C-b") 'magit-branch-manager)
 (set-face-bold-p 'magit-item-highlight nil)
 (set-face-attribute 'magit-item-highlight nil :inherit nil)
