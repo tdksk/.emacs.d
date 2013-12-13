@@ -69,16 +69,16 @@
   (ac-clang-launch-completion-process))
 (add-hook 'objc-mode-hook 'ac-clang-complete-setup)
 ;; ac-ispell
-(require 'ac-ispell)
-(custom-set-variables
- '(ac-ispell-requires 4))
-(eval-after-load "auto-complete"
-  '(progn
-     (ac-ispell-setup)))
-(dolist (hook '(git-commit-mode-hook
-                markdown-mode-hook
-                yatex-mode-hook))
-  (add-hook hook 'ac-ispell-ac-setup))
+;; (require 'ac-ispell)
+;; (custom-set-variables
+;;  '(ac-ispell-requires 4))
+;; (eval-after-load "auto-complete"
+;;   '(progn
+;;      (ac-ispell-setup)))
+;; (dolist (hook '(git-commit-mode-hook
+;;                 markdown-mode-hook
+;;                 yatex-mode-hook))
+;;   (add-hook hook 'ac-ispell-ac-setup))
 
 ;;; smart-compile
 (require 'smart-compile)
