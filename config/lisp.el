@@ -444,7 +444,10 @@
              (local-set-key (kbd "C-d") 'scroll-up)
              (local-set-key (kbd "C-u") 'scroll-down)
              (local-set-key (kbd "C-f") 'scroll-up)
-             (local-set-key (kbd "C-b") 'scroll-down)))
+             (local-set-key (kbd "C-b") 'scroll-down)
+             (local-set-key (kbd "/") 'isearch-forward)
+             (local-set-key (kbd "n") 'isearch-repeat-forward)
+             (local-set-key (kbd "N") 'isearch-repeat-backward)))
 (add-hook 'magit-log-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
