@@ -880,6 +880,10 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 ;; サブディレクトリも削除やコピーできるように
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)
+;; diredを2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のdiredで開いているディレクトリにする
+(setq dired-dwim-target t)
+;; diredバッファでC-sした時にファイル名だけにマッチするように
+(setq dired-isearch-filenames t)
 ;;; dired を使って、一気にファイルの coding system (漢字) を変換する
 ;; m でマークして T で一括変換
 (require 'dired-aux)
