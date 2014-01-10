@@ -26,19 +26,12 @@
 (define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
 (define-key global-map (kbd "C-c C-f") 'find-name-dired)    ; ファイル名で検索
 (define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
-;; (define-key global-map (kbd "M-h") 'move-to-top)            ; 画面の最上部に移動
-;; (define-key global-map (kbd "M-m") 'move-to-center)         ; 画面の中央に移動
-;; (define-key global-map (kbd "M-l") 'move-to-bottom)         ; 画面の再下部に移動
-;; (define-key global-map (kbd "C-M-f") 'vimlike-f)            ; Vim Like 'f'
-;; (define-key global-map (kbd "C-M-;") 'vimlike-semicolon)    ; Vim Like ';'
-;; (define-key global-map (kbd "M-;") 'vimlike-semicolon)      ; Vim Like ';'
 (define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
 (define-key global-map (kbd "C-j") 'open-line-below)        ; 下に行追加して移動
 (define-key global-map (kbd "M-j") 'open-line-above)        ; 上に行追加して移動
 (define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
 (define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
 (define-key global-map (kbd "M-o") 'open-line-ex)           ; 空行を下に追加
-;; (define-key global-map (kbd "C-M-o") 'join-line-ex)         ; 行を連結
 (define-key global-map (kbd "C-c a") 'align)                ; align
 (define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
 (define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する
@@ -136,10 +129,6 @@
     (end-of-line)
     (open-line 1)))
 
-(defun join-line-ex ()
-  (interactive)
-  (join-line -1))
-
 (defun semicolon-newline ()
   (interactive)
   (end-of-line)
@@ -185,39 +174,6 @@
   (forward-line)
   (yank)
   (previous-line))
-
-(defun move-to-top ()
-  (interactive)
-  (move-to-window-line scroll-margin))
-(defun move-to-center ()
-  (interactive)
-  (move-to-window-line nil))
-(defun move-to-bottom ()
-  (interactive)
-  (move-to-window-line (- -1 scroll-margin)))
-
-(defun vimlike-f (char)
-  "search to forward char into current line and move point (vim 'f' command)"
-  (interactive "cSearch to forward char: ")
-  (when (= (char-after (point)) char)
-    (forward-char))
-  (search-forward (char-to-string char) (point-at-eol) nil 1)
-  (backward-char)
-  (setq vimlike-f-recent-search-char char
-        vimlike-f-recent-search-func 'vimlike-f))
-(defun vimlike-F (char)
-  "search to forward char into current line and move point. (vim 'F' command)"
-  (interactive "cSearch to backward char: ")
-  (search-backward (char-to-string char) (point-at-bol) nil 1)
-  (setq vimlike-f-recent-search-char char
-        vimlike-f-recent-search-func 'vimlike-F))
-(defun vimlike-semicolon ()
-  "search repeat recent vimlike 'f' or 'F' search char (vim ';' command)"
-  (interactive)
-  (if (and vimlike-f-recent-search-char
-           vimlike-f-recent-search-func)
-      (funcall vimlike-f-recent-search-func vimlike-f-recent-search-char)
-    (message "Empty recent search char.")))
 
 (defun switch-to-last-buffer ()
   (interactive)
