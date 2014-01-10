@@ -712,13 +712,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
           (query-replace-regexp reg replace)))
     (message "Not in a re-builder buffer!")))
 
-;;; cua-mode
-;; (cua-mode t)
-;; (set-face-foreground 'cua-rectangle "black")
-;; (set-face-background 'cua-rectangle "magenta")
-;; (setq cua-enable-cua-keys nil)  ; 変なキーバインド禁止
-;; (global-set-key (kbd "M-RET") 'cua-set-rectangle-mark)  ; 矩形選択開始
-
 ;;; tmux
 (global-set-key (kbd "M-t") 'open-current-directory-in-tmux-new-window)
 (defun open-current-directory-in-tmux-new-window ()
