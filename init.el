@@ -440,11 +440,6 @@
       (beginning-of-line)
     (back-to-indentation)))
 
-;;; 現在の関数名を表示
-;; (which-function-mode t)
-;; (set-face-background 'which-func nil)
-;; (set-face-foreground 'which-func nil)
-
 ;;; モードライン
 (setq-default
  mode-line-format
