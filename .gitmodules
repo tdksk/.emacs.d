@@ -136,3 +136,6 @@
 [submodule "lisp/slim-mode"]
 	path = lisp/slim-mode
 	url = https://github.com/slim-template/emacs-slim.git
+[submodule "lisp/ace-jump-mode"]
+	path = lisp/ace-jump-mode
+	url = https://github.com/winterTTr/ace-jump-mode.git

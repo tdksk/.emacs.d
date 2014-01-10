@@ -381,6 +381,16 @@
 (global-anzu-mode t)
 (setq anzu-search-threshold 1000)
 
+;;; Ace Jump Mode
+(require 'ace-jump-mode)
+(global-set-key (kbd "M-f") 'ace-jump-mode)
+(set-face-attribute 'ace-jump-face-background nil
+                    :foreground "black"
+                    :weight 'bold)
+(set-face-attribute 'ace-jump-face-foreground nil
+                    :foreground "yellow"
+                    :weight 'bold)
+
 ;;; Evil Numbers
 (require 'evil-numbers)
 (global-set-key (kbd "M-=") 'evil-numbers/inc-at-pt)
