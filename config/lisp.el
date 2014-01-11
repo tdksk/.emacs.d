@@ -846,6 +846,10 @@
 (eval-after-load 'helm
   '(progn
      (set-face-foreground 'helm-selection "black")
+     (set-face-attribute 'helm-ff-directory nil
+                         :foreground "black"
+                         :background "white"
+                         :weight 'normal)
      (define-key helm-map (kbd "C-w") 'backward-kill-word)
      (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))))
 ;; helm-ag
