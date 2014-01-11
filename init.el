@@ -405,6 +405,7 @@
 (setq recentf-auto-cleanup 10)
 (run-with-idle-timer 30 t 'recentf-save-list)
 (recentf-mode 1)
+(require 'recentf-ext)
 
 ;;; ファイルに変更があったら自動的にバッファ更新
 (global-auto-revert-mode t)
