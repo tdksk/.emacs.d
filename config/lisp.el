@@ -959,6 +959,7 @@
 (define-key evil-normal-state-map (kbd "C-t") nil)
 (define-key evil-normal-state-map (kbd "q") nil)
 (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
+(define-key evil-normal-state-map (kbd "M-a") 'mark-whole-buffer)
 (define-key evil-normal-state-map (kbd "RET") 'evil-open-below-and-normal-state)
 (define-key evil-normal-state-map (kbd "M-RET") 'evil-open-above-and-normal-state)
 (define-key evil-normal-state-map (kbd "SPC") 'save-buffer)
