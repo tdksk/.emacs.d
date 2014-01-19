@@ -774,7 +774,7 @@
              (flyspell-mode 1)
              (auto-fill-mode -1)
              (local-set-key (kbd "C-M-r") 'replace-punctuation-marks-for-academics)
-             (local-set-key (kbd "M-r") (kbd "C-M-r C-x C-s C-c C-t j C-g"))))
+             (local-set-key (kbd "M-r") (kbd "C-M-r C-x C-s C-c C-t j"))))
 ;;
 ;; RefTeX (YaTeX)
 ;;
