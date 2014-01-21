@@ -730,8 +730,6 @@
             (local-set-key (kbd "C-'") 'helm-my-buffers)))
 
 ;;; YaTeX mode
-;; /usr/share/emacs/site-lisp/
-;; /usr/share/info/
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
 (setq auto-mode-alist
       (append '(("\\.tex$" . yatex-mode)
@@ -771,21 +769,11 @@
   (beginning-of-line))
 (add-hook 'yatex-mode-hook
           '(lambda ()
+             (reftex-mode 1)
              (flyspell-mode 1)
              (auto-fill-mode -1)
              (local-set-key (kbd "C-M-r") 'replace-punctuation-marks-for-academics)
              (local-set-key (kbd "M-r") (kbd "C-M-r C-x C-s C-c C-t j"))))
-;;
-;; RefTeX (YaTeX)
-;;
-;; (add-hook 'yatex-mode-hook 'turn-on-reftex)
-(add-hook 'yatex-mode-hook
-          '(lambda ()
-             (reftex-mode 1)
-             (define-key reftex-mode-map
-               (concat YaTeX-prefix ">") 'YaTeX-comment-region)
-             (define-key reftex-mode-map
-               (concat YaTeX-prefix "<") 'YaTeX-uncomment-region)))
 (dolist (hook '(reftex-select-bib-mode-hook
                 reftex-toc-mode-hook))
   (add-hook hook
@@ -799,11 +787,6 @@
               (local-set-key (kbd "C-u") 'scroll-down)
               (local-set-key (kbd "C-f") 'scroll-up)
               (local-set-key (kbd "C-b") 'scroll-down))))
-;; ユーザ定義コマンド
-(setq yatex-mode-load-hook
-      '(lambda()
-         (YaTeX-define-begend-key "ba" "align")
-         ))
 
 ;;; Objective-C Mode
 (add-to-list 'magic-mode-alist '("\\(.\\|\n\\)*\n@implementation" . objc-mode))
