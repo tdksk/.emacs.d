@@ -568,8 +568,8 @@
     (undo-tree-mode . "")
     (wrap-region-mode . "")
     (git-gutter-mode . "")
-    (auto-complete-mode . " α")
-    (yas/minor-mode . " υ")
+    (auto-complete-mode . "")
+    (yas/minor-mode . "")
     (rinari-minor-mode . " Rr")
     ;; Major modes
     (python-mode . "Py")
