@@ -954,6 +954,7 @@
 (define-key evil-normal-state-map (kbd "g m") 'git-messenger:popup-message)
 (define-key evil-normal-state-map (kbd "g C-n") 'flycheck-next-error)
 (define-key evil-normal-state-map (kbd "g C-p") 'flycheck-previous-error)
+(define-key evil-normal-state-map (kbd "g a") 'helm-git-grep)
 (define-key evil-normal-state-map (kbd "g /") 'helm-occur)
 (define-key evil-normal-state-map (kbd "g SPC") 'switch-linum-mode-git-gutter-mode)
 (define-key evil-normal-state-map (kbd "C-t") nil)
