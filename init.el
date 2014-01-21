@@ -675,6 +675,7 @@
 ;;; ispell
 (eval-after-load "ispell"
   '(progn
+     (setq flyspell-mode-line-string " Fs")
      (setq-default ispell-program-name "aspell")
      ;; 日本語が混ざっていてもスペルチェックできるように
      (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
