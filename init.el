@@ -838,6 +838,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
             (define-key (current-local-map) "T"
               'dired-do-convert-coding-system)))
 (setq dired-default-file-coding-system 'utf-8-unix)
+(setq dired-listing-switches "-alh")
 (defvar dired-default-file-coding-system nil
   "*Default coding system for converting file (s).")
 (defvar dired-file-coding-system 'no-conversion)
