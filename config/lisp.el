@@ -142,6 +142,9 @@
             (local-set-key (kbd "h") 'undo-tree-visualize-switch-branch-left)
             (local-set-key (kbd "l") 'undo-tree-visualize-switch-branch-right)))
 
+;;; goto-chg.el
+(require 'goto-chg)
+
 ;;; wrap-region.el
 (require 'wrap-region)
 (add-hook 'active-region-mode-hook
