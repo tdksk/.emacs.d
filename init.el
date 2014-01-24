@@ -949,11 +949,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (set-face-attribute 'ediff-current-diff-C nil
                                  :foreground "black" :background "white" :weight 'normal)))
 
-;;; emacsclient
-(require 'server)
-(unless (server-running-p)
-  (server-start))
-
 ;;; OS X
 (setq darwin-p (eq system-type 'darwin))
 (when darwin-p
