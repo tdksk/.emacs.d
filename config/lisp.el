@@ -655,6 +655,7 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 (setq ruby-insert-encoding-magic-comment nil)
 (require 'ruby-end)
+(setq ruby-end-insert-newline nil)
 (require 'ruby-block)
 (ruby-block-mode t)
 (setq ruby-block-highlight-toggle t)
