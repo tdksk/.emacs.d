@@ -1,6 +1,6 @@
 # name: def ... end
-# key: m
+# key: f
 # --
-def ${1:method}
+def $1
   $0
 end
