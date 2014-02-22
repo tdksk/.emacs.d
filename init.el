@@ -875,63 +875,68 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (setq vc-follow-symlinks t)
 ;; avoid recording symlink path to .recentf
 (setq-default find-file-visit-truename t)
-(global-set-key (kbd "C-x =") 'vc-diff)
-(global-set-key (kbd "C-x l") 'vc-print-log)
-(global-set-key (kbd "C-x G") 'vc-annotate)
-(add-hook 'log-view-mode-hook
-          '(lambda ()
-             (linum-mode -1)
-             (local-set-key (kbd "j") 'log-view-msg-next)
-             (local-set-key (kbd "k") 'log-view-msg-prev)
-             (local-set-key (kbd "d") 'scroll-up)
-             (local-set-key (kbd "u") 'scroll-down)
-             (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)
-             (local-set-key (kbd "C-f") 'scroll-up)
-             (local-set-key (kbd "C-b") 'scroll-down)
-             (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
-             (local-set-key (kbd "RET") 'log-view-diff)
-             (local-set-key (kbd "o") 'log-view-diff)
-             (local-set-key (kbd "=") 'log-view-diff)
-             (local-set-key (kbd "g") 'log-view-annotate-version)))
-(add-hook 'diff-mode-hook
-          '(lambda ()
-             (linum-mode -1)
-             ;; (diff-auto-refine-mode t)
-             (set-face-attribute 'diff-added nil
-                                 :foreground "green" :background nil :weight 'normal)
-             (set-face-attribute 'diff-removed nil
-                                 :foreground "red" :background nil :weight 'normal)
-             (set-face-attribute 'diff-file-header-face nil
-                                 :foreground "yellow" :background nil :weight 'normal)
-             (set-face-attribute 'diff-hunk-header-face nil
-                                 :foreground "magenta" :background nil :weight 'normal)
-             ;; (set-face-attribute 'diff-refine-change nil
-             ;;                     :foreground nil :background nil :inverse-video t)
-             ))
-(add-hook 'vc-annotate-mode-hook
-          '(lambda ()
-             (switch-to-buffer (current-buffer))
-             (delete-other-windows)
-             (linum-mode -1)
-             (local-set-key (kbd "j") 'next-line)
-             (local-set-key (kbd "k") 'previous-line)
-             (local-set-key (kbd "d") 'scroll-up)
-             (local-set-key (kbd "u") 'scroll-down)
-             (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)
-             (local-set-key (kbd "C-f") 'scroll-up)
-             (local-set-key (kbd "C-b") 'scroll-down)
-             (local-set-key (kbd "q") 'vc-annotate-quit-session)))
-(defadvice vc-annotate (around vc-annotate-fullscreen activate)
-  (window-configuration-to-register :vc-annotate-fullscreen)
-  ad-do-it
-  (delete-other-windows))
-(defun vc-annotate-quit-session ()
-  "Restores the previous window configuration and kills the vc-annotate buffer"
-  (interactive)
-  (kill-buffer)
-  (jump-to-register :vc-annotate-fullscreen))
+;; Disable vc-mode
+(custom-set-variables
+ '(vc-handled-backends nil))
+(remove-hook 'find-file-hook 'vc-find-file-hook)
+(remove-hook 'kill-buffer-hook 'vc-kill-buffer-hook)
+;; (global-set-key (kbd "C-x =") 'vc-diff)
+;; (global-set-key (kbd "C-x l") 'vc-print-log)
+;; (global-set-key (kbd "C-x G") 'vc-annotate)
+;; (add-hook 'log-view-mode-hook
+;;           '(lambda ()
+;;              (linum-mode -1)
+;;              (local-set-key (kbd "j") 'log-view-msg-next)
+;;              (local-set-key (kbd "k") 'log-view-msg-prev)
+;;              (local-set-key (kbd "d") 'scroll-up)
+;;              (local-set-key (kbd "u") 'scroll-down)
+;;              (local-set-key (kbd "C-d") 'scroll-up)
+;;              (local-set-key (kbd "C-u") 'scroll-down)
+;;              (local-set-key (kbd "C-f") 'scroll-up)
+;;              (local-set-key (kbd "C-b") 'scroll-down)
+;;              (local-set-key (kbd "C-c C-c") 'log-view-find-revision)
+;;              (local-set-key (kbd "RET") 'log-view-diff)
+;;              (local-set-key (kbd "o") 'log-view-diff)
+;;              (local-set-key (kbd "=") 'log-view-diff)
+;;              (local-set-key (kbd "g") 'log-view-annotate-version)))
+;; (add-hook 'diff-mode-hook
+;;           '(lambda ()
+;;              (linum-mode -1)
+;;              ;; (diff-auto-refine-mode t)
+;;              (set-face-attribute 'diff-added nil
+;;                                  :foreground "green" :background nil :weight 'normal)
+;;              (set-face-attribute 'diff-removed nil
+;;                                  :foreground "red" :background nil :weight 'normal)
+;;              (set-face-attribute 'diff-file-header-face nil
+;;                                  :foreground "yellow" :background nil :weight 'normal)
+;;              (set-face-attribute 'diff-hunk-header-face nil
+;;                                  :foreground "magenta" :background nil :weight 'normal)
+;;              ;; (set-face-attribute 'diff-refine-change nil
+;;              ;;                     :foreground nil :background nil :inverse-video t)
+;;              ))
+;; (add-hook 'vc-annotate-mode-hook
+;;           '(lambda ()
+;;              (switch-to-buffer (current-buffer))
+;;              (delete-other-windows)
+;;              (linum-mode -1)
+;;              (local-set-key (kbd "j") 'next-line)
+;;              (local-set-key (kbd "k") 'previous-line)
+;;              (local-set-key (kbd "d") 'scroll-up)
+;;              (local-set-key (kbd "u") 'scroll-down)
+;;              (local-set-key (kbd "C-d") 'scroll-up)
+;;              (local-set-key (kbd "C-u") 'scroll-down)
+;;              (local-set-key (kbd "C-f") 'scroll-up)
+;;              (local-set-key (kbd "C-b") 'scroll-down)
+;;              (local-set-key (kbd "q") 'vc-annotate-quit-session)))
+;; (defadvice vc-annotate (around vc-annotate-fullscreen activate)
+;;   (window-configuration-to-register :vc-annotate-fullscreen)
+;;   ad-do-it
+;;   (delete-other-windows))
+;; (defun vc-annotate-quit-session ()
+;;   "Restores the previous window configuration and kills the vc-annotate buffer"
+;;   (interactive)
+;;   (kill-buffer)
+;;   (jump-to-register :vc-annotate-fullscreen))
 
 ;;; Ediff
 (add-hook 'ediff-load-hook
