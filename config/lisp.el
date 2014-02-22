@@ -456,7 +456,14 @@
   (interactive)
   (setq magit-diff-options (remove "-w" magit-diff-options))
   (magit-refresh))
+(defun magit-current-file-log ()
+  (interactive)
+  (magit-file-log(buffer-file-name)))
 (defadvice magit-log (around magit-log-fullscreen activate)
+  (window-configuration-to-register :magit-log-fullscreen)
+  ad-do-it
+  (delete-other-windows))
+(defadvice magit-file-log (around magit-log-fullscreen activate)
   (window-configuration-to-register :magit-log-fullscreen)
   ad-do-it
   (delete-other-windows))
@@ -936,7 +943,7 @@
 (define-key evil-normal-state-map (kbd "g j") 'dired-jump)
 (define-key evil-normal-state-map (kbd "g h") 'magit-status)
 (define-key evil-normal-state-map (kbd "g l") 'magit-log)
-(define-key evil-normal-state-map (kbd "g L") 'vc-print-log)
+(define-key evil-normal-state-map (kbd "g L") 'magit-current-file-log)
 (define-key evil-normal-state-map (kbd "g b") 'magit-branch-manager)
 (define-key evil-normal-state-map (kbd "g n") 'git-gutter:next-hunk)
 (define-key evil-normal-state-map (kbd "g p") 'git-gutter:previous-hunk)
