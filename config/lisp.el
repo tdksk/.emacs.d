@@ -526,6 +526,7 @@
             (local-set-key (kbd "j") (kbd "n"))
             (local-set-key (kbd "k") (kbd "p"))
             (local-set-key (kbd "o") (kbd "RET"))
+            (local-set-key (kbd "u") 'git-rebase-undo)
             (local-set-key (kbd "q") 'git-rebase-abort)
             (local-set-key (kbd "a") nil)))
 
