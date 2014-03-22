@@ -512,7 +512,7 @@
       (unless url
         (error "Can't find repository URL"))
       (browse-url url))))
-(define-key magit-mode-map (kbd "H") 'magit-browse)
+(define-key magit-mode-map (kbd "G") 'magit-browse)
 
 ;;; git-commit-mode
 (when (require 'git-commit-mode nil t)
