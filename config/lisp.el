@@ -156,14 +156,18 @@
 
 ;;; expand-region.el
 (require 'expand-region)
+(global-set-key (kbd "C-SPC") 'er/expand-region)
+(global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "M-SPC") 'er/expand-region)
+(global-set-key (kbd "M-@") 'er/expand-region)
 (global-set-key (kbd "C-M-SPC") 'er/expand-region)
 (global-set-key (kbd "C-M-@") 'er/expand-region)
-(define-key active-region-mode-map (kbd "M-SPC") 'er/expand-region)
-(define-key active-region-mode-map (kbd "C-M-SPC") 'er/expand-region)
-(define-key active-region-mode-map (kbd "C-M-@") 'er/expand-region)
-(define-key active-region-mode-map (kbd "C-@") 'er/contract-region)
-(define-key active-region-mode-map (kbd "C-SPC") 'er/contract-region)
+(define-key active-region-mode-map (kbd "C-SPC") 'er/expand-region)
+(define-key active-region-mode-map (kbd "C-@") 'er/expand-region)
+(define-key active-region-mode-map (kbd "M-SPC") 'er/contract-region)
+(define-key active-region-mode-map (kbd "M-@") 'er/contract-region)
+(define-key active-region-mode-map (kbd "C-M-SPC") 'er/contract-region)
+(define-key active-region-mode-map (kbd "C-M-@") 'er/contract-region)
 
 ;;; duplicate-thing.el
 (require 'duplicate-thing)
