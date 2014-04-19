@@ -1,4 +1,4 @@
 # name: line-height: ...
 # key: lh
 # --
-lihe-height: $1;
+line-height: $1;
