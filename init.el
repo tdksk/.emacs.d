@@ -567,6 +567,7 @@
     (ruby-block-mode . "")
     (undo-tree-mode . "")
     (wrap-region-mode . "")
+    (magit-auto-revert-mode . "")
     (git-gutter-mode . "")
     (auto-complete-mode . "")
     (yas/minor-mode . "")
