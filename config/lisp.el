@@ -538,6 +538,7 @@
 ;;; git-messenger.el
 (require 'git-messenger)
 (setq git-messenger:show-detail t)
+(define-key git-messenger-map (kbd "w") 'git-messenger:copy-commit-id)
 
 ;;; dash-at-point
 (autoload 'dash-at-point "dash-at-point"
