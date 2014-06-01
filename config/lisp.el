@@ -391,7 +391,6 @@
 (require 'git-gutter)
 (global-git-gutter-mode t)
 (define-key global-map (kbd "C-c g") 'git-gutter)
-(setq git-gutter:update-hooks '(after-save-hook after-revert-hook window-configuration-change-hook git-gutter-mode-on-hook))
 (setq git-gutter:unchanged-sign " ")
 (setq git-gutter:modified-sign " ")
 (setq git-gutter:added-sign " ")
