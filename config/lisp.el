@@ -126,7 +126,7 @@
 (push '("*Process List*") popwin:special-display-config)
 (push '("*YaTeX-typesetting*") popwin:special-display-config)
 (push '("*git-gutter:diff*" :height .5 :stick t) popwin:special-display-config)
-(push '("*helm*" :regexp t :height 20) popwin:special-display-config)
+(push '("*helm*" :regexp t :height .75) popwin:special-display-config)
 ;; (push '(direx:direx-mode :position left :width 40 :dedicated t) popwin:special-display-config)
 ;; for YaTeX
 (defadvice YaTeX-showup-buffer (around popwin-yatex:YaTeX-showup-buffer (buffer &optional func select) activate)
