@@ -518,6 +518,17 @@
         (error "Can't find repository URL"))
       (browse-url url))))
 (define-key magit-mode-map (kbd "G") 'magit-browse)
+(defun magit-pull-request ()
+  (interactive)
+  (let* ((branch (replace-regexp-in-string
+                  "[\r\n]+\\'" ""
+                  (shell-command-to-string "git symbolic-ref -q HEAD")))
+         (branch (if (string-match "^refs/heads/" branch)
+                     (substring branch 11)
+                   "")))
+    (shell-command
+     (format "hub browse -- pull/new/%s" branch))))
+(define-key magit-mode-map (kbd "H") 'magit-pull-request)
 
 ;;; git-commit-mode
 (when (require 'git-commit-mode nil t)
