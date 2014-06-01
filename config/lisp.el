@@ -410,6 +410,7 @@
 (global-set-key (kbd "C-x C-r") 'magit-reflog)
 (global-set-key (kbd "C-x g") 'magit-blame-mode)
 (global-set-key (kbd "C-x C-b") 'magit-branch-manager)
+(setq magit-diff-refine-hunk 'all)
 (set-face-bold-p 'magit-item-highlight nil)
 (set-face-attribute 'magit-item-highlight nil :inherit nil)
 (set-face-background 'magit-item-highlight "black")
