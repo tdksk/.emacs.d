@@ -524,9 +524,15 @@
                   (shell-command-to-string "git symbolic-ref -q HEAD")))
          (branch (if (string-match "^refs/heads/" branch)
                      (substring branch 11)
-                   "")))
+                   ""))
+         (repo (with-temp-buffer
+                 (unless (zerop (call-process-shell-command "git remote -v" nil t))
+                   (error "Failed: 'git remote -v'"))
+                 (goto-char (point-min))
+                 (when (re-search-forward "\\.com[:/]\\(.+?\\)\\.git" nil t)
+                   (match-string 1)))))
     (shell-command
-     (format "hub browse -- pull/new/%s" branch))))
+     (format "hub browse %s pull/new/%s" repo branch))))
 (define-key magit-mode-map (kbd "H") 'magit-pull-request)
 
 ;;; git-commit-mode
