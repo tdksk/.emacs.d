@@ -415,7 +415,7 @@
 (set-face-background 'magit-item-highlight "black")
 (defvar magit-highlight-status t)
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
-(define-key magit-status-mode-map (kbd "S") 'magit-stash)
+(define-key magit-status-mode-map (kbd "S") (kbd "z-uz"))
 (define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
 (add-hook 'magit-mode-hook
           '(lambda ()
