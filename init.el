@@ -711,7 +711,15 @@ Argument REPLACE String used to replace the matched strings in the buffer.
     (message "Not in a re-builder buffer!")))
 
 ;;; tmux
-(global-set-key (kbd "M-t") 'open-current-directory-in-tmux-new-window)
+(global-set-key (kbd "M-t") 'open-current-git-root-directory-in-tmux-new-pane)
+(defun open-current-git-root-directory-in-tmux-new-pane ()
+  (interactive)
+  (let* ((dir (git-root-directory))
+         (cmd (concat "tmux split-window -v \"cd " dir "; exec $SHELL\"")))
+    (cond ((eq (shell-command cmd) 0)
+           (message "Open directory %s in tmux new pane." dir))
+          (t
+           (message "Failed to create new pane in tmux.")))))
 (defun open-current-directory-in-tmux-new-window ()
   "カレントディレクトリをtmuxの新しいwindowで開く."
   (interactive)
