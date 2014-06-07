@@ -900,14 +900,9 @@
                         (call-process-shell-command ,cmd nil t nil)))))
           (candidates-in-buffer)
           (type . file))))
-(defun helm-git-project-topdir ()
-  (file-name-as-directory
-   (replace-regexp-in-string
-    "\n" ""
-    (shell-command-to-string "git rev-parse --show-toplevel"))))
 (defun helm-git-project ()
   (interactive)
-  (let ((topdir (helm-git-project-topdir)))
+  (let ((topdir (git-top-directory)))
     (unless (file-directory-p topdir)
       (error "I'm not in Git Repository!!"))
     (let* ((default-directory topdir)

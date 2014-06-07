@@ -710,11 +710,18 @@ Argument REPLACE String used to replace the matched strings in the buffer.
           (query-replace-regexp reg replace)))
     (message "Not in a re-builder buffer!")))
 
+;;; git
+(defun git-top-directory ()
+  (file-name-as-directory
+   (replace-regexp-in-string
+    "\n" ""
+    (shell-command-to-string "git rev-parse --show-toplevel"))))
+
 ;;; tmux
-(global-set-key (kbd "M-t") 'open-current-git-root-directory-in-tmux-new-pane)
-(defun open-current-git-root-directory-in-tmux-new-pane ()
+(global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
+(defun open-current-git-top-directory-in-tmux-new-pane ()
   (interactive)
-  (let* ((dir (git-root-directory))
+  (let* ((dir (git-top-directory))
          (cmd (concat "tmux split-window -v \"cd " dir "; exec $SHELL\"")))
     (cond ((eq (shell-command cmd) 0)
            (message "Open directory %s in tmux new pane." dir))
@@ -755,22 +762,9 @@ Argument REPLACE String used to replace the matched strings in the buffer.
             (define-key grep-mode-map "i" 'wgrep-change-to-wgrep-mode)))
 
 ;; git-grep
-(defun chomp (str)
-  (replace-regexp-in-string "[\n\r]+$" "" str))
-(defun git-project-p ()
-  (string=
-   (chomp
-    (shell-command-to-string "git rev-parse --is-inside-work-tree"))
-   "true"))
-(defun git-root-directory ()
-  (cond ((git-project-p)
-         (chomp
-          (shell-command-to-string "git rev-parse --show-toplevel")))
-        (t
-         "")))
 (defun git-grep (search-word grep-dir)
   (interactive
-   (let ((root (concat (git-root-directory) "/")))
+   (let ((root (concat (git-top-directory) "/")))
      (ffap-copy-string-as-kill)
      (list
       (read-shell-command
