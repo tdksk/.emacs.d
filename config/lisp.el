@@ -860,6 +860,7 @@
                      "*helm my buffers*"))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-my-buffers)
+(global-set-key (kbd "M-'") 'helm-resume)
 (global-set-key (kbd "C-x C-_") 'helm-occur)
 (global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
