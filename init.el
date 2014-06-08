@@ -721,12 +721,15 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
 (defun open-current-git-top-directory-in-tmux-new-pane ()
   (interactive)
-  (let* ((dir (git-top-directory))
-         (cmd (concat "tmux split-window -v \"cd " dir "; exec $SHELL\"")))
-    (cond ((eq (shell-command cmd) 0)
-           (message "Open directory %s in tmux new pane." dir))
-          (t
-           (message "Failed to create new pane in tmux.")))))
+  (let ((top-dir (git-top-directory)))
+    (unless (file-directory-p top-dir)
+      (setq top-dir ""))
+    (let* ((dir top-dir)
+           (cmd (concat "tmux split-window -v \"cd " dir "; exec $SHELL\"")))
+      (cond ((eq (shell-command cmd) 0)
+             (message "Open directory %s in tmux new pane." dir))
+            (t
+             (message "Failed to create new pane in tmux."))))))
 (defun open-current-directory-in-tmux-new-window ()
   "カレントディレクトリをtmuxの新しいwindowで開く."
   (interactive)
