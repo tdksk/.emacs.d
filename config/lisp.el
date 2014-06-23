@@ -1042,8 +1042,8 @@
                 (set-face-foreground 'mode-line (cdr color))))))
 
 ;;; evil-surround
-(require 'surround)
-(global-surround-mode 1)
+(require 'evil-surround)
+(global-evil-surround-mode 1)
 
 ;;; evil-matchit
 (require 'evil-matchit)
