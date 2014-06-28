@@ -864,7 +864,8 @@
 (global-set-key (kbd "C-x C-_") 'helm-occur)
 (global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
-(global-set-key (kbd "C-;") 'helm-git-project)
+(global-set-key (kbd "M-'") 'helm-git-project)
+(global-set-key (kbd "C-;") 'helm-ghq)
 (setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
 (setq helm-ff-transformer-show-only-basename nil)
@@ -883,6 +884,8 @@
 (require 'helm-git-grep)
 (global-set-key (kbd "C-x C-g") 'helm-git-grep-at-point)
 (define-key helm-git-grep-map (kbd "C-w") 'backward-kill-word)
+;; helm-ghq
+(require 'helm-ghq)
 ;; helm-git-project
 (defun helm-c-sources-git-project-for (pwd)
   (loop for elt in

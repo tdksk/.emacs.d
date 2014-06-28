@@ -136,3 +136,6 @@
 [submodule "lisp/ace-jump-mode"]
 	path = lisp/ace-jump-mode
 	url = https://github.com/winterTTr/ace-jump-mode.git
+[submodule "lisp/helm-ghq"]
+	path = lisp/helm-ghq
+	url = https://github.com/masutaka/emacs-helm-ghq.git
