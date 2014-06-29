@@ -1,53 +1,40 @@
-;;; ロードパスの追加
 (setq load-path (append
                  '("~/.emacs.d"
                    "~/.emacs.d/lisp")
                  load-path))
-;;; サブディレクトリにもパスを通す
 (let ((default-directory (expand-file-name "~/.emacs.d/lisp")))
   (add-to-list 'load-path default-directory)
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
       (normal-top-level-add-subdirs-to-load-path)))
 
-;;; テキストエンコーディングとして UTF-8 を優先使用
 (prefer-coding-system 'utf-8)
-
-;;; Localeに合わせた環境の設定
 ;; (set-locale-environment nil)
 
-;;; キーバインド
 (keyboard-translate ?\C-h ?\C-?)  ; translate 'C-h' to DEL
-(define-key global-map (kbd "M-?") 'help-for-help)          ; ヘルプ
-(define-key global-map (kbd "C-z") nil)                     ; サスペンド無効
-(define-key global-map (kbd "C-c TAB") 'indent-region)      ; インデント
-(define-key global-map (kbd "M-;") 'comment-dwim-line)      ; コメントアウト
-(define-key global-map (kbd "C-c ;") 'comment-dwim-line)    ; コメントアウト
-(define-key global-map (kbd "C-c C-c") 'comment-dwim-line)  ; コメントアウト
-(define-key global-map (kbd "C-c C-g") 'git-grep)           ; git-grep
-(define-key global-map (kbd "C-c C-f") 'find-name-dired)    ; ファイル名で検索
-(define-key global-map (kbd "M-g") 'goto-line-with-feedback); 指定行へ移動
-(define-key global-map (kbd "C-m") 'newline-and-indent)     ; 改行キーでオートインデント
-(define-key global-map (kbd "C-j") 'open-line-below)        ; 下に行追加して移動
-(define-key global-map (kbd "M-j") 'open-line-above)        ; 上に行追加して移動
-(define-key global-map (kbd "M-p") 'move-line-up)           ; 行を上に
-(define-key global-map (kbd "M-n") 'move-line-down)         ; 行を下に
-(define-key global-map (kbd "M-o") 'open-line-ex)           ; 空行を下に追加
-(define-key global-map (kbd "C-c a") 'align)                ; align
-(define-key global-map (kbd "C-c M-a") 'align-regexp)       ; align-regexp
-(define-key global-map (kbd "M-d") 'kill-word-at-point)     ; カーソル位置の単語を削除する
-(define-key global-map (kbd "M-k") 'kill-line-ex)           ; 1行kill
-(define-key global-map (kbd "M-y") 'yank-bottom-line)       ; 下の行にyank
-(define-key global-map (kbd "C-x C-k") 'kill-buffer)        ; バッファ削除
-(define-key global-map (kbd "C-z") 'switch-to-last-buffer)  ; 直前のバッファに切り替え
-(define-key global-map (kbd "C-t") 'other-window-or-split)  ; ウィンドウ間移動(ウィンドウが1つのときは分割して移動)
+(define-key global-map (kbd "M-?") 'help-for-help)
+(define-key global-map (kbd "C-c TAB") 'indent-region)
+(define-key global-map (kbd "M-;") 'comment-dwim-line)
+(define-key global-map (kbd "C-c ;") 'comment-dwim-line)
+(define-key global-map (kbd "C-c C-c") 'comment-dwim-line)
+(define-key global-map (kbd "C-c C-g") 'git-grep)
+(define-key global-map (kbd "C-c C-f") 'find-name-dired)
+(define-key global-map (kbd "M-g") 'goto-line-with-feedback)
+(define-key global-map (kbd "C-m") 'newline-and-indent)
+(define-key global-map (kbd "C-j") 'open-line-below)
+(define-key global-map (kbd "M-j") 'open-line-above)
+(define-key global-map (kbd "M-p") 'move-line-up)
+(define-key global-map (kbd "M-n") 'move-line-down)
+(define-key global-map (kbd "M-o") 'open-line-ex)
+(define-key global-map (kbd "C-c a") 'align)
+(define-key global-map (kbd "C-c M-a") 'align-regexp)
+(define-key global-map (kbd "M-d") 'kill-word-at-point)
+(define-key global-map (kbd "M-k") 'kill-line-ex)
+(define-key global-map (kbd "M-y") 'yank-bottom-line)
+(define-key global-map (kbd "C-x C-k") 'kill-buffer)
+(define-key global-map (kbd "C-z") 'switch-to-last-buffer)
+(define-key global-map (kbd "C-t") 'other-window-or-split)
 (define-key global-map (kbd "C-M-t") 'other-window-backward-or-split)
-(define-key global-map (kbd "C-c t") 'swap-screen)          ; 分割したバッファを入れ替える
-(define-key global-map (kbd "C-c f") 'flyspell-mode)        ; flyspell-mode
-(define-key global-map (kbd "C-c l") 'global-linum-mode)    ; linum-mode (global)
-(define-key global-map (kbd "C-c p") 'php-mode)             ; php-mode
-(define-key global-map (kbd "C-c h") 'html-mode)            ; html-mode
-(define-key global-map (kbd "C-c n") 'nxml-mode)            ; nxml-mode
-(define-key global-map (kbd "C-c s") 'css-mode)             ; css-mode
+(define-key global-map (kbd "C-c t") 'swap-screen)
 
 ;; C-c C-c
 (dolist (hook '(c-mode-common-hook
@@ -248,43 +235,20 @@
            (format "%s%s%s" string-quote content string-quote))
           (goto-char orig-point))))))
 
-;;; minibuffer で C-w の前の単語を削除
 (define-key minibuffer-local-completion-map (kbd "C-w") 'backward-kill-word)
-
-;;; 範囲指定していないとき C-w で前の単語を削除
 (defadvice kill-region (around kill-word-or-kill-region activate)
   (if (and (called-interactively-p 'interactive) transient-mark-mode (not mark-active))
       (backward-kill-word 1)
     ad-do-it))
 
-;;; GC を減らして軽くする
 (setq gc-cons-threshold (* 4 1024 1024))
 
-;;; 画像ファイルを表示
-(auto-image-file-mode t)
-
-;;; メニューバーを消す
 (menu-bar-mode -1)
-;;; ツールバーを消す
-;; (tool-bar-mode -1)
-
-;;; 起動画面を表示しない
 (setq inhibit-splash-screen t)
-
-;;; *scratch*バッファのメッセージを消す
 (setq initial-scratch-message "")
 
-;;; カーソルの点滅を止める
-;; (blink-cursor-mode 0)
-
-;;; evalした結果を全部表示
-;; (setq eval-expression-print-length nil)
-
-;;; 対応する括弧を光らせる。
 (show-paren-mode 1)
-(setq show-paren-delay 0)  ; ハイライトまでの遅延
-;;; ウィンドウ内に収まらないときだけ括弧内も光らせる。
-;; (setq show-paren-style 'mixed)
+(setq show-paren-delay 0)
 (defadvice show-paren-function (after evil-echo-paren-matching-line activate)
   "If a matching paren is off-screen, echo the matching line."
   (when (char-equal (char-syntax (char-before (+ (point) 1))) ?\))
@@ -293,7 +257,6 @@
       (when matching-text
         (message matching-text)))
     (backward-char)))
-;;; 色
 (set-face-attribute 'show-paren-match nil
                     :foreground "black"
                     :background "cyan"
@@ -303,7 +266,6 @@
                     :background "red"
                     :weight 'normal)
 
-;;; 空白や改行の視覚化
 (global-whitespace-mode t)
 (eval-after-load 'whitespace
   '(progn
@@ -320,17 +282,14 @@
                          :background "black")
      (setq whitespace-display-mappings '((newline-mark ?\n [?↲ ?\n]) (tab-mark ?\t [?\u00BB ?\t])))))
 
-;;; 現在行を目立たせる
 (global-hl-line-mode)
 (set-face-attribute 'hl-line nil
                     :inherit nil
                     :background "black"
                     :weight 'bold)
 
-;;; 行番号表示
 (linum-mode -1)
 (setq linum-format "%4d ")
-;; 遅延させて軽くする
 (setq linum-delay t)
 (defadvice linum-schedule (around my-linum-schedule () activate)
   (run-with-idle-timer 0.2 nil #'linum-update-current))
@@ -341,58 +300,38 @@
                                 :background "black"
                                 :weight 'bold)))
 
-;; 1行ずつスクロール
 (setq scroll-step 1
       scroll-conservatively 10000
       scroll-margin 10)
 (setq comint-scroll-show-maximum-output t)  ; for shell-mode
-
-;;; スクロール時にカーソルの位置を変えない
 (setq scroll-preserve-screen-position t)
 
-;;; カーソルの場所を保存する
 (require 'saveplace)
 (setq-default save-place t)
 
-;;; 行の先頭でC-kを一回押すだけで行全体を消去する
 (setq kill-whole-line t)
-
-;;; kill-line で行が連結した時にインデントを削除
 (defadvice kill-line (before kill-line-and-fixup activate)
   (when (and (not (bolp)) (eolp))
     (forward-char)
     (fixup-whitespace)
     (backward-char)))
 
-;;; リージョンを削除できるように
 (delete-selection-mode t)
 
-;;; 最終行に必ず一行挿入する
 (setq require-final-newline t)
-
-;;; バッファの最後でnewlineで新規行を追加するのを禁止する
 (setq next-line-add-newlines nil)
 
-;;; 画面分割しても折り返し
 (setq truncate-partial-width-windows nil)
 
-;;; 縦分割しない
 (setq split-height-threshold nil)
 
-;;; バックアップファイルを作らない
 (setq backup-inhibited t)
 (setq make-backup-files nil)
-
-;;; オートセーブファイルを作らない
 (setq auto-save-default nil)
-
-;;; 終了時にオートセーブファイルを消す
 (setq delete-auto-save-files t)
 
-;;; 終了時に自動でプロセスをkill
 (setq process-kill-without-query t)
 
-;;; 最近使ったファイルを保存する
 (defadvice recentf-save-list
   (after hide-recentf-save-list-message activate)
   (message nil))
@@ -407,28 +346,20 @@
 (recentf-mode 1)
 (require 'recentf-ext)
 
-;;; ファイルに変更があったら自動的にバッファ更新
 (global-auto-revert-mode t)
-;;; dired も更新 (save 時のみ)
 (setq global-auto-revert-non-file-buffers t)
 (setq auto-revert-verbose nil)
 
-;;; 補完時に大文字小文字を区別しない
 (setq completion-ignore-case t)
 (setq read-file-name-completion-ignore-case t)
 
-;;; 補完可能なものを随時表示
-;;; 少しうるさい
 (icomplete-mode 1)
 
-;;; ファイル名が重複していたらディレクトリ名を追加する。
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 
-;;; 削除確認などでyes/noの代わりにy/n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;;; C-aで「行頭」と「インデントを飛ばした行頭」を行き来する
 (global-set-key "\C-a" 'begining-of-indented-line)
 (defun begining-of-indented-line (current-point)
   (interactive "d")
@@ -441,7 +372,6 @@
       (beginning-of-line)
     (back-to-indentation)))
 
-;;; モードライン
 (setq-default
  mode-line-format
  '("%e"
@@ -551,7 +481,6 @@
 (set-face-background 'mode-line "white")
 (set-face-foreground 'mode-line-inactive nil)
 (set-face-background 'mode-line-inactive "black")
-;; モード情報をコンパクトに
 (defvar mode-line-cleaner-alist
   '(;; For minor-mode, first char is 'space'
     (abbrev-mode . "")
@@ -592,21 +521,17 @@
             (setq mode-name mode-str)))))
 (add-hook 'after-change-major-mode-hook 'clean-mode-line)
 
-;;; カーソル付近のファイル/URLを開く
 (ffap-bindings)
 
-;;; 選択範囲に色をつける
 (setq transient-mark-mode t)
 (set-face-attribute 'region nil
                     :background "blue"
                     :foreground "black"
                     :weight 'normal)
 
-;;; コメントの色
 (set-face-foreground 'font-lock-comment-face "red")
 (set-face-foreground 'font-lock-comment-delimiter-face "red")
 
-;;; その他色
 (set-face-attribute 'isearch nil
                     :background "green"
                     :foreground "black"
@@ -632,7 +557,6 @@
                     :foreground "black"
                     :weight 'normal)
 
-;;; 全角スペースとかに色を付ける
 (defface my-face-b-1 '((t (:background "white"))) nil)
 (defvar my-face-b-1 'my-face-b-1)
 (defadvice font-lock-mode (before my-font-lock-mode ())
@@ -649,7 +573,6 @@
                                   nil
                                 (font-lock-mode t))))
 
-;;; Tabの代わりにスペースでインデント
 (setq-default indent-tabs-mode nil)
 
 ;;; active-region-mode
@@ -678,7 +601,6 @@
   '(progn
      (setq flyspell-mode-line-string " Fs")
      (setq-default ispell-program-name "aspell")
-     ;; 日本語が混ざっていてもスペルチェックできるように
      (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+"))))
 
 ;;; flyspell
@@ -731,7 +653,6 @@ Argument REPLACE String used to replace the matched strings in the buffer.
             (t
              (message "Failed to create new pane in tmux."))))))
 (defun open-current-directory-in-tmux-new-window ()
-  "カレントディレクトリをtmuxの新しいwindowで開く."
   (interactive)
   (let* ((dir (if buffer-file-name
                   (file-name-directory buffer-file-name)
@@ -785,22 +706,19 @@ Argument REPLACE String used to replace the matched strings in the buffer.
     (grep command)))
 
 ;;; dired-mode
-;; dired拡張
 (require 'dired-x)
 (add-hook 'dired-mode-hook
           '(lambda ()
              (linum-mode -1)
-             ;; キーバインド
-             (define-key dired-mode-map "\C-t" 'next-multiframe-window)  ; フレーム間移動
-             ))
+             (define-key dired-mode-map "\C-t" 'next-multiframe-window)))
 (put 'dired-find-alternate-file 'disabled nil)
-(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file) ; 新規バッファを作成しない
-(define-key dired-mode-map "o" 'dired-find-alternate-file)         ; 新規バッファを作成しない
-(define-key dired-mode-map "a" 'dired-advertised-find-file)        ; 新規バッファで開く
-(define-key dired-mode-map "u" 'dired-up-directory)                ; 親ディレクトリに移動
-(define-key dired-mode-map "j" 'dired-next-line)                   ; 次の行にいく
-(define-key dired-mode-map "k" 'dired-previous-line)               ; 前の行にいく
-(define-key dired-mode-map "c" 'dired-unmark)                      ; マークを消す
+(define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
+(define-key dired-mode-map "o" 'dired-find-alternate-file)
+(define-key dired-mode-map "a" 'dired-advertised-find-file)
+(define-key dired-mode-map "u" 'dired-up-directory)
+(define-key dired-mode-map "j" 'dired-next-line)
+(define-key dired-mode-map "k" 'dired-previous-line)
+(define-key dired-mode-map "c" 'dired-unmark)
 (define-key dired-mode-map (kbd "C-t") 'other-window-or-split)
 (define-key dired-mode-map (kbd "C-d") 'scroll-up)
 (define-key dired-mode-map (kbd "C-u") 'scroll-down)
@@ -809,11 +727,9 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (define-key dired-mode-map "/" 'isearch-forward)
 (define-key dired-mode-map "n" 'isearch-repeat-forward)
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
-(define-key dired-mode-map "i" 'wdired-change-to-wdired-mode)      ; ファイル名編集
+(define-key dired-mode-map "i" 'wdired-change-to-wdired-mode)
 (define-key dired-mode-map "f" 'open-current-dir)
 (define-key dired-mode-map (kbd "SPC") 'dired-do-open)
-;;; フォルダを開く時, 新しいバッファを作成しない
-;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
 (defadvice dired-advertised-find-file
   (before kill-dired-buffer activate)
@@ -829,15 +745,10 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (after kill-up-dired-buffer-after activate)
   (if (eq major-mode 'dired-mode)
       (kill-buffer my-dired-before-buffer)))
-;; サブディレクトリも削除やコピーできるように
 (setq dired-recursive-copies 'always)
 (setq dired-recursive-deletes 'always)
-;; diredを2つのウィンドウで開いている時に、デフォルトの移動orコピー先をもう一方のdiredで開いているディレクトリにする
 (setq dired-dwim-target t)
-;; diredバッファでC-sした時にファイル名だけにマッチするように
 (setq dired-isearch-filenames t)
-;;; dired を使って、一気にファイルの coding system (漢字) を変換する
-;; m でマークして T で一括変換
 (require 'dired-aux)
 (add-hook 'dired-mode-hook
           (lambda ()
@@ -1017,5 +928,4 @@ the next ARG files are used.  Just \\[universal-argument] means the current file
     (interactive)
     (shell-command "osascript ~/.emacs.d/scripts/xcode-run.scpt")))
 
-;;; 非標準Elispの設定
 (load "config/lisp")

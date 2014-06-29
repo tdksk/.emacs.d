@@ -1,17 +1,12 @@
-;;; auto-install
-;; (require 'auto-install)
-;; (setq auto-install-directory "~/.emacs.d/lisp/")
-;; (auto-install-compatibility-setup)
-
 ;;; auto-complete
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
 (ac-flyspell-workaround)  ; enable auto-complete with flyspell
-(setq ac-auto-show-menu 0)  ; 補完メニュー表示までの時間
-(setq ac-use-quick-help nil)  ; 補完中に出てくるツールチップヘルプを利用しない
-;; (setq ac-expand-on-auto-complete nil)  ; 補完候補全体の共通部分を展開しない
-(setq ac-use-menu-map t)  ; 補完メニュー表示時のみC-n/C-pで補完候補を選択する
+(setq ac-auto-show-menu 0)
+(setq ac-use-quick-help nil)
+;; (setq ac-expand-on-auto-complete nil)
+(setq ac-use-menu-map t)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/lisp/auto-complete/dict")
 (dolist (list '(scss-mode
          coffee-mode
@@ -33,7 +28,6 @@
 (set-face-attribute 'ac-selection-face nil
                     :foreground "black"
                     :background "blue")
-;; auto-complete の候補に日本語を含む単語が含まれないようにする
 ;; http://d.hatena.ne.jp/IMAKADO/20090813/1250130343
 (defadvice ac-word-candidates (after remove-word-contain-japanese activate)
   (let ((contain-japanese (lambda (s) (string-match (rx (category japanese)) s))))
@@ -109,15 +103,12 @@
                         (:description . "Compile C++ file with g++ including OpenCV and OpenGL and execute")))
 
 ;;; popwin.el
-;;; ポップアップウィンドウ表示
 (require 'popwin)
 (popwin-mode 1)
-;; 初期化
 (setq popwin:special-display-config nil)
 ;; Hotfix for Emacs 24.3
 ;; https://github.com/emacs-jp/issues/issues/2
 (setq popwin:close-popup-window-timer-interval 0.1)
-;; 対象
 (push 'help-mode popwin:special-display-config)
 (push '(completion-list-mode :noselect t) popwin:special-display-config)
 (push '(compilation-mode :position right :width .5 :noselect t) popwin:special-display-config)
@@ -305,7 +296,6 @@
          (global-set-key (kbd "/") 'self-insert-command)
          (message "smartchr off"))))
 (smartchr-mode 1)
-;; cua-mode に入る時に無効化
 (defadvice cua--deactivate-rectangle (before my-cua--deactivate-rectangle ())
   (smartchr-mode 1))
 (defadvice cua--activate-rectangle (before my-cua--activate-rectangle ())
@@ -604,22 +594,18 @@
 (autoload 'php-mode "php-mode")
 (setq auto-mode-alist
       (cons '("\\.php\\'" . php-mode) auto-mode-alist))
-;; (setq php-mode-force-pear t) ; これがあるとtab-widthが設定不可
 (add-hook 'php-mode-hook
           '(lambda ()
-             (setq tab-width 2)          ; tabの幅
-             (setq indent-tabs-mode nil) ; tabをスペースに
-             ;; インデント設定
+             (setq tab-width 2)
+             (setq indent-tabs-mode nil)
              (c-set-offset 'case-label' +)
              (c-set-offset 'arglist-intro' +)
              (c-set-offset 'arglist-cont-nonempty' +)
              (c-set-offset 'arglist-close' 0)
-             ;; コメント
              ;; (setq comment-style 'extra-line)
              (setq comment-start "//")
              (setq comment-continue "//")
              (setq comment-end "")
-             ;; マニュアル
              ;; (setq php-manual-path "/usr/share/php/doc/html")
              (setq php-manual-url "http://www.phppro.jp/phpmanual/")
              ;; php-align.el
