@@ -372,6 +372,11 @@
       (beginning-of-line)
     (back-to-indentation)))
 
+;;; Narrowing
+(put 'narrow-to-defun  'disabled nil)
+(put 'narrow-to-page   'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+
 (setq-default
  mode-line-format
  '("%e"
