@@ -849,7 +849,7 @@
 (global-set-key (kbd "C-x C-_") 'helm-occur)
 (global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
-(global-set-key (kbd "C-;") 'helm-git-project)
+(global-set-key (kbd "C-;") 'helm-ls-git-ls)
 (global-set-key (kbd "M-'") 'helm-ghq)
 (setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
@@ -865,38 +865,14 @@
      (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))))
 ;; helm-ag
 (require 'helm-ag)
+;; helm-ls-git
+(require 'helm-ls-git)
 ;; helm-git-grep
 (require 'helm-git-grep)
 (global-set-key (kbd "C-x C-g") 'helm-git-grep-at-point)
 (define-key helm-git-grep-map (kbd "C-w") 'backward-kill-word)
 ;; helm-ghq
 (require 'helm-ghq)
-;; helm-git-project
-(defun helm-c-sources-git-project-for (pwd)
-  (loop for elt in
-        '(("Modified files" . "--modified")
-          ("Untracked files" . "--others --exclude-standard")
-          ("All controlled files in this project" . nil))
-        for title  = (format "%s (%s)" (car elt) pwd)
-        for option = (cdr elt)
-        for cmd    = (format "git ls-files %s" (or option ""))
-        collect
-        `((name . ,title)
-          (init . (lambda ()
-                    (unless (and (not ,option) (helm-candidate-buffer))
-                      (with-current-buffer (helm-candidate-buffer 'global)
-                        (call-process-shell-command ,cmd nil t nil)))))
-          (candidates-in-buffer)
-          (type . file))))
-(defun helm-git-project ()
-  (interactive)
-  (let ((topdir (git-top-directory)))
-    (unless (file-directory-p topdir)
-      (error "I'm not in Git Repository!!"))
-    (let* ((default-directory topdir)
-           (sources (helm-c-sources-git-project-for default-directory)))
-      (helm-other-buffer sources
-                         (format "*helm git project in %s*" default-directory)))))
 ;; helm-git-commit-messages
 (defvar helm-c-source-git-commit-messages
   '((name . "Git Commit Messages")
