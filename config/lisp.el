@@ -853,6 +853,7 @@
 (global-set-key (kbd "M-'") 'helm-ghq)
 (setq helm-idle-delay 0)
 (setq helm-input-idle-delay 0)
+(setq helm-exit-idle-delay 0)
 (setq helm-ff-transformer-show-only-basename nil)
 (eval-after-load 'helm
   '(progn
