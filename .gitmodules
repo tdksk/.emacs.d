@@ -142,3 +142,6 @@
 [submodule "lisp/helm-ls-git"]
 	path = lisp/helm-ls-git
 	url = https://github.com/emacs-helm/helm-ls-git.git
+[submodule "lisp/codic"]
+	path = lisp/codic
+	url = https://github.com/syohex/emacs-codic.git

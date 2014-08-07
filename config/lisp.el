@@ -117,6 +117,7 @@
 (push '("*Process List*") popwin:special-display-config)
 (push '("*YaTeX-typesetting*") popwin:special-display-config)
 (push '("*git-gutter:diff*" :height .5 :stick t) popwin:special-display-config)
+(push '("*Codic Result*" :height .5) popwin:special-display-config)
 (push '("*helm*" :regexp t :height .75) popwin:special-display-config)
 ;; (push '(direx:direx-mode :position left :width 40 :dedicated t) popwin:special-display-config)
 ;; for YaTeX
@@ -551,6 +552,9 @@
 (autoload 'dash-at-point "dash-at-point"
   "Search the word at point with Dash." t nil)
 (global-set-key (kbd "C-c C-d") 'dash-at-point)
+
+;;; codic
+(require 'codic)
 
 ;;; flycheck
 (require 'flycheck)
