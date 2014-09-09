@@ -48,20 +48,20 @@
   '((candidates . ac-look-candidates)
     (requires . 2)))
 ;; emacs-clang-complete-async
-(require 'auto-complete-clang-async)
-(defun ac-clang-complete-setup ()
-  ;; TODO: Fix loading twice
-  (setq ac-clang-complete-executable "~/.emacs.d/lisp/emacs-clang-complete-async/clang-complete")
-  (setq ac-sources (append '(ac-source-clang-async ac-source-yasnippet) ac-sources))
-  (set-face-attribute 'ac-clang-candidate-face nil
-                      :foreground "white"
-                      :background "black"
-                      :weight 'normal)
-  (set-face-attribute 'ac-clang-selection-face nil
-                      :foreground "black"
-                      :background "blue")
-  (ac-clang-launch-completion-process))
-(add-hook 'objc-mode-hook 'ac-clang-complete-setup)
+;; (require 'auto-complete-clang-async)
+;; (defun ac-clang-complete-setup ()
+;;   ;; TODO: Fix loading twice
+;;   (setq ac-clang-complete-executable "~/.emacs.d/lisp/emacs-clang-complete-async/clang-complete")
+;;   (setq ac-sources (append '(ac-source-clang-async ac-source-yasnippet) ac-sources))
+;;   (set-face-attribute 'ac-clang-candidate-face nil
+;;                       :foreground "white"
+;;                       :background "black"
+;;                       :weight 'normal)
+;;   (set-face-attribute 'ac-clang-selection-face nil
+;;                       :foreground "black"
+;;                       :background "blue")
+;;   (ac-clang-launch-completion-process))
+;; (add-hook 'objc-mode-hook 'ac-clang-complete-setup)
 ;; ac-ispell
 ;; (require 'ac-ispell)
 ;; (custom-set-variables
