@@ -401,6 +401,7 @@
 (global-set-key (kbd "C-x g") 'magit-blame-mode)
 (global-set-key (kbd "C-x C-b") 'magit-branch-manager)
 (setq magit-set-upstream-on-push t)
+(setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-raw)
 (setq magit-process-popup-time 0)
 (setq magit-diff-refine-hunk 'all)
 (set-face-bold-p 'magit-item-highlight nil)
@@ -429,6 +430,9 @@
           '(lambda ()
              (local-set-key (kbd "j") 'next-line)
              (local-set-key (kbd "k") 'previous-line)))
+(defun magit-default-tracking-name-branch-raw (remote branch)
+  "Use just the raw branch name for tracking branches."
+  branch)
 (defun magit-toggle-highlight ()
   (interactive)
   (if magit-highlight-status
