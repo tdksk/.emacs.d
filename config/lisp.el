@@ -418,8 +418,6 @@
              (local-set-key (kbd "k") 'magit-goto-previous-section)
              (local-set-key (kbd "K") 'magit-discard-item)
              (local-set-key (kbd "o") (kbd "RET"))
-             (local-set-key (kbd "C-d") 'scroll-up)
-             (local-set-key (kbd "C-u") 'scroll-down)
              (local-set-key (kbd "C-f") 'scroll-up)
              (local-set-key (kbd "C-b") 'scroll-down)
              (local-set-key (kbd "/") 'isearch-forward)
