@@ -714,8 +714,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (require 'dired-x)
 (add-hook 'dired-mode-hook
           '(lambda ()
-             (linum-mode -1)
-             (define-key dired-mode-map "\C-t" 'next-multiframe-window)))
+             (linum-mode -1)))
 (put 'dired-find-alternate-file 'disabled nil)
 (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file)
 (define-key dired-mode-map "o" 'dired-find-alternate-file)
