@@ -402,7 +402,10 @@
    ;; " "
    ;; (:propertize (vc-mode vc-mode)
    ;;              face mode-line-vc-face)
-   "  "
+   " "
+   (:propertize (:eval (git-branch-name))
+                face mode-line-vc-face)
+   " "
    (:propertize mode-name
                 face mode-line-mode-face)
    (:eval (format-mode-line minor-mode-alist))
@@ -643,6 +646,13 @@ Argument REPLACE String used to replace the matched strings in the buffer.
    (replace-regexp-in-string
     "\n" ""
     (shell-command-to-string "git rev-parse --show-toplevel"))))
+(defun git-branch-name ()
+  (let ((branch (replace-regexp-in-string
+                 "[\r\n]+\\'" ""
+                 (shell-command-to-string "git symbolic-ref -q HEAD"))))
+    (if (string-match "^refs/heads/" branch)
+        (substring branch 11)
+      "")))
 
 ;;; tmux
 (global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
