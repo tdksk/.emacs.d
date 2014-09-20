@@ -484,7 +484,8 @@
                     :weight 'bold)
 (set-face-attribute 'mode-line-process-face nil
                     :inherit 'mode-line-face
-                    :background "magenta")
+                    :background "magenta"
+                    :weight 'bold)
 (set-face-foreground 'mode-line "black")
 (set-face-background 'mode-line "white")
 (set-face-foreground 'mode-line-inactive nil)
