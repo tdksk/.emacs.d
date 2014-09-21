@@ -937,6 +937,7 @@
 (define-key evil-normal-state-map (kbd "C-M-o") 'evil-jump-forward)
 (define-key evil-normal-state-map (kbd "g o") 'open-at-point)
 (define-key evil-normal-state-map (kbd "g j") 'dired-jump)
+(define-key evil-normal-state-map (kbd "g f") 'dired-finder-window)
 (define-key evil-normal-state-map (kbd "g h") 'magit-status)
 (define-key evil-normal-state-map (kbd "g l") 'magit-log)
 (define-key evil-normal-state-map (kbd "g L") 'magit-current-file-log)

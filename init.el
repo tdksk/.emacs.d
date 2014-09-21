@@ -925,6 +925,24 @@ the next ARG files are used.  Just \\[universal-argument] means the current file
     (interactive "P")
     (let ((files (dired-get-marked-files nil arg)))
       (apply 'start-process "open_ps" nil "open" files)))
+  (defun dired-finder-window ()
+    "Open the path of front Finder window in dired."
+    (interactive)
+    (let (file
+          (script (concat
+                   "tell application \"Finder\"\n"
+                   "    if ((count Finder windows) > 0) then\n"
+                   "        get POSIX path of (target of window 1 as alias)\n"
+                   "    else\n"
+                   "        get POSIX path of (desktop as alias)\n"
+                   "    end if\n"
+                   "end tell\n")))
+      (setq file (with-temp-buffer
+                   (call-process "osascript" nil t nil "-e" script)
+                   (buffer-substring-no-properties (point-min) (1- (point-max)))))
+      (if (file-directory-p file)
+          (dired file)
+        (error "Not a directory: %s" file))))
   ;; canary
   (defun canary-reload ()
     (interactive)
