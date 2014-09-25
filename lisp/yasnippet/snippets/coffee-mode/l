@@ -2,4 +2,4 @@
 # name: console.log
 # key: l
 # --
-console.table $0
+console.log $0
