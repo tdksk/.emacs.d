@@ -582,6 +582,7 @@
                          :background "yellow")))
 
 ;;; CC Mode
+(require 'cpp-auto-include)
 (setq ff-other-file-alist
       '(("\\.mm?$" (".h"))
         ("\\.cc$"  (".hh" ".h"))
