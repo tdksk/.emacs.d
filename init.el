@@ -744,6 +744,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (define-key dired-mode-map "N" 'isearch-repeat-backward)
 (define-key dired-mode-map "i" 'wdired-change-to-wdired-mode)
 (define-key dired-mode-map "f" 'open-current-dir)
+(define-key dired-mode-map "F" 'dired-finder-window)
 (define-key dired-mode-map (kbd "SPC") 'dired-do-open)
 (defvar my-dired-before-buffer nil)
 (defadvice dired-advertised-find-file
