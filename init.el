@@ -907,6 +907,9 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (defun open-current-dir ()
     (interactive)
     (shell-command "open ."))
+  (defun open-current-file ()
+    (interactive)
+    (shell-command (concat "open " buffer-file-name)))
   (defun open-at-point ()
     "Ask /usr/bin/open to open the thing at or before point."
     (interactive)
@@ -914,7 +917,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
     (let ((file (or (ffap-url-at-point)
                     (ffap-file-at-point))))
       (unless (stringp file)
-        (error "No file or URL found"))
+        (open-current-file))
       (when (file-exists-p (expand-file-name file))
         (setq file (expand-file-name file)))
       (message "Open: %s" file)
