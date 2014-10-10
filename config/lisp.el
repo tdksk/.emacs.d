@@ -876,7 +876,8 @@
                          :background "white"
                          :weight 'normal)
      (define-key helm-map (kbd "C-w") 'backward-kill-word)
-     (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))))
+     (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))
+     (define-key helm-map (kbd "C-o") 'helm-ff-run-open-file-with-default-tool)))
 ;; helm-ag
 (require 'helm-ag)
 ;; helm-ls-git
