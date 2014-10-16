@@ -377,7 +377,6 @@
 ;;; git-gutter.el
 (require 'git-gutter)
 (global-git-gutter-mode t)
-(define-key global-map (kbd "C-c g") 'git-gutter)
 (setq git-gutter:unchanged-sign " ")
 (setq git-gutter:modified-sign " ")
 (setq git-gutter:added-sign " ")
@@ -390,12 +389,6 @@
 ;;; Magit
 (require 'magit)
 (require 'magit-blame)
-(global-set-key (kbd "C-x C-n") 'magit-status)
-(global-set-key (kbd "C-x C-l") 'magit-log)
-(global-set-key (kbd "C-x L") 'magit-file-log)
-(global-set-key (kbd "C-x C-r") 'magit-reflog)
-(global-set-key (kbd "C-x g") 'magit-blame-mode)
-(global-set-key (kbd "C-x C-b") 'magit-branch-manager)
 (setq magit-set-upstream-on-push t)
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-raw)
 (setq magit-process-popup-time 0)
@@ -843,7 +836,6 @@
                      "*helm my buffers*"))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-my-buffers)
-(global-set-key (kbd "C-x C-_") 'helm-occur)
 (global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key (kbd "C-;") 'helm-ls-git-ls)

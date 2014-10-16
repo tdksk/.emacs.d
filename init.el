@@ -12,12 +12,7 @@
 
 (keyboard-translate ?\C-h ?\C-?)  ; translate 'C-h' to DEL
 (define-key global-map (kbd "M-?") 'help-for-help)
-(define-key global-map (kbd "C-c TAB") 'indent-region)
 (define-key global-map (kbd "M-;") 'comment-dwim-line)
-(define-key global-map (kbd "C-c ;") 'comment-dwim-line)
-(define-key global-map (kbd "C-c C-c") 'comment-dwim-line)
-(define-key global-map (kbd "C-c C-g") 'git-grep)
-(define-key global-map (kbd "C-c C-f") 'find-name-dired)
 (define-key global-map (kbd "M-g") 'goto-line-with-feedback)
 (define-key global-map (kbd "C-m") 'newline-and-indent)
 (define-key global-map (kbd "C-j") 'open-line-below)
@@ -25,8 +20,6 @@
 (define-key global-map (kbd "M-p") 'move-line-up)
 (define-key global-map (kbd "M-n") 'move-line-down)
 (define-key global-map (kbd "M-o") 'open-line-ex)
-(define-key global-map (kbd "C-c a") 'align)
-(define-key global-map (kbd "C-c M-a") 'align-regexp)
 (define-key global-map (kbd "M-d") 'kill-word-at-point)
 (define-key global-map (kbd "M-k") 'kill-line-ex)
 (define-key global-map (kbd "M-y") 'yank-bottom-line)
@@ -35,15 +28,6 @@
 (define-key global-map (kbd "C-t") 'other-window-or-split)
 (define-key global-map (kbd "C-M-t") 'other-window-backward-or-split)
 (define-key global-map (kbd "C-c t") 'swap-screen)
-
-;; C-c C-c
-(dolist (hook '(c-mode-common-hook
-                html-mode-hook
-                scss-mode-hook
-                ruby-mode-hook
-                yatex-mode-hook))
-  (add-hook hook '(lambda ()
-                    (local-set-key (kbd "C-c C-c") 'comment-dwim-line))))
 
 ;; Languages use semicolon
 (dolist (hook '(c-mode-common-hook
