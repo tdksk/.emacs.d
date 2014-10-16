@@ -151,3 +151,12 @@
 [submodule "lisp/cpp-auto-include"]
 	path = lisp/cpp-auto-include
 	url = https://github.com/syohex/emacs-cpp-auto-include.git
+[submodule "lisp/popup"]
+	path = lisp/popup
+	url = https://github.com/auto-complete/popup-el.git
+[submodule "lisp/fuzzy"]
+	path = lisp/fuzzy
+	url = https://github.com/auto-complete/fuzzy-el.git
+[submodule "lisp/ert"]
+	path = lisp/ert
+	url = https://github.com/ohler/ert.git
