@@ -391,7 +391,7 @@
 (require 'magit-blame)
 (setq magit-set-upstream-on-push t)
 (setq magit-default-tracking-name-function 'magit-default-tracking-name-branch-raw)
-(setq magit-process-popup-time 0)
+(setq magit-process-popup-time 1)
 (setq magit-diff-refine-hunk 'all)
 (set-face-bold-p 'magit-item-highlight nil)
 (set-face-attribute 'magit-item-highlight nil :inherit nil)
