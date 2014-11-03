@@ -544,7 +544,10 @@
 (dolist (list '(php-mode-hook
                 ruby-mode-hook
                 python-mode-hook
-                coffee-mode-hook))
+                coffee-mode-hook
+                haml-mode-hook
+                slim-mode-hook
+                sh-mode-hook))
   (add-hook list 'flycheck-mode))
 (eval-after-load "flycheck"
   '(progn
