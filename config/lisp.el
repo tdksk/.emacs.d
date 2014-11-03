@@ -371,7 +371,8 @@
                 coffee-mode-hook
                 haml-mode-hook
                 slim-mode-hook
-                html-mode-hook))
+                html-mode-hook
+                sh-mode-hook))
   (add-hook hook 'highlight-indentation-mode))
 
 ;;; git-gutter.el
