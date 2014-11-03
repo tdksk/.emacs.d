@@ -325,6 +325,7 @@
 ;;; Iedit
 (require 'iedit)
 (setq iedit-toggle-key (kbd "M-i"))
+(global-set-key (kbd "C-M-e") 'iedit-mode-toggle-on-function)
 (define-key global-map iedit-toggle-key 'iedit-mode)
 (define-key isearch-mode-map iedit-toggle-key 'iedit-mode-from-isearch)
 (define-key esc-map iedit-toggle-key 'iedit-execute-last-modification)
@@ -333,6 +334,11 @@
           (lambda ()
             ;; TODO: Enable these keymaps if cursor is out of iedit region
             (define-key iedit-occurrence-keymap (kbd "<escape>") (kbd "M-i <escape>"))))
+(dolist (hook '(c-mode-common-hook
+                coffee-mode-hook))
+  (add-hook hook
+            (lambda ()
+              (local-set-key (kbd "C-M-e") 'iedit-mode-toggle-on-function))))
 
 ;;; anzu
 (require 'anzu)
