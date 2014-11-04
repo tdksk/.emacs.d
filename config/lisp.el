@@ -548,6 +548,7 @@
 
 ;;; flycheck
 (require 'flycheck)
+(require 'flycheck-pos-tip)
 (dolist (list '(php-mode-hook
                 ruby-mode-hook
                 python-mode-hook
@@ -556,9 +557,11 @@
                 slim-mode-hook
                 sh-mode-hook))
   (add-hook list 'flycheck-mode))
-(eval-after-load "flycheck"
+(eval-after-load 'flycheck
   '(progn
-     (setq flycheck-display-errors-delay 0.3)
+     (custom-set-variables
+      '(flycheck-display-errors-delay 0.3)
+      '(flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
      (set-face-attribute 'flycheck-error nil
                          :foreground "black" :weight 'normal
                          :background "red")
