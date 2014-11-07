@@ -407,7 +407,6 @@
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
 (define-key magit-status-mode-map (kbd "p") (lambda () (interactive) (magit-push-dwim '(1))))
 (define-key magit-status-mode-map (kbd "S") (kbd "z-uz"))
-(define-key magit-status-mode-map (kbd "W") 'magit-toggle-whitespace)
 (add-hook 'magit-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'magit-goto-next-section)
@@ -420,6 +419,7 @@
              (local-set-key (kbd "n") 'isearch-repeat-forward)
              (local-set-key (kbd "N") 'isearch-repeat-backward)
              (local-set-key (kbd "O") 'delete-other-windows)
+             (local-set-key (kbd "W") 'magit-toggle-whitespace)
              (local-set-key (kbd "C-SPC") 'set-mark-command)
              (local-set-key (kbd "C-@") 'set-mark-command)
              (local-set-key (kbd "w") 'magit-copy-item-as-kill)))
