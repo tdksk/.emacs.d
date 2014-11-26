@@ -163,3 +163,6 @@
 [submodule "lisp/flycheck-pos-tip"]
 	path = lisp/flycheck-pos-tip
 	url = https://github.com/flycheck/flycheck-pos-tip.git
+[submodule "lisp/swift-mode"]
+	path = lisp/swift-mode
+	url = https://github.com/chrisbarrett/swift-mode.git
