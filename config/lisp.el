@@ -405,7 +405,7 @@
 (set-face-background 'magit-item-highlight "black")
 (defvar magit-highlight-status t)
 (define-key magit-mode-map (kbd "h") 'magit-toggle-highlight)
-(define-key magit-status-mode-map (kbd "p") (lambda () (interactive) (magit-push-dwim '(1))))
+(define-key magit-status-mode-map (kbd "p") (kbd "P C-u"))
 (define-key magit-status-mode-map (kbd "S") (kbd "z-uz"))
 (add-hook 'magit-mode-hook
           '(lambda ()
