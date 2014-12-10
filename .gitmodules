@@ -157,9 +157,6 @@
 [submodule "lisp/fuzzy"]
 	path = lisp/fuzzy
 	url = https://github.com/auto-complete/fuzzy-el.git
-[submodule "lisp/ert"]
-	path = lisp/ert
-	url = https://github.com/ohler/ert.git
 [submodule "lisp/flycheck-pos-tip"]
 	path = lisp/flycheck-pos-tip
 	url = https://github.com/flycheck/flycheck-pos-tip.git
