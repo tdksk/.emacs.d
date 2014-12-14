@@ -990,7 +990,7 @@
           (git-gutter-mode 1)))))
 (defun evil-cancel-insert ()
   (interactive)
-  (self-insert-command 1)
+  ;; (self-insert-command 1)
   (evil-normal-state)
   (undo-tree-undo))
 (defun evil-open-below-and-normal-state ()
