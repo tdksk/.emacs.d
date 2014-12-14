@@ -829,8 +829,8 @@
             (local-set-key (kbd "M-r") 'xcode-run)))
 
 ;;; Swift Mode
-(require 'swift-mode)
-(add-to-list 'auto-mode-alist '("\\.swift$" . swift-mode))
+;; (require 'swift-mode)
+;; (add-to-list 'auto-mode-alist '("\\.swift$" . swift-mode))
 
 ;;; Helm
 (require 'helm-config)
