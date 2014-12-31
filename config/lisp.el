@@ -884,6 +884,7 @@
 ;; helm-swoop
 (require 'helm-swoop)
 (global-set-key (kbd "M-f") 'helm-swoop)
+(global-set-key (kbd "M-F") 'helm-swoop-at-point)
 (setq helm-swoop-pre-input-function (lambda ()))
 (setq helm-swoop-split-direction 'split-window-horizontally)
 (setq helm-swoop-move-to-line-cycle nil)
@@ -896,6 +897,10 @@
                     :foreground "black"
                     :background nil
                     :weight 'bold)
+(defun helm-swoop-at-point ()
+  (interactive)
+  (er/mark-symbol)
+  (helm-swoop))
 ;; helm-ag
 (require 'helm-ag)
 ;; helm-ls-git
