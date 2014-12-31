@@ -888,6 +888,7 @@
 (setq helm-swoop-pre-input-function (lambda ()))
 (setq helm-swoop-split-direction 'split-window-horizontally)
 (setq helm-swoop-move-to-line-cycle nil)
+(setq helm-swoop-speed-or-color t)
 (setq helm-swoop-use-line-number-face t)
 (set-face-attribute 'helm-swoop-target-word-face nil
                     :foreground "black"
