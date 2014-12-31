@@ -163,3 +163,6 @@
 [submodule "lisp/swift-mode"]
 	path = lisp/swift-mode
 	url = https://github.com/chrisbarrett/swift-mode.git
+[submodule "lisp/migemo"]
+	path = lisp/migemo
+	url = https://github.com/emacs-jp/migemo.git
