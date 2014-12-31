@@ -352,9 +352,9 @@
               (local-set-key (kbd "C-M-e") 'iedit-mode-toggle-on-function))))
 
 ;;; anzu
-(require 'anzu)
-(global-anzu-mode t)
-(setq anzu-search-threshold 1000)
+;; (require 'anzu)
+;; (global-anzu-mode t)
+;; (setq anzu-search-threshold 1000)
 
 ;;; Ace Jump Mode
 ;; (require 'ace-jump-mode)
