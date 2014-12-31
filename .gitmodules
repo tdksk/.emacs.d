@@ -166,3 +166,6 @@
 [submodule "lisp/migemo"]
 	path = lisp/migemo
 	url = https://github.com/emacs-jp/migemo.git
+[submodule "lisp/helm-swoop"]
+	path = lisp/helm-swoop
+	url = https://github.com/ShingoFukuyama/helm-swoop.git

@@ -881,6 +881,21 @@
      (define-key helm-map (kbd "C-w") 'backward-kill-word)
      (define-key helm-map (kbd "C-u") (kbd "C-a C-k"))
      (define-key helm-map (kbd "C-o") 'helm-ff-run-open-file-with-default-tool)))
+;; helm-swoop
+(require 'helm-swoop)
+(global-set-key (kbd "M-f") 'helm-swoop)
+(setq helm-swoop-pre-input-function (lambda ()))
+(setq helm-swoop-split-direction 'split-window-horizontally)
+(setq helm-swoop-move-to-line-cycle nil)
+(setq helm-swoop-use-line-number-face t)
+(set-face-attribute 'helm-swoop-target-word-face nil
+                    :foreground "black"
+                    :background "magenta"
+                    :weight 'normal)
+(set-face-attribute 'helm-swoop-line-number-face nil
+                    :foreground "black"
+                    :background nil
+                    :weight 'bold)
 ;; helm-ag
 (require 'helm-ag)
 ;; helm-ls-git
