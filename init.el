@@ -232,14 +232,15 @@
 
 (show-paren-mode 1)
 (setq show-paren-delay 0)
-(defadvice show-paren-function (after evil-echo-paren-matching-line activate)
-  "If a matching paren is off-screen, echo the matching line."
-  (when (char-equal (char-syntax (char-before (+ (point) 1))) ?\))
-    (forward-char)
-    (let ((matching-text (blink-matching-open)))
-      (when matching-text
-        (message matching-text)))
-    (backward-char)))
+;;; `Error running timer `show-paren-function': (wrong-type-argument characterp nil)` in Emacs 24.4
+;; (defadvice show-paren-function (after evil-echo-paren-matching-line activate)
+;;   "If a matching paren is off-screen, echo the matching line."
+;;   (when (char-equal (char-syntax (char-before (+ (point) 1))) ?\))
+;;     (forward-char)
+;;     (let ((matching-text (blink-matching-open)))
+;;       (when matching-text
+;;         (message matching-text)))
+;;     (backward-char)))
 (set-face-attribute 'show-paren-match nil
                     :foreground "black"
                     :background "cyan"
