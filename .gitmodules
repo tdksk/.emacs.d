@@ -169,3 +169,6 @@
 [submodule "lisp/helm-swoop"]
 	path = lisp/helm-swoop
 	url = https://github.com/ShingoFukuyama/helm-swoop.git
+[submodule "lisp/evil-anzu"]
+	path = lisp/evil-anzu
+	url = https://github.com/syohex/emacs-evil-anzu.git

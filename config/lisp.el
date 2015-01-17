@@ -371,6 +371,9 @@
 (global-set-key (kbd "M-=") 'evil-numbers/inc-at-pt)
 (global-set-key (kbd "M--") 'evil-numbers/dec-at-pt)
 
+;;; evil-anzu
+;; (require 'evil-anzu)
+
 ;;; volatile-highlights
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
