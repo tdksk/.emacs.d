@@ -1,8 +1,7 @@
-(setq load-path (append
-                 '("~/.emacs.d"
-                   "~/.emacs.d/lisp")
-                 load-path))
-(let ((default-directory (expand-file-name "~/.emacs.d/lisp")))
+(defvar user-emacs-directory
+  (expand-file-name (concat (getenv "HOME") "/.emacs.d/")))
+
+(let ((default-directory (expand-file-name (concat user-emacs-directory "lisp"))))
   (add-to-list 'load-path default-directory)
   (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
       (normal-top-level-add-subdirs-to-load-path)))
@@ -949,4 +948,4 @@ the next ARG files are used.  Just \\[universal-argument] means the current file
     (interactive)
     (shell-command "osascript ~/.emacs.d/scripts/xcode-run.scpt")))
 
-(load "config/lisp")
+(load (concat user-emacs-directory "config/lisp"))
