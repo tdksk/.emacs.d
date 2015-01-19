@@ -1014,6 +1014,7 @@
 (define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (evil-set-initial-state 'git-commit-mode 'insert)
+(evil-set-initial-state 'git-rebase-mode 'insert)
 (defun switch-linum-mode-git-gutter-mode ()
   (interactive)
   (if (not linum-mode)
