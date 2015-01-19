@@ -513,10 +513,10 @@
   (delete-window))
 (defun magit-browse ()
   (interactive)
-  (if (zerop (call-process-shell-command "git config --get hub.host" nil t))
+  (if (zerop (shell-command "git config --get hub.host"))
       (shell-command "hub browse")
     (let ((url (with-temp-buffer
-                 (unless (zerop (call-process-shell-command "git remote -v" nil t))
+                 (unless (zerop (shell-command "git remote -v"))
                    (error "Failed: 'git remote -v'"))
                  (goto-char (point-min))
                  (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
