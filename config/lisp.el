@@ -435,6 +435,8 @@
              (local-set-key (kbd "W") 'magit-toggle-whitespace)
              (local-set-key (kbd "C-SPC") 'set-mark-command)
              (local-set-key (kbd "C-@") 'set-mark-command)
+             (local-set-key (kbd "C-n") 'next-logical-line)
+             (local-set-key (kbd "C-p") 'previous-logical-line)
              (local-set-key (kbd "w") 'magit-copy-item-as-kill)))
 (add-hook 'magit-log-mode-hook
           '(lambda ()
