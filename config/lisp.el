@@ -749,6 +749,11 @@
           '(lambda ()
              (set-face-background 'erb-face nil)))
 
+;;; nxml mode
+(add-hook 'nxml-mode-hook
+          (lambda ()
+            (setq rng-validate-mode nil)))
+
 ;;; YAML Mode
 (autoload 'yaml-mode "yaml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
