@@ -990,6 +990,7 @@
 (define-key evil-normal-state-map (kbd "g s") 'git-gutter:stage-hunk)
 (define-key evil-normal-state-map (kbd "g r") 'git-gutter:revert-hunk)
 (define-key evil-normal-state-map (kbd "g m") 'git-messenger:popup-message)
+(define-key evil-normal-state-map (kbd "g S") 'splitjoin)
 (define-key evil-normal-state-map (kbd "g C-n") 'flycheck-next-error)
 (define-key evil-normal-state-map (kbd "g C-p") 'flycheck-previous-error)
 (define-key evil-normal-state-map (kbd "g '") 'helm-resume)
