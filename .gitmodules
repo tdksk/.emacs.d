@@ -172,3 +172,6 @@
 [submodule "lisp/evil-anzu"]
 	path = lisp/evil-anzu
 	url = https://github.com/syohex/emacs-evil-anzu.git
+[submodule "lisp/splitjoin"]
+	path = lisp/splitjoin
+	url = https://github.com/syohex/emacs-splitjoin.git

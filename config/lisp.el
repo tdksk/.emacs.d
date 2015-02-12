@@ -562,6 +562,9 @@
 ;;; codic
 (require 'codic)
 
+;;; splitjoin
+(require 'splitjoin)
+
 ;;; flycheck
 (require 'flycheck)
 (require 'flycheck-pos-tip)
