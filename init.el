@@ -493,7 +493,7 @@
     (git-gutter-mode . "")
     (auto-complete-mode . "")
     (yas/minor-mode . "")
-    (rinari-minor-mode . " Rr")
+    (projectile-mode . "")
     ;; Major modes
     (python-mode . "Py")
     (perl-mode . "Pl")

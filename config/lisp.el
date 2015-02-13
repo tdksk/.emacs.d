@@ -731,12 +731,13 @@
             (local-set-key (kbd "M-r") 'rspec-verify-single)
             (local-set-key (kbd "M-R") 'rspec-verify)))
 
-;;; Rinari: Ruby on Rails Minor Mode
-(require 'rinari)
-(global-rinari-mode)
-(add-hook 'rinari-minor-mode-hook
-          (lambda ()
-            (setq dash-at-point-docset "rails")))
+;;; Projectile
+(require 'projectile)
+(projectile-global-mode)
+
+(require 'projectile-rails)
+(add-hook 'projectile-mode-hook 'projectile-rails-on)
+(define-key projectile-rails-mode-map (kbd "C-c C-o") 'projectile-toggle-between-implementation-and-test)
 
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)
@@ -1027,6 +1028,13 @@
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (evil-set-initial-state 'git-commit-mode 'insert)
 (evil-set-initial-state 'git-rebase-mode 'insert)
+(evil-define-key 'normal projectile-rails-mode-map (kbd "g f") 'projectile-rails-goto-file-at-point)
+;; fix above keybind can't be applied til state changes
+;; https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-not
+(add-hook 'find-file-hook
+          #'(lambda ()
+              (when projectile-rails-mode
+                (evil-normalize-keymaps))))
 (defun switch-linum-mode-git-gutter-mode ()
   (interactive)
   (if (not linum-mode)
