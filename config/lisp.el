@@ -117,9 +117,6 @@
 (require 'popwin)
 (popwin-mode 1)
 (setq popwin:special-display-config nil)
-;; Hotfix for Emacs 24.3
-;; https://github.com/emacs-jp/issues/issues/2
-(setq popwin:close-popup-window-timer-interval 0.1)
 (push 'help-mode popwin:special-display-config)
 (push '(completion-list-mode :noselect t) popwin:special-display-config)
 (push '(compilation-mode :position right :width .5 :noselect t) popwin:special-display-config)
