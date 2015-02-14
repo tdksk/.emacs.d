@@ -610,7 +610,8 @@
           (lambda ()
             (setq tab-width 4)
             (local-set-key (kbd "C-c C-o") 'ff-find-other-file)
-            (local-set-key (kbd "C-c C-d") 'dash-at-point)))
+            (local-set-key (kbd "C-c C-d") 'dash-at-point)
+            (setq ff-search-directories '("./" "../*"))))
 
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")
