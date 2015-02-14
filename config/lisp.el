@@ -562,6 +562,12 @@
 ;;; splitjoin
 (require 'splitjoin)
 
+;;; itunes-bgm
+(require 'itunes-bgm)
+
+;;; jazzradio
+(require 'jazzradio)
+
 ;;; flycheck
 (require 'flycheck)
 (require 'flycheck-pos-tip)

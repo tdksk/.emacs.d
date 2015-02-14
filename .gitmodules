@@ -187,3 +187,9 @@
 [submodule "lisp/rails"]
 	path = lisp/rails
 	url = https://github.com/tomtt/emacs-rails.git
+[submodule "lisp/itunes-bgm"]
+	path = lisp/itunes-bgm
+	url = https://github.com/syohex/emacs-itunes-bgm.git
+[submodule "lisp/jazzradio"]
+	path = lisp/jazzradio
+	url = https://github.com/syohex/emacs-jazzradio.git
