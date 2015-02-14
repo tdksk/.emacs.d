@@ -736,6 +736,67 @@
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
 (define-key projectile-rails-mode-map (kbd "C-c C-o") 'projectile-toggle-between-implementation-and-test)
 
+;; Override for CoffeeScript and Sass
+(defun projectile-rails-goto-asset-at-point (dirs)
+  (let ((name
+         (projectile-rails-sanitize-name (thing-at-point 'filename))))
+    (projectile-rails-ff
+     (loop for dir in dirs
+           for re = (s-lex-format "${dir}${name}\\..+$")
+           for partial = (s-lex-format "${dir}_${name}\\..+$")
+           for files = (projectile-dir-files (projectile-expand-root dir))
+           for file = (or
+                       (--first (string-match-p re it) files)
+                       (--first (string-match-p partial it) files))
+           until file
+           finally return (and file (projectile-expand-root file))))))
+(defun projectile-rails-goto-file-at-point ()
+  "Tries to find file at point"
+  (interactive)
+  (let ((name (projectile-rails-name-at-point))
+        (line (projectile-rails-current-line))
+        (case-fold-search nil))
+    (cond ((string-match-p "\\_<render\\_>" line)
+           (projectile-rails-goto-template-at-point))
+
+          ((string-match-p "^\\s-*//= require .+\\s-*$" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-javascript-dirs))
+
+          ((string-match-p "^\\s-*\\#= require .+\\s-*$" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-javascript-dirs))
+
+          ((string-match-p "\\_<javascript_include_tag\\_>" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-javascript-dirs))
+
+          ((string-match-p "^\\s-*\\*= require .+\\s-*$" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-stylesheet-dirs))
+
+          ((string-match-p "^\\s-*\\@import .+\\s-*$" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-stylesheet-dirs))
+
+          ((string-match-p "\\_<stylesheet_link_tag\\_>" line)
+           (projectile-rails-goto-asset-at-point projectile-rails-stylesheet-dirs))
+
+          ((string-match-p "\\_<require_relative\\_>" line)
+           (projectile-rails-ff (expand-file-name (concat (thing-at-point 'filename) ".rb"))))
+
+          ((string-match-p "\\_<require\\_>" line)
+           (projectile-rails-goto-gem (thing-at-point 'filename)))
+
+          ((string-match-p "\\_<gem\\_>" line)
+           (projectile-rails-goto-gem (thing-at-point 'filename)))
+
+          ((not (string-match-p "^[A-Z]" name))
+           (projectile-rails-sanitize-and-goto-file "app/models/" (singularize-string name) ".rb"))
+
+          ((string-match-p "^[A-Z]" name)
+           (loop for dir in (-concat
+                             (--map
+                              (concat "app/" it)
+                              (projectile-rails-list-entries 'f-directories "app/"))
+                             '("lib/"))
+                 until (projectile-rails-sanitize-and-goto-file dir name ".rb"))))))
+
 ;;; Haml Mode
 (autoload 'haml-mode "haml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.haml$" . haml-mode))
