@@ -609,7 +609,8 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (setq tab-width 4)
-            (local-set-key (kbd "C-c C-o") 'ff-find-other-file)
+            (local-set-key (kbd "C-M-j") 'ff-find-other-file)
+            (local-set-key (kbd "C-M-k") '(lambda () (interactive) (ff-find-other-file nil t)))
             (local-set-key (kbd "C-c C-d") 'dash-at-point)
             (setq ff-search-directories '("./" "../*"))))
 
@@ -741,7 +742,8 @@
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
-(define-key projectile-rails-mode-map (kbd "C-c C-o") 'projectile-toggle-between-implementation-and-test)
+(define-key projectile-rails-mode-map (kbd "C-M-j") 'projectile-rails-goto-file-at-point)
+(define-key projectile-rails-mode-map (kbd "C-M-k") 'projectile-toggle-between-implementation-and-test)
 
 ;; Override for CoffeeScript and Sass
 (defun projectile-rails-goto-asset-at-point (dirs)
@@ -1096,13 +1098,6 @@
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (evil-set-initial-state 'git-commit-mode 'insert)
 (evil-set-initial-state 'git-rebase-mode 'insert)
-(evil-define-key 'normal projectile-rails-mode-map (kbd "g f") 'projectile-rails-goto-file-at-point)
-;; fix above keybind can't be applied til state changes
-;; https://bitbucket.org/lyro/evil/issue/301/evil-define-key-for-minor-mode-does-not
-(add-hook 'find-file-hook
-          #'(lambda ()
-              (when projectile-rails-mode
-                (evil-normalize-keymaps))))
 (defun switch-linum-mode-git-gutter-mode ()
   (interactive)
   (if (not linum-mode)
