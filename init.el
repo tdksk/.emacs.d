@@ -942,8 +942,6 @@ the next ARG files are used.  Just \\[universal-argument] means the current file
     (interactive)
     (shell-command "osascript ~/.emacs.d/scripts/canary-scroll.scpt previous"))
   (global-set-key (kbd "M-r") 'canary-reload)
-  (global-set-key (kbd "C-M-j") 'canary-scroll-next)
-  (global-set-key (kbd "C-M-k") 'canary-scroll-previous)
   ;; xcode
   (defun xcode-run ()
     (interactive)
