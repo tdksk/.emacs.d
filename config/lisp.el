@@ -935,6 +935,9 @@
 ;; my buffers
 (defun helm-my-buffers ()
   (interactive)
+  (unless helm-source-buffers-list
+    (setq helm-source-buffers-list
+          (helm-make-source "Buffers" 'helm-source-buffers)))
   (helm-other-buffer '(helm-source-buffers-list
                        helm-source-bookmarks
                        helm-source-recentf
