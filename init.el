@@ -327,7 +327,7 @@
   (message nil))
 (setq recentf-max-saved-items 1000)
 (setq recentf-exclude
-      '(".recentf" "COMMIT_EDITMSG" "bookmarks"))
+      '(".recentf" "COMMIT_EDITMSG"))
 (setq recentf-auto-cleanup 10)
 (run-with-idle-timer 30 t 'recentf-save-list)
 (recentf-mode 1)
