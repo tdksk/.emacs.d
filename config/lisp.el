@@ -526,7 +526,7 @@
 (define-key magit-mode-map (kbd "G") 'magit-browse)
 (defun magit-pull-request ()
   (interactive)
-  (shell-command "hub compare"))
+  (shell-command (format "hub compare %s" (git-branch-name))))
 (define-key magit-mode-map (kbd "H") 'magit-pull-request)
 
 ;;; git-commit-mode
