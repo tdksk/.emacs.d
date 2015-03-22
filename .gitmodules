@@ -73,9 +73,6 @@
 [submodule "lisp/pkg-info"]
 	path = lisp/pkg-info
 	url = https://github.com/lunaryorn/pkg-info.el.git
-[submodule "lisp/evil"]
-	path = lisp/evil
-	url = git://gitorious.org/evil/evil.git
 [submodule "lisp/evil-surround"]
 	path = lisp/evil-surround
 	url = https://github.com/timcharper/evil-surround.git
@@ -193,3 +190,6 @@
 [submodule "lisp/jazzradio"]
 	path = lisp/jazzradio
 	url = https://github.com/syohex/emacs-jazzradio.git
+[submodule "lisp/evil"]
+	path = lisp/evil
+	url = https://gitorious.org/evil/evil.git
