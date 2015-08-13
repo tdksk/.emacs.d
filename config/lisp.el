@@ -897,8 +897,7 @@
   (unless helm-source-buffers-list
     (setq helm-source-buffers-list
           (helm-make-source "Buffers" 'helm-source-buffers)))
-  (helm-other-buffer '(helm-source-buffers-list
-                       helm-source-bookmarks
+  (helm-other-buffer '(helm-source-bookmarks
                        helm-source-recentf
                        helm-source-files-in-current-dir)
                      "*helm my buffers*"))
