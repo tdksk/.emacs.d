@@ -47,6 +47,8 @@
 (ac-define-source look
   '((candidates . ac-look-candidates)
     (requires . 2)))
+;; ac-emoji
+(require 'ac-emoji)
 ;; emacs-clang-complete-async
 ;; (require 'auto-complete-clang-async)
 ;; (defun ac-clang-complete-setup ()
@@ -498,7 +500,8 @@
 (defun magit-commit-mode-init ()
   (when (looking-at "\n")
     (open-line 1))
-  (flyspell-mode 1))
+  (flyspell-mode 1)
+  (ac-emoji-setup))
 (add-hook 'git-commit-mode-hook 'magit-commit-mode-init)
 (defadvice magit-status (around magit-fullscreen activate)
   (window-configuration-to-register :magit-fullscreen)
@@ -795,7 +798,10 @@
 (add-to-list 'auto-mode-alist '("\\.mdown\\'" . gfm-mode))
 (add-to-list 'auto-mode-alist '("\\.mdt\\'" . gfm-mode))
 ;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
-(add-hook 'markdown-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (flyspell-mode 1)
+            (ac-emoji-setup)))
 (add-hook 'gfm-mode-hook
           (lambda ()
             (visual-line-mode -1)
