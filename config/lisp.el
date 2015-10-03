@@ -381,8 +381,7 @@
 (require 'highlight-indentation)
 (setq highlight-indentation-offset 2)
 (set-face-background 'highlight-indentation-face "black")
-(dolist (hook '(c-mode-common-hook
-                perl-mode-hook
+(dolist (hook '(perl-mode-hook
                 js2-mode-hook
                 scss-mode-hook
                 python-mode-hook
