@@ -1,4 +1,10 @@
 .DS_Store
+.hg/
+.hgignore
+.hgsigs
+.hgsub
+.hgsubstate
+.hgtags
 ac-comphist.dat
 auto-save-list/
 tramp
