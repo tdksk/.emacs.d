@@ -196,3 +196,6 @@
 [submodule "lisp/ac-emoji"]
 	path = lisp/ac-emoji
 	url = https://github.com/syohex/emacs-ac-emoji.git
+[submodule "lisp/highlight-indentation"]
+	path = lisp/highlight-indentation
+	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git
