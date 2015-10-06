@@ -1031,6 +1031,7 @@
 (define-key evil-normal-state-map (kbd "g A") 'helm-git-grep-at-point)
 (define-key evil-normal-state-map (kbd "g /") 'helm-occur)
 (define-key evil-normal-state-map (kbd "g SPC") 'switch-linum-mode-git-gutter-mode)
+(define-key evil-normal-state-map (kbd "\"") (kbd "C-' RET"))
 (define-key evil-normal-state-map (kbd "C-t") nil)
 (define-key evil-normal-state-map (kbd "q") nil)
 (define-key evil-normal-state-map (kbd "Q") 'evil-record-macro)
