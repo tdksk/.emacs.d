@@ -805,6 +805,7 @@
 (add-hook 'gfm-mode-hook
           (lambda ()
             (visual-line-mode -1)
+            (local-set-key (kbd "`") (smartchr '("\``!!'\`" "\`" my-smartchr-codeblock)))
             (local-set-key (kbd "M-p") 'move-line-up)
             (local-set-key (kbd "M-n") 'move-line-down)))
 
