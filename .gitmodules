@@ -199,3 +199,9 @@
 [submodule "lisp/highlight-indentation"]
 	path = lisp/highlight-indentation
 	url = https://github.com/antonj/Highlight-Indentation-for-Emacs.git
+[submodule "lisp/seq"]
+	path = lisp/seq
+	url = https://github.com/NicolasPetton/seq.el.git
+[submodule "lisp/pos-tip"]
+	path = lisp/pos-tip
+	url = https://github.com/tjarvstrand/pos-tip.git
