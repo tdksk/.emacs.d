@@ -959,6 +959,8 @@
 (require 'helm-ag)
 ;; helm-ls-git
 (require 'helm-ls-git)
+(setq helm-ls-git-default-sources '(helm-source-ls-git-status
+                                    helm-source-ls-git))
 ;; helm-git-grep
 (require 'helm-git-grep)
 (global-set-key (kbd "C-x C-g") 'helm-git-grep-at-point)
