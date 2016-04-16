@@ -924,6 +924,7 @@
 (setq helm-input-idle-delay 0)
 (setq helm-exit-idle-delay 0)
 (setq helm-ff-transformer-show-only-basename nil)
+(setq helm-display-function 'popwin:pop-to-buffer)
 (eval-after-load 'helm
   '(progn
      (set-face-foreground 'helm-selection "black")
