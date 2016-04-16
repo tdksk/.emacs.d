@@ -911,8 +911,7 @@
     (setq helm-source-buffers-list
           (helm-make-source "Buffers" 'helm-source-buffers)))
   (helm-other-buffer '(helm-source-bookmarks
-                       helm-source-recentf
-                       helm-source-files-in-current-dir)
+                       helm-source-recentf)
                      "*helm my buffers*"))
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-'") 'helm-my-buffers)
