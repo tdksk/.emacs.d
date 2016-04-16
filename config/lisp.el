@@ -927,6 +927,10 @@
 (eval-after-load 'helm
   '(progn
      (set-face-foreground 'helm-selection "black")
+     (set-face-attribute 'helm-ff-file nil
+                         :foreground "white"
+                         :background nil
+                         :weight 'normal)
      (set-face-attribute 'helm-ff-directory nil
                          :foreground "black"
                          :background "white"
