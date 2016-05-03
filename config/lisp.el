@@ -421,6 +421,8 @@
 (defvar magit-highlight-status t)
 (define-key magit-status-mode-map (kbd "p") (kbd "P C-u"))
 (define-key magit-status-mode-map (kbd "S") (kbd "z-uz"))
+(define-key magit-status-mode-map (kbd "G") 'open-github-repository)
+(define-key magit-status-mode-map (kbd "H") 'open-github-compare)
 (add-hook 'magit-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'magit-goto-next-section)
@@ -515,24 +517,6 @@
 (define-key magit-status-mode-map (kbd "q") 'magit-quit-session)
 (defadvice git-commit-commit (after move-to-magit-buffer activate)
   (delete-window))
-(defun magit-browse ()
-  (interactive)
-  (if (zerop (shell-command "git config --get hub.host"))
-      (shell-command "hub browse")
-    (let ((url (with-temp-buffer
-                 (unless (zerop (shell-command "git remote -v"))
-                   (error "Failed: 'git remote -v'"))
-                 (goto-char (point-min))
-                 (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
-                   (format "https://github.com/%s" (match-string 1))))))
-      (unless url
-        (error "Can't find repository URL"))
-      (browse-url url))))
-(define-key magit-mode-map (kbd "G") 'magit-browse)
-(defun magit-pull-request ()
-  (interactive)
-  (shell-command (format "hub compare %s" (git-branch-name))))
-(define-key magit-mode-map (kbd "H") 'magit-pull-request)
 
 ;;; git-commit-mode
 (when (require 'git-commit-mode nil t)

@@ -642,6 +642,24 @@ Argument REPLACE String used to replace the matched strings in the buffer.
         (substring branch 11)
       "")))
 
+;;; GitHub
+(defun open-github-repository ()
+  (interactive)
+  (if (zerop (shell-command "git config --get hub.host"))
+      (shell-command "hub browse")
+    (let ((url (with-temp-buffer
+                 (unless (zerop (shell-command "git remote -v"))
+                   (error "Failed: 'git remote -v'"))
+                 (goto-char (point-min))
+                 (when (re-search-forward "github\\.com[:/]\\(.+?\\)\\.git" nil t)
+                   (format "https://github.com/%s" (match-string 1))))))
+      (unless url
+        (error "Can't find repository URL"))
+      (browse-url url))))
+(defun open-github-compare ()
+  (interactive)
+  (shell-command (format "hub compare %s" (git-branch-name))))
+
 ;;; tmux
 (global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
 (defun open-current-git-top-directory-in-tmux-new-pane ()
