@@ -423,6 +423,8 @@
 (define-key magit-status-mode-map (kbd "S") (kbd "z-uz"))
 (define-key magit-status-mode-map (kbd "G") 'open-github-repository)
 (define-key magit-status-mode-map (kbd "H") 'open-github-compare)
+(define-key magit-status-mode-map (kbd "i") 'open-github-issues)
+(define-key magit-status-mode-map (kbd "I") 'open-github-pull-requests)
 (add-hook 'magit-mode-hook
           '(lambda ()
              (local-set-key (kbd "j") 'magit-goto-next-section)

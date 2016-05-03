@@ -659,6 +659,12 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (defun open-github-compare ()
   (interactive)
   (shell-command (format "hub compare %s" (git-branch-name))))
+(defun open-github-issues ()
+  (interactive)
+  (shell-command "hub browse -- issues"))
+(defun open-github-pull-requests ()
+  (interactive)
+  (shell-command "hub browse -- pulls"))
 
 ;;; tmux
 (global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
