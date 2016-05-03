@@ -77,43 +77,43 @@
 ;;   (add-hook hook 'ac-ispell-ac-setup))
 
 ;;; migemo
-(require 'migemo)
-(setq migemo-command "cmigemo")
-(setq migemo-options '("-q" "--emacs"))
-(setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
-(setq migemo-user-dictionary nil)
-(setq migemo-regex-dictionary nil)
-(setq migemo-coding-system 'utf-8-unix)
-(load-library "migemo")
-(migemo-init)
+;; (require 'migemo)
+;; (setq migemo-command "cmigemo")
+;; (setq migemo-options '("-q" "--emacs"))
+;; (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
+;; (setq migemo-user-dictionary nil)
+;; (setq migemo-regex-dictionary nil)
+;; (setq migemo-coding-system 'utf-8-unix)
+;; (load-library "migemo")
+;; (migemo-init)
 
 ;;; smart-compile
-(require 'smart-compile)
-(global-set-key (kbd "C-c j") 'smart-compile)
-(define-key menu-bar-tools-menu [compile] '("Compile..." . smart-compile))
-(setq compilation-window-height 1)
+;; (require 'smart-compile)
+;; (global-set-key (kbd "C-c j") 'smart-compile)
+;; (define-key menu-bar-tools-menu [compile] '("Compile..." . smart-compile))
+;; (setq compilation-window-height 1)
 
 ;;; quickrun
-(require 'quickrun)
-(global-set-key (kbd "C-c C-j") 'quickrun)
-(quickrun-add-command "c++/g++/opencv"
-                      '((:command . "g++")
-                        (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv`"
-                                     "%e %a"))
-                        (:remove  . ("%e"))
-                        (:description . "Compile C++ file with g++ including OpenCV and execute")))
-(quickrun-add-command "c++/g++/opengl"
-                      '((:command . "g++")
-                        (:exec    . ("%c -O2 %o -o %e %s -framework GLUT -framework OpenGL"
-                                     "%e %a"))
-                        (:remove  . ("%e"))
-                        (:description . "Compile C++ file with g++ including OpenGL and execute")))
-(quickrun-add-command "c++/g++/opencv+gl"
-                      '((:command . "g++")
-                        (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv` -framework GLUT -framework OpenGL"
-                                     "%e %a"))
-                        (:remove  . ("%e"))
-                        (:description . "Compile C++ file with g++ including OpenCV and OpenGL and execute")))
+;; (require 'quickrun)
+;; (global-set-key (kbd "C-c C-j") 'quickrun)
+;; (quickrun-add-command "c++/g++/opencv"
+;;                       '((:command . "g++")
+;;                         (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv`"
+;;                                      "%e %a"))
+;;                         (:remove  . ("%e"))
+;;                         (:description . "Compile C++ file with g++ including OpenCV and execute")))
+;; (quickrun-add-command "c++/g++/opengl"
+;;                       '((:command . "g++")
+;;                         (:exec    . ("%c -O2 %o -o %e %s -framework GLUT -framework OpenGL"
+;;                                      "%e %a"))
+;;                         (:remove  . ("%e"))
+;;                         (:description . "Compile C++ file with g++ including OpenGL and execute")))
+;; (quickrun-add-command "c++/g++/opencv+gl"
+;;                       '((:command . "g++")
+;;                         (:exec    . ("%c -O2 %o -o %e %s `pkg-config --cflags --libs opencv` -framework GLUT -framework OpenGL"
+;;                                      "%e %a"))
+;;                         (:remove  . ("%e"))
+;;                         (:description . "Compile C++ file with g++ including OpenCV and OpenGL and execute")))
 
 ;;; popwin.el
 (require 'popwin)
@@ -137,18 +137,18 @@
                            :if-config-not-found (lambda (buffer) ad-do-it)))
 
 ;;; undo-tree.el
-(require 'undo-tree)
-(global-undo-tree-mode 1)
-(global-set-key (kbd "M-/") 'undo-tree-redo)
-(add-hook 'undo-tree-visualizer-mode-hook
-          (lambda ()
-            (local-set-key (kbd "j") 'undo-tree-visualize-redo)
-            (local-set-key (kbd "k") 'undo-tree-visualize-undo)
-            (local-set-key (kbd "h") 'undo-tree-visualize-switch-branch-left)
-            (local-set-key (kbd "l") 'undo-tree-visualize-switch-branch-right)))
+;; (require 'undo-tree)
+;; (global-undo-tree-mode 1)
+;; (global-set-key (kbd "M-/") 'undo-tree-redo)
+;; (add-hook 'undo-tree-visualizer-mode-hook
+;;           (lambda ()
+;;             (local-set-key (kbd "j") 'undo-tree-visualize-redo)
+;;             (local-set-key (kbd "k") 'undo-tree-visualize-undo)
+;;             (local-set-key (kbd "h") 'undo-tree-visualize-switch-branch-left)
+;;             (local-set-key (kbd "l") 'undo-tree-visualize-switch-branch-right)))
 
 ;;; goto-chg.el
-(require 'goto-chg)
+;; (require 'goto-chg)
 
 ;;; wrap-region.el
 (require 'wrap-region)
@@ -309,23 +309,23 @@
   (smartchr-mode 0))
 
 ;;; term-paste-mode.el
-(require 'term-paste-mode)
-(global-set-key "\C-x\C-x" 'term-paste-mode)
-(add-hook 'term-paste-mode-on-hook
-          (lambda ()
-            (global-auto-complete-mode 0)
-            (key-chord-mode 0)))
-(add-hook 'term-paste-mode-off-hook
-          (lambda ()
-            (global-auto-complete-mode 1)
-            (key-chord-mode 1)))
-(eval-after-load "term-paste-mode"
-  '(setcar (cdr (assq 'term-paste-mode minor-mode-alist))
-           (if (fboundp 'propertize)
-               (list (propertize " Paste "
-                                 'face
-                                 '(:foreground "yellow" :background "black")))
-             " Paste ")))
+;; (require 'term-paste-mode)
+;; (global-set-key "\C-x\C-x" 'term-paste-mode)
+;; (add-hook 'term-paste-mode-on-hook
+;;           (lambda ()
+;;             (global-auto-complete-mode 0)
+;;             (key-chord-mode 0)))
+;; (add-hook 'term-paste-mode-off-hook
+;;           (lambda ()
+;;             (global-auto-complete-mode 1)
+;;             (key-chord-mode 1)))
+;; (eval-after-load "term-paste-mode"
+;;   '(setcar (cdr (assq 'term-paste-mode minor-mode-alist))
+;;            (if (fboundp 'propertize)
+;;                (list (propertize " Paste "
+;;                                  'face
+;;                                  '(:foreground "yellow" :background "black")))
+;;              " Paste ")))
 
 ;;; yasnippet
 (require 'yasnippet)
@@ -562,21 +562,21 @@
   (git-messenger:popup-close))
 
 ;;; dash-at-point
-(autoload 'dash-at-point "dash-at-point"
-  "Search the word at point with Dash." t nil)
-(global-set-key (kbd "C-c C-d") 'dash-at-point)
+;; (autoload 'dash-at-point "dash-at-point"
+;;   "Search the word at point with Dash." t nil)
+;; (global-set-key (kbd "C-c C-d") 'dash-at-point)
 
 ;;; codic
-(require 'codic)
+;; (require 'codic)
 
 ;;; splitjoin
 (require 'splitjoin)
 
 ;;; itunes-bgm
-(require 'itunes-bgm)
+;; (require 'itunes-bgm)
 
 ;;; jazzradio
-(require 'jazzradio)
+;; (require 'jazzradio)
 
 ;;; flycheck
 (require 'flycheck)
@@ -960,7 +960,7 @@
   (er/mark-symbol)
   (helm-swoop))
 ;; helm-ag
-(require 'helm-ag)
+;; (require 'helm-ag)
 ;; helm-ls-git
 (require 'helm-ls-git)
 (setq helm-ls-git-default-sources '(helm-source-ls-git-status
