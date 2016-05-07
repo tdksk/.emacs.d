@@ -544,7 +544,7 @@
 (define-key git-messenger-map (kbd "p") 'browse-pull-request)
 (defun browse-pull-request ()
   (interactive)
-  (shell-command (format "git show $(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path %s..master) <(git rev-list --first-parent %s..master) | tail -1) | grep 'pull request' | ruby -ne 'id = $_.scan(/#\\d+/).first.sub(\"#\", \"\"); repo = `hub browse -u`.chomp; `open #{repo}/pull/#{id}`'" git-messenger:last-commit-id git-messenger:last-commit-id))
+  (shell-command (format "git show $(ruby -e 'print (File.readlines(ARGV[0]) & File.readlines(ARGV[1])).last' <(git rev-list --ancestry-path %s..master) <(git rev-list --first-parent %s..master) | tail -1) | grep 'pull request' | ruby -ne 'id = $_.scan(/#\\d+/).first.sub(\"#\", \"\"); `hub browse -- pull/#{id}`'" git-messenger:last-commit-id git-messenger:last-commit-id))
   (git-messenger:popup-close))
 
 ;;; dash-at-point
