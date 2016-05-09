@@ -797,7 +797,6 @@
 (add-hook 'markdown-mode-hook
           (lambda ()
             (setq markdown-indent-on-enter nil)
-            (flyspell-mode 1)
             (ac-emoji-setup)))
 (add-hook 'gfm-mode-hook
           (lambda ()
