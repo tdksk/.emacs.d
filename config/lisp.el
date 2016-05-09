@@ -16,8 +16,6 @@
          slim-mode
          objc-mode
          matlab-mode
-         markdown-mode
-         gfm-mode
          git-commit-mode
          yatex-mode))
   (add-to-list 'ac-modes list))
@@ -796,8 +794,7 @@
 ;; (add-to-list 'auto-mode-alist '("README\\.md\\'" . gfm-mode))
 (add-hook 'markdown-mode-hook
           (lambda ()
-            (setq markdown-indent-on-enter nil)
-            (ac-emoji-setup)))
+            (setq markdown-indent-on-enter nil)))
 (add-hook 'gfm-mode-hook
           (lambda ()
             (visual-line-mode -1)
