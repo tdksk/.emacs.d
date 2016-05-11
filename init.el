@@ -641,8 +641,30 @@ Argument REPLACE String used to replace the matched strings in the buffer.
     (if (string-match "^refs/heads/" branch)
         (substring branch 11)
       "")))
+(defun git-current-commit-id ()
+  (replace-regexp-in-string
+   "[\r\n]+\\'" ""
+   (shell-command-to-string "git rev-parse HEAD")))
+(defun git-current-file-relative-path ()
+  (file-relative-name (buffer-file-name) (git-top-directory)))
 
 ;;; GitHub
+(defun github-current-blob-path (&optional start end)
+  (format "blob/%s/%s%s" (git-current-commit-id) (git-current-file-relative-path) (github-line-range start end)))
+(defun github-line-range (&optional start end)
+  (cond ((and start end)
+         (format "#L%s..L%s" start end))
+        (start
+         (format "#L%s" start))
+        (t "")))
+(defun github-current-blob-path-with-line-range ()
+  (if (evil-visual-state-p)
+      (let ((start (line-number-at-pos (region-beginning)))
+            (end (- (line-number-at-pos (region-end)) 1)))
+        (if (eql start end)
+            (github-current-blob-path start)
+        (github-current-blob-path start end)))
+    (github-current-blob-path)))
 (defun open-github-repository ()
   (interactive)
   (if (zerop (shell-command "git config --get hub.host"))
@@ -665,6 +687,18 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (defun open-github-pull-requests ()
   (interactive)
   (shell-command "hub browse -- pulls"))
+(defun open-github-file ()
+  (interactive)
+  (shell-command (format "hub browse -- %s" (github-current-blob-path-with-line-range))))
+(defun copy-github-file ()
+  (interactive)
+  (let ((url (replace-regexp-in-string
+              "[\r\n]+\\'" ""
+              (shell-command-to-string (format "hub browse -u -- %s" (github-current-blob-path-with-line-range))))))
+    (unless url
+      (error "Can't find URL"))
+    (kill-new url)
+    (message url)))
 
 ;;; tmux
 (global-set-key (kbd "M-t") 'open-current-git-top-directory-in-tmux-new-pane)
