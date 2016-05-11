@@ -632,7 +632,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
 (defun git-top-directory ()
   (file-name-as-directory
    (replace-regexp-in-string
-    "\n" ""
+    "[\r\n]+\\'" ""
     (shell-command-to-string "git rev-parse --show-toplevel"))))
 (defun git-branch-name ()
   (let ((branch (replace-regexp-in-string
