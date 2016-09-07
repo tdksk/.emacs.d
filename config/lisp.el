@@ -588,7 +588,10 @@
                          :background "red")
      (set-face-attribute 'flycheck-warning nil
                          :foreground "black" :weight 'normal
-                         :background "yellow")))
+                         :background "yellow")
+     (set-face-attribute 'flycheck-info nil
+                         :foreground "yellow" :weight 'normal
+                         :background nil)))
 
 ;;; CC Mode
 (require 'cpp-auto-include)
