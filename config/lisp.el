@@ -884,6 +884,9 @@
 (require 'swift-mode)
 (add-to-list 'auto-mode-alist '("\\.swift$" . swift-mode))
 
+;;; Kotlin Mode
+(require 'kotlin-mode)
+
 ;;; Helm
 (require 'helm-config)
 (helm-mode 1)

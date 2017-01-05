@@ -205,3 +205,6 @@
 [submodule "lisp/pos-tip"]
 	path = lisp/pos-tip
 	url = https://github.com/tjarvstrand/pos-tip.git
+[submodule "lisp/kotlin-mode"]
+	path = lisp/kotlin-mode
+	url = https://github.com/Emacs-Kotlin-Mode-Maintainers/kotlin-mode.git
