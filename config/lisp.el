@@ -284,7 +284,7 @@
          (global-set-key (kbd "F") (smartchr '("F" "$" "$(\'`!!'\')")))
          (global-set-key (kbd "J") (smartchr '("J" "^")))
          (global-set-key (kbd "K") (smartchr '("K" "&")))
-         (global-set-key (kbd "L") (smartchr '("L" "->" "=>")))
+         ;; (global-set-key (kbd "L") (smartchr '("L" "->" "=>")))
          (global-set-key (kbd "/") (smartchr '("/" "//" "/* `!!' */" my-smartchr-comment)))
          (message "smartchr on"))
         (t
