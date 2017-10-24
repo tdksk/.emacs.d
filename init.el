@@ -713,16 +713,18 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (message "Open directory %s in tmux new pane." dir))
             (t
              (message "Failed to create new pane in tmux."))))))
-(defun open-current-directory-in-tmux-new-window ()
+(defun tig-blame-current-file-in-tmux-new-window ()
   (interactive)
-  (let* ((dir (if buffer-file-name
-                  (file-name-directory buffer-file-name)
-                (expand-file-name "~/")))
-         (cmd (concat "tmux new-window \"cd " dir "; exec $SHELL\"")))
-    (cond ((eq (shell-command cmd) 0)
-           (message "Open directory %s in tmux new window." dir))
-          (t
-           (message "Failed to create new window in tmux.")))))
+  (let ((top-dir (git-top-directory)))
+    (unless (file-directory-p top-dir)
+      (setq top-dir ""))
+    (let* ((dir top-dir)
+           (filepath (git-current-file-relative-path))
+           (cmd (concat "tmux new-window \"cd " dir "; tig blame -- " filepath "; exec $SHELL\"")))
+      (cond ((eq (shell-command cmd) 0)
+             (message "Open directory %s in tmux new pane." dir))
+            (t
+             (message "Failed to create new pane in tmux."))))))
 
 ;;; grep-mode
 (require 'wgrep)
