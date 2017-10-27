@@ -924,11 +924,11 @@ Argument REPLACE String used to replace the matched strings in the buffer.
              (set-face-attribute 'ediff-fine-diff-A nil
                                  :background "black")
              (set-face-attribute 'ediff-current-diff-A nil
-                                 :background "white")
+                                 :background "black")
              (set-face-attribute 'ediff-fine-diff-B nil
                                  :background "black")
              (set-face-attribute 'ediff-current-diff-B nil
-                                 :background "white")
+                                 :background "black")
              (set-face-attribute 'ediff-fine-diff-C nil
                                  :foreground "black" :background "magenta" :weight 'normal)
              (set-face-attribute 'ediff-current-diff-C nil
