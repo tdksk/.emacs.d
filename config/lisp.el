@@ -1022,6 +1022,7 @@
 (define-key evil-normal-state-map (kbd "g L") 'magit-current-file-log)
 (define-key evil-normal-state-map (kbd "g b") 'magit-branch-manager)
 (define-key evil-normal-state-map (kbd "g c") 'magit-checkout)
+(define-key evil-normal-state-map (kbd "g M") 'smerge-ediff)
 (define-key evil-normal-state-map (kbd "g y") 'copy-github-file)
 (define-key evil-normal-state-map (kbd "g n") 'git-gutter:next-hunk)
 (define-key evil-normal-state-map (kbd "g p") 'git-gutter:previous-hunk)
