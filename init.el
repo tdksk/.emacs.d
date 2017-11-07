@@ -653,7 +653,7 @@ Argument REPLACE String used to replace the matched strings in the buffer.
   (format "blob/%s/%s%s" (git-current-commit-id) (git-current-file-relative-path) (github-line-range start end)))
 (defun github-line-range (&optional start end)
   (cond ((and start end)
-         (format "#L%s..L%s" start end))
+         (format "#L%s-L%s" start end))
         (start
          (format "#L%s" start))
         (t "")))
