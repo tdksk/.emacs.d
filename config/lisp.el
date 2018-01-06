@@ -327,7 +327,7 @@
 
 ;;; yasnippet
 (require 'yasnippet)
-(setq yas/snippet-dirs '("~/.emacs.d/lisp/yasnippet/snippets"))
+(setq yas/snippet-dirs '("~/.emacs.d/snippets"))
 (yas/global-mode 1)
 
 ;;; Iedit

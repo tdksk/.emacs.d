@@ -214,3 +214,6 @@
 [submodule "lisp/marshal"]
 	path = lisp/marshal
 	url = https://github.com/sigma/marshal.el
+[submodule "lisp/yasnippet"]
+	path = lisp/yasnippet
+	url = https://github.com/joaotavora/yasnippet
