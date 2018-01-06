@@ -211,3 +211,6 @@
 [submodule "lisp/evil"]
 	path = lisp/evil
 	url = https://github.com/emacs-evil/evil.git
+[submodule "lisp/marshal"]
+	path = lisp/marshal
+	url = https://github.com/sigma/marshal.el

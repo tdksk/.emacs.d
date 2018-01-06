@@ -808,7 +808,7 @@
 ;;; Org Mode
 (add-hook 'org-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-'") 'helm-my-buffers)))
+            (local-set-key (kbd "C-'") 'helm-mini)))
 
 ;;; YaTeX mode
 (autoload 'yatex-mode "yatex" "Yet Another LaTeX mode" t)
@@ -897,17 +897,11 @@
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-symlink))
 (add-to-list 'helm-completing-read-handlers-alist '(mkdir))
 (add-to-list 'helm-completing-read-handlers-alist '(diff))
-;; my buffers
-(defun helm-my-buffers ()
-  (interactive)
-  (unless helm-source-buffers-list
-    (setq helm-source-buffers-list
-          (helm-make-source "Buffers" 'helm-source-buffers)))
-  (helm-other-buffer '(helm-source-bookmarks
-                       helm-source-recentf)
-                     "*helm my buffers*"))
+(custom-set-variables
+ '(helm-mini-default-sources '(helm-source-bookmarks
+                               helm-source-recentf)))
 (global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-'") 'helm-my-buffers)
+(global-set-key (kbd "C-'") 'helm-mini)
 (global-set-key (kbd "C-x C-p") 'helm-show-kill-ring)
 (global-set-key (kbd "C-x C-i") 'helm-imenu)
 (global-set-key (kbd "C-;") 'helm-ls-git-ls)
@@ -966,25 +960,27 @@
 (require 'helm-ghq)
 ;; helm-git-commit-messages
 (defvar helm-c-source-git-commit-messages
-  '((name . "Git Commit Messages")
-    (init . helm-c-git-commit-messages-init)
-    (action . (("Insert" . (lambda (candidate)
-                             (insert
-                              (replace-regexp-in-string "\0" "\n" candidate))))))
-    (real-to-display . helm-c-git-commit-messages-real-to-display)
-    (migemo)
-    (multiline)
-    (candidates-in-buffer)))
-(defun helm-c-git-commit-messages-init ()
-  (with-current-buffer (helm-candidate-buffer 'global)
-    (call-process-shell-command
-     "git log --format=\"%x00%B\" | tr '\\n\\000\' '\\000\\n' | sed -e '/^$/d' -e 's/\\x0\\+$//'"
-     nil (current-buffer))))
+  (helm-build-in-buffer-source "Git Commit Messages"
+    :init #'helm-c-git-commit-messages-init
+    :action (helm-make-actions
+             "Insert" (lambda (candidate)
+                        (insert
+                         (replace-regexp-in-string "\0" "\n" candidate))))
+    :real-to-display #'helm-c-git-commit-messages-real-to-display
+    :multiline t
+    :migemo t))
 (defun helm-git-commit-messages ()
   "`helm' for git commit messages."
   (interactive)
-  (helm-other-buffer 'helm-c-source-git-commit-messages
-                     "*helm commit messages*"))
+  (helm-other-buffer
+   '(helm-c-source-git-commit-messages)
+   "*helm commit messages*"))
+(defun helm-c-git-commit-messages-init ()
+  (with-temp-buffer
+    (call-process-shell-command
+     "git log --format=\"%x00%B\" | tr '\\n\\000\' '\\000\\n' | sed -e '/^$/d' -e 's/\\x0\\+$//'"
+     nil (current-buffer))
+    (helm-init-candidates-in-buffer 'global (buffer-string))))
 (defun helm-c-git-commit-messages-real-to-display (candidate)
   (replace-regexp-in-string "\0" "\n" candidate))
 (defun magit-enable-helm ()
