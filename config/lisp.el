@@ -740,7 +740,7 @@
 
 ;;; Projectile
 (require 'projectile)
-(projectile-global-mode)
+(projectile-mode)
 
 (require 'projectile-rails)
 (add-hook 'projectile-mode-hook 'projectile-rails-on)
