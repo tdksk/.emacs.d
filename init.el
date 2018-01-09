@@ -495,7 +495,7 @@
     (magit-auto-revert-mode . "")
     (git-gutter-mode . "")
     (auto-complete-mode . "")
-    (yas/minor-mode . "")
+    (yas-minor-mode . "")
     (projectile-mode . "")
     ;; Major modes
     (python-mode . "Py")
