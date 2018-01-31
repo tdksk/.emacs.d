@@ -1061,6 +1061,7 @@
 (define-key evil-visual-state-map (kbd "j") 'evil-next-line)
 (define-key evil-visual-state-map (kbd "k") 'evil-previous-line)
 (define-key evil-visual-state-map (kbd "C-n") 'narrow-to-region)
+(define-key evil-visual-state-map (kbd "C-z") 'switch-to-last-buffer)
 (define-key evil-ex-search-keymap (kbd "C-p") 'previous-complete-history-element)
 (define-key evil-ex-search-keymap (kbd "C-n") 'next-complete-history-element)
 (evil-set-initial-state 'git-commit-mode 'insert)
