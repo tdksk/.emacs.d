@@ -532,7 +532,7 @@
                     :background "green"
                     :foreground "black"
                     :weight 'normal)
-(set-face-attribute 'isearch-lazy-highlight-face nil
+(set-face-attribute 'lazy-highlight nil
                     :background "yellow"
                     :foreground "black"
                     :weight 'normal)
