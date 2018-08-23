@@ -644,7 +644,8 @@
       (cons '("\\.css\\'" . css-mode) auto-mode-alist))
 (add-hook 'css-mode-hook
           '(lambda ()
-             (setq css-indent-offset 2)))
+             (setq css-indent-offset 2)
+             (setq css-fontify-colors nil)))
 
 ;;; SCSS Mode for Emacs
 (autoload 'scss-mode "scss-mode")
