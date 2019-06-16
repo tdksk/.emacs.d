@@ -239,6 +239,7 @@
 (defun my-smartchr-keybindings-single-quote ()
   (local-set-key (kbd "\'") (smartchr '("\'`!!'\'" "\'"))))
 (dolist (hook '(c-mode-common-hook
+                csharp-mode-hook
                 perl-mode-hook
                 ruby-mode-hook
                 python-mode-hook
@@ -258,6 +259,13 @@
   (local-set-key (kbd "/") (smartchr '("/" "//" "/* `!!' */" my-smartchr-comment)))
   )
 (add-hook 'c-mode-common-hook 'my-smartchr-keybindings-cc)
+;; for csharp-mode
+(defun my-smartchr-keybindings-csharp ()
+  (local-set-key (kbd "(") (smartchr '("(`!!')" "(")))
+  (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
+  (local-set-key (kbd "/") (smartchr '("/" "//" "/* `!!' */" my-smartchr-comment)))
+  )
+(add-hook 'csharp-mode-hook 'my-smartchr-keybindings-csharp)
 ;; for perl-mode
 (defun my-smartchr-keybindings-perl ()
   (local-set-key (kbd "{") (smartchr '("{`!!'}" "{" my-smartchr-braces)))
@@ -615,6 +623,9 @@
             (local-set-key (kbd "C-M-k") '(lambda () (interactive) (ff-find-other-file nil t)))
             (local-set-key (kbd "C-c C-d") 'dash-at-point)
             (setq ff-search-directories '("./" "../*"))))
+
+;;; C# Mode
+(require 'csharp-mode)
 
 ;;; PHP mode for Emacs
 (autoload 'php-mode "php-mode")

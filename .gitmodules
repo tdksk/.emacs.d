@@ -217,3 +217,6 @@
 [submodule "lisp/yasnippet"]
 	path = lisp/yasnippet
 	url = https://github.com/joaotavora/yasnippet
+[submodule "lisp/csharp-mode"]
+	path = lisp/csharp-mode
+	url = https://github.com/josteink/csharp-mode
