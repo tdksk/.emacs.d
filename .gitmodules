@@ -223,3 +223,18 @@
 [submodule "lisp/typescript"]
 	path = lisp/typescript
 	url = https://github.com/emacs-typescript/typescript.el
+[submodule "lisp/vue-mode"]
+	path = lisp/vue-mode
+	url = https://github.com/AdamNiederer/vue-mode
+[submodule "lisp/mmm-mode"]
+	path = lisp/mmm-mode
+	url = https://github.com/purcell/mmm-mode
+[submodule "lisp/vue-html-mode"]
+	path = lisp/vue-html-mode
+	url = https://github.com/AdamNiederer/vue-html-mode
+[submodule "lisp/ssass-mode"]
+	path = lisp/ssass-mode
+	url = https://github.com/AdamNiederer/ssass-mode
+[submodule "lisp/edit-indirect"]
+	path = lisp/edit-indirect
+	url = https://github.com/Fanael/edit-indirect

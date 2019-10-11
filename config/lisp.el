@@ -707,6 +707,9 @@
           (lambda ()
             (setq typescript-indent-level 2)))
 
+;;; Vue Mode
+(require 'vue-mode)
+
 ;;; Ruby Mode
 (autoload 'ruby-mode "ruby-mode"
   "Mode for editing ruby source files" t)
