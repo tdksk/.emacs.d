@@ -220,3 +220,6 @@
 [submodule "lisp/csharp-mode"]
 	path = lisp/csharp-mode
 	url = https://github.com/josteink/csharp-mode
+[submodule "lisp/typescript"]
+	path = lisp/typescript
+	url = https://github.com/emacs-typescript/typescript.el

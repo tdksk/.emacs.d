@@ -502,6 +502,7 @@
     (perl-mode . "Pl")
     (ruby-mode . "Rb")
     (js2-mode . "Js")
+    (typescript-mode . "Ts")
     (lisp-interaction-mode . "Li")
     (emacs-lisp-mode . "El")
     (markdown-mode . "Md")))

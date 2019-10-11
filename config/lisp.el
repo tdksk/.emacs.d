@@ -701,6 +701,12 @@
              (setq coffee-tab-width 2)
              (local-set-key (kbd ";") 'coffee-open-line-below)))
 
+;;; TypeScript Mode
+(require 'typescript-mode)
+(add-hook 'typescript-mode-hook
+          (lambda ()
+            (setq typescript-indent-level 2)))
+
 ;;; Ruby Mode
 (autoload 'ruby-mode "ruby-mode"
   "Mode for editing ruby source files" t)
