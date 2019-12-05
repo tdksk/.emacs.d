@@ -229,6 +229,9 @@
 
 (setq gc-cons-threshold (* 4 1024 1024))
 
+(setq max-specpdl-size 10000)
+(setq max-lisp-eval-depth 10000)
+
 (menu-bar-mode -1)
 (setq inhibit-splash-screen t)
 (setq initial-scratch-message "")
