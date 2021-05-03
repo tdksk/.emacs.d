@@ -142,9 +142,6 @@
 [submodule "lisp/cpp-auto-include"]
 	path = lisp/cpp-auto-include
 	url = https://github.com/syohex/emacs-cpp-auto-include.git
-[submodule "lisp/popup"]
-	path = lisp/popup
-	url = https://github.com/tdksk/popup-el.git
 [submodule "lisp/fuzzy"]
 	path = lisp/fuzzy
 	url = https://github.com/auto-complete/fuzzy-el.git
@@ -238,3 +235,6 @@
 [submodule "lisp/markdown-mode"]
 	path = lisp/markdown-mode
 	url = https://github.com/jrblevin/markdown-mode
+[submodule "lisp/popup-el"]
+	path = lisp/popup-el
+	url = https://github.com/auto-complete/popup-el.git
