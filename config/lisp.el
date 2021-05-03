@@ -710,7 +710,7 @@
             (setq typescript-indent-level 2)))
 
 ;;; Vue Mode
-(require 'vue-mode)
+;; (require 'vue-mode)
 
 ;;; Ruby Mode
 (autoload 'ruby-mode "ruby-mode"
